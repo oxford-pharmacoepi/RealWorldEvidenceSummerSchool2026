@@ -7,11 +7,11 @@ date: today
 website:
   title: "Real World Evidence Summer School"
   open-graph: true # https://quarto.org/docs/websites/website-tools.html#open-graph
-  repo-url: https://github.com/oxford-pharmacoepi/RealWordlEvidenceSummerSchool2025
+  repo-url: https://github.com/oxford-pharmacoepi/RealWordlEvidenceSummerSchool2026
   repo-actions: [issue]
   page-footer:
     center: "Rendered on {{< meta date >}}"
-    left: "Copyright 2025, Oxinfer"
+    left: "Copyright 2026, Oxinfer"
     right:
       - text: W
         href: https://oxford-pharmacoepi.github.io/Oxinfer/

@@ -1,6 +1,6 @@
 ---
 title: "Welcome to the Analytics track"
-subtitle: "Real World Evidence Summer School 2025"
+subtitle: "Real World Evidence Summer School 2026"
 date: ""
 format:
   revealjs: 
@@ -16,7 +16,7 @@ format:
     width: 1600
     footer: |
       <div style="position: relative; width: 100%;">
-        <div style="text-align: center; font-weight: 500;">Real World Evidence Summer School 2025</div>
+        <div style="text-align: center; font-weight: 500;">Real World Evidence Summer School 2026</div>
         <div style="position: fixed; top: 20px; right: 20px;"><a href="index.qmd" style="text-decoration: none;">⬅ Back to Practicals</a></div>
       </div>
 execute:
@@ -80,9 +80,9 @@ By the end of the week:
 
 **Download the project**:
 
-Please download the following project: [download project](https://github.com/oxford-pharmacoepi/AnalyticsTrack2025/archive/refs/heads/main.zip)
+Please download the following project: [download project](https://github.com/oxford-pharmacoepi/AnalyticsTrack2026/archive/refs/heads/main.zip)
 
-or you can fork the repository from GitHub: <https://github.com/oxford-pharmacoepi/AnalyticsTrack2025>
+or you can fork the repository from GitHub: <https://github.com/oxford-pharmacoepi/AnalyticsTrack2026>
 
 . . .
 
@@ -150,12 +150,12 @@ or you can fork the repository from GitHub: <https://github.com/oxford-pharmacoe
 
 ## Materials
 
-You can find all the materials of the summer school in the following website: <https://oxford-pharmacoepi.github.io/RealWorldEvidenceSummerSchool2025/>
+You can find all the materials of the summer school in the following website: <https://oxford-pharmacoepi.github.io/RealWorldEvidenceSummerSchool2026/>
 
 ::: {style="position: relative; height: 800px;"}
-<a href="https://oxford-pharmacoepi.github.io/RealWorldEvidenceSummerSchool2025/"
+<a href="https://oxford-pharmacoepi.github.io/RealWorldEvidenceSummerSchool2026/"
      target="_blank"
-     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2;"> </a> <iframe src="https://oxford-pharmacoepi.github.io/RealWorldEvidenceSummerSchool2025/"
+     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2;"> </a> <iframe src="https://oxford-pharmacoepi.github.io/RealWorldEvidenceSummerSchool2026/"
           width="100%" height="600px"
           style="border:none; position: absolute; top: 0; left: 0; z-index: 1;"> </iframe>
 :::
