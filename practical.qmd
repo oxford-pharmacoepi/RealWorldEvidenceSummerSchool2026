@@ -12,7 +12,7 @@ During this week you will conduct a study on opiod use. We will conduct the step
 
 ## Project
 
-You should have already [downloaded](https://github.com/oxford-pharmacoepi/AnalyticsTrack2025/archive/refs/heads/main.zip) the project, please open the `Practical` project and create the database.
+You should have already [downloaded](https://github.com/oxford-pharmacoepi/AnalyticsTrack2026/archive/refs/heads/main.zip) the project, please open the `Practical` project and create the database.
 
 ## Database
 

@@ -1,4 +1,4 @@
-Oxford Real World Evidence Summer School 2025: Programmer track
+Oxford Real World Evidence Summer School 2026: Programmer track
 ========================================================================================================================================================
 
 ## Notes
