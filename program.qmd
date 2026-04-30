@@ -5,41 +5,35 @@
 
 | Time | Session |
 | --- | --------- |
-| 13:30-14:00 | Welcome and Set up |
-| 14:00-14:45 | Introduction to OMOP and **CDMConnector** |
-| *14:45-14:55* | *Break* |
-| 14:55-15:25 | Character a database using **OmopSketch** |
-| *15:25-15:35* | *Break* |
-| 15:35-15:45 | General practical introduction |
-| 15:45-16:30 | General practical |
+| 13.30 - 14.00 | Introduction to OMOP and **CDMConnector** |
+| 14.00 - 14.30 | Introduction to vocabulary and codelists with **CodelistGenerator** |
+| 14.30 - 15.00 | *Coffee break* |
+| 15.00 - 15.45 | Characterising a database with **OmopSketch** |
+| 15.45 - 16.30 | General practical |
 
 ## Tuesday
 
 | Time | Session |
 | --- | --------- |
-| 13:30-14:00 | Create codelist using **CodelistGenerator** |
-| *14:00-14:10* | *Break* |
-| 14:10-15:10 | Create cohorts using **CohortConstructor** |
-| *15:10-15:20* | *Break* |
-| 15:20-15:45 | Review codelists and cohorts using **PhenotypeR** |
-| 15:45-16:30 | General practical |
+| 13.30 - 14.30 | Creating cohorts with **CohortConstructor** |
+| 14.30 - 15.00 | *Coffee break* |
+| 15.00 - 15.45 | Phenotype diagnostics with **PhenotypeR** |
+| 15.45 - 16.30 | General practical |
 
 ## Wednesday
 
 | Time | Session |
 | --- | --------- |
-| 13:30-14:20 | Characterise cohorts using **CohortCharacteristics** |
-| *14:20-14:30* | *Break* |
-| 14:30-15:20 | Estimate Incidence and Prevalence using **IncidencePrevalence** |
-| *15:20-15:30* | *Break* |
-| 15:30-16:30 | General practical |
+| 13.30 - 14.30 | Add patient level data with **PatientProfiles** |
+| 14.30 - 15.00 | *Coffee break* |
+| 15.00 - 15.45 | Characterising cohorts with **CohortCharacteristics** |
+| 15.45 - 16.30 | General practical |
 
 ## Thursday
 
 | Time | Session |
 | --- | --------- |
-| 13:30-14:20 | Conducting Drug Utilisation studies with **DrugUtilisation** |
-| *14:20-14:30* | *Break* |
-| 14:30-15:00 | Estimate Survival **CohortSurvival** |
-| *15:00-15:10* | *Break* |
-| 15:10-16:30 | General practical |
+| 13:30 - 14:30 | Conducting Drug Utilisation studies with **DrugUtilisation** |
+| 14:30 - 15:00 | *Coffee break* |
+| 15.00 - 15.45 | Estimate incidence and prevalence with **IncidencePrevalence** |
+| 15:45 - 16:30 | General practical |
