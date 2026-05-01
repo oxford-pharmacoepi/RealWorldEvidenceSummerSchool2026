@@ -6,9 +6,9 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.8.25">
 <meta name="dcterms.date" content="2026-05-01">
 <title>Real World Evidence Summer School – IncidencePrevalence</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -17,9 +17,6 @@
 <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
 <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
 <style>
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -98,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-<link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-911d68fc573ce484eaac5d624bdf1da3.css">
+<link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-58ef0c1599aa8ec985714a9f26e7c669.css">
 <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
 <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
 <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -291,7 +288,7 @@
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: ??
 Columns: 4
-Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1010-azure:R 4.6.0/:memory:]
+Database: DuckDB 1.5.0 [root@Darwin 25.3.0:R 4.4.1/:memory:]
 $ cohort_definition_id &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
 $ subject_id           &lt;int&gt; 1, 3, 7, 8, 11, 12, 14, 21, 22, 29, 32, 33, 36, 37, 41, 42, 43, 45, 46, 47, 49, 51, 52, 5…
 $ cohort_start_date    &lt;date&gt; 1949-10-29, 1977-03-02, 1994-07-10, 1960-05-06, 1945-08-21, 1950-04-30, 1981-06-10, 1973…
@@ -310,7 +307,7 @@ $ cohort_end_date      &lt;date&gt; 1957-03-20, 1982-06-05, 1996-11-16, 1963-04-
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: ??
 Columns: 4
-Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1010-azure:R 4.6.0/:memory:]
+Database: DuckDB 1.5.0 [root@Darwin 25.3.0:R 4.4.1/:memory:]
 $ cohort_definition_id &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
 $ subject_id           &lt;int&gt; 33, 41, 52, 59, 69, 76, 79, 89, 107, 122, 126, 136, 141, 151, 156, 159, 164, 174, 175, 17…
 $ cohort_start_date    &lt;date&gt; 2008-01-01, 2008-01-01, 2008-01-01, 2008-01-01, 2008-01-01, 2008-01-01, 2008-01-01, 2008…
@@ -371,7 +368,7 @@ $ cohort_end_date      &lt;date&gt; 2008-08-04, 2012-01-01, 2011-10-24, 2012-01-
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: ??
 Columns: 4
-Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1010-azure:R 4.6.0/:memory:]
+Database: DuckDB 1.5.0 [root@Darwin 25.3.0:R 4.4.1/:memory:]
 $ cohort_definition_id &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
 $ subject_id           &lt;int&gt; 59, 89, 136, 200, 208, 396, 501, 579, 581, 615, 642, 665, 740, 744, 773, 834, 910, 923, 1…
 $ cohort_start_date    &lt;date&gt; 2008-01-01, 2008-01-01, 2008-01-01, 2008-01-01, 2008-01-01, 2009-08-30, 2008-01-01, 2008…
@@ -396,7 +393,7 @@ $ cohort_end_date      &lt;date&gt; 2012-01-01, 2009-08-06, 2010-02-18, 2010-12-
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: ??
 Columns: 4
-Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1010-azure:R 4.6.0/:memory:]
+Database: DuckDB 1.5.0 [root@Darwin 25.3.0:R 4.4.1/:memory:]
 $ cohort_definition_id &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
 $ subject_id           &lt;int&gt; 59, 89, 136, 200, 208, 396, 501, 579, 581, 615, 642, 665, 740, 744, 773, 834, 910, 923, 1…
 $ cohort_start_date    &lt;date&gt; 2008-01-01, 2008-01-01, 2008-01-01, 2008-01-01, 2008-01-01, 2009-08-30, 2008-01-01, 2008…
@@ -507,7 +504,7 @@ $ cohort_end_date      &lt;date&gt; 2012-01-01, 2009-08-06, 2010-02-18, 2010-12-
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: ??
 Columns: 5
-Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1010-azure:R 4.6.0/:memory:]
+Database: DuckDB 1.5.0 [root@Darwin 25.3.0:R 4.4.1/:memory:]
 $ cohort_definition_id &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
 $ subject_id           &lt;int&gt; 59, 89, 136, 200, 208, 396, 501, 579, 581, 615, 642, 665, 740, 744, 773, 834, 910, 923, 1…
 $ cohort_start_date    &lt;date&gt; 2008-01-01, 2008-01-01, 2008-01-01, 2008-01-01, 2008-01-01, 2009-08-30, 2008-01-01, 2008…
@@ -584,7 +581,7 @@ $ group                &lt;chr&gt; "second", "second", "second", "second", "seco
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: ??
 Columns: 4
-Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1010-azure:R 4.6.0/:memory:]
+Database: DuckDB 1.5.0 [root@Darwin 25.3.0:R 4.4.1/:memory:]
 $ cohort_definition_id &lt;int&gt; 1, 1, 1, 1, 1
 $ subject_id           &lt;chr&gt; "2", "3", "5", "3", "5"
 $ cohort_start_date    &lt;date&gt; 2005-08-20, 2015-06-01, 2010-06-01, 2012-01-01, 2014-10-01
@@ -607,7 +604,7 @@ $ cohort_end_date      &lt;date&gt; 2005-09-20, 2015-12-31, 2010-06-01, 2013-01-
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: ??
 Columns: 4
-Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1010-azure:R 4.6.0/:memory:]
+Database: DuckDB 1.5.0 [root@Darwin 25.3.0:R 4.4.1/:memory:]
 $ cohort_definition_id &lt;int&gt; 1, 1, 1
 $ subject_id           &lt;chr&gt; "3", "3", "5"
 $ cohort_start_date    &lt;date&gt; 2015-06-01, 2012-01-01, 2014-10-01
