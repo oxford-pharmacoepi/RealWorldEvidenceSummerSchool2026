@@ -67,7 +67,13 @@ library(omock)
 
 ```{r}
 con <- dbConnect(drv = duckdb(dbdir = here("Databases", "delphi.duckdb")))
+```
 
+```{r, echo=FALSE}
+dbExecute(con, "SET memory_limit = '2GB'")
+```
+
+```{r}
 cdm <- cdmFromCon(
   con = con,
   cdmSchema = "main",
