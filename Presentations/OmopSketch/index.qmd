@@ -78,7 +78,14 @@ cdm <- cdmFromCon(
 
 
 ```{r, echo=FALSE, message=FALSE}
-cdm <- mockCdmFromDataset(datasetName = "GiBleed", source = "duckdb")
+con <- dbConnect(drv = duckdb(dbdir = "/Users/martics/Documents/GitHub/AnalyticsTrack2026/Databases/delphi.duckdb"))
+
+cdm <- cdmFromCon(
+  con = con,
+  cdmSchema = "main",
+  writeSchema = "results",
+  writePrefix = "os_"
+)
 ```
 
 . . .
