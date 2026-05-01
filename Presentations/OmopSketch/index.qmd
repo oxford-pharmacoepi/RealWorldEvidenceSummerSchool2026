@@ -19,445 +19,222 @@ format:
         <div style="position: fixed; top: 20px; right: 20px;"><a href="../index.qmd" style="text-decoration: none;">⬅ Back to Presentations</a></div>
       </div>
 execute:
-  
   echo: true
   eval: true
 editor: visual
 ---
 
-## Overview and motivation
-
--   OmopSketch is designed to summarise key information of an OMOP-mapped database.
--   It can be used to have a general **characterisation** of a database, or to evaluate the **suitability** of a database for a specific study.
--   The code is publicly available in OHDSI's GitHub repository: [OmopSketch](https://github.com/OHDSI/OmopSketch).
--   Vignettes with further details and examples can be found in the package [website](https://OHDSI.github.io/OmopSketch/index.html).
--   Available from [CRAN](https://cran.r-project.org/web/packages/OmopSketch/index.html).
-
-. . .
-
-<center>
-
-::: title-slide-logos
-<img src="https://github.com/OHDSI/OmopSketch/blob/main/man/figures/logo.png?raw=true" alt="Logo 2" class="logo"/>
-:::
-
-```{r,echo=FALSE}
+```{r, echo=FALSE}
 options(width = 120)
 ```
 
-## Create the CDM object
+## Overview and motivation
+
+-   OmopSketch is designed to **summarise key information** of an OMOP-mapped database.
+-   Two main use cases:
+    -   **General characterisation** — understand what's in your database
+    -   **Feasibility assessment** — is this database suitable for my study?
+-   Available on [CRAN](https://cran.r-project.org/web/packages/OmopSketch/index.html) and [GitHub](https://github.com/OHDSI/OmopSketch).
+
+. . .
+
+<center><img src="https://github.com/OHDSI/OmopSketch/blob/main/man/figures/logo.png?raw=true" alt="OmopSketch logo" width="200"/></center>
+
+------------------------------------------------------------------------
+
+# Setup
+
+## Load packages and create the CDM object
 
 -   Load the required packages
 
-::: fragment
+. . .
+
 ```{r}
 library(OmopSketch)
 library(CDMConnector)
 library(duckdb)
 library(dplyr)
 library(here)
-```
-:::
-
--   Create a cdm object containing syntethic data
-
-```{r, echo = FALSE}
-datasetName <- "GiBleed"
-dbdir <- here::here(paste0(datasetName, ".duckdb"))
-con <- duckdb::dbConnect(drv = duckdb::duckdb(dbdir = dbdir))
-
-cdm <- omock::mockCdmFromDataset(datasetName = datasetName)
-CDMConnector::insertCdmTo(cdm = cdm, to = CDMConnector::dbSource(con = con, writeSchema = "main"))
-duckdb::dbDisconnect(conn = con)
+library(omock)
 ```
 
-::: fragment
+. . .
+
+-   Create a CDM object from the **delphi-100k** synthetic dataset
+
+. . .
+
 ```{r}
-datasetName <- "GiBleed"
-dbdir <- here(paste0(datasetName, ".duckdb"))
-con <- dbConnect(drv = duckdb(dbdir = dbdir))
-
-cdm <- cdmFromCon(
-  con = con, 
-  cdmSchema = "main",
-  writeSchema = "main",
-  writePrefix = "os_", 
-  cdmName = datasetName
-)
+cdm <- mockCdmFromDataset(datasetName = "delphi-100k_5.4", source = "duckdb")
 ```
-:::
+
+. . .
+
+-   The `cdm` object is your gateway to all OmopSketch functions — every function takes `cdm` as its first argument.
+
+------------------------------------------------------------------------
 
 # 1. Snapshot
 
-## General info on your database
+## What is a snapshot?
+
+`summariseOmopSnapshot()` captures **metadata about the CDM at a point in time** — useful for reproducibility and maintaining clear records of changes.
 
 . . .
 
-`summariseOmopSnapshot()` function provides a real-time overview of the OMOP database, highlighting key characteristics at a specific moment.
+### Information provided:
 
-. . .
-
-### Key information provided:
-
--   **Vocabulary version:** Current version from the `vocabulary` table.
--   **Table sizes:** Number of records in the `person` and `observation_period` tables.
--   **Observation period span:** The full time range covered by the `observation_period` table.
--   **Source type:** Identifies the origin or type of the data source.
+-   **Vocabulary version** — from the `vocabulary` table
+-   **Table sizes** — record counts for `person` and `observation_period`
+-   **Observation period span** — earliest and latest dates in the data
+-   **Source type** — origin or type of the data source
 
 ## `summariseOmopSnapshot()`
 
--   Create the [summarised result](https://darwin-eu-dev.github.io/omopgenerics/articles/summarised_result.html) with the snapshot information
+-   Returns a [summarised result](https://darwin-eu-dev.github.io/omopgenerics/articles/summarised_result.html) object.
 
-::: fragment
+. . .
+
 ```{r, warning=FALSE}
 snapshot <- summariseOmopSnapshot(cdm = cdm)
 
 glimpse(snapshot)
 ```
-:::
 
 ## `tableOmopSnapshot()`
 
 -   Format the result into a [gt](https://gt.rstudio.com/) table
 
-::: {.fragment style="overflow-y: scroll; height: 650px;"}
+. . .
+
+::: {style="overflow-y: scroll; height: 650px;"}
 ```{r, warning=FALSE}
 tableOmopSnapshot(result = snapshot, type = "gt")
 ```
 :::
 
-# 2. Observation Period
 
-## Summarise the content of your observation period table
+# 2. Observation period
+
+## What does the observation period tell us?
+
+`summariseObservationPeriod()` summarises the **observation_period** table.
 
 . . .
 
-`summariseObservationPeriod()` function generates essential statistics derived from the **observation_period** table.
+### Information provided:
 
-. . .
-
-### Key Information Provided:
-
--   **Number of records per person:** Counts of observation periods associated with each individual.
--   **Duration in days:** Length of each observation period, measured in days.
--   **Days to next observation period:** Time elapsed in days between a patient's consecutive observation periods.
+-   **Number of records per person** — how many observation periods per individual
+-   **Duration in days** — length of each observation period
+-   **Days to next observation period** — gaps between consecutive periods
+-   **Data quality** (optional) — flags inconsistencies
+-   **Missingness** (optional) — counts of missing values per column
 
 ## `summariseObservationPeriod()`
 
--   Create the summarised result
+. . .
 
-::: fragment
 ```{r, warning=FALSE}
-result <- summariseObservationPeriod(observationPeriod = cdm$observation_period, sex = TRUE)
-glimpse(result)
+obs_result <- summariseObservationPeriod(cdm, missingData = TRUE, quality = TRUE)
+glimpse(obs_result)
 ```
-:::
 
 ## `tableObservationPeriod()`
 
--   Format the results into a [gt](https://gt.rstudio.com/) table
+. . .
 
-::: {.fragment style="overflow-y: scroll; height: 650px;"}
+::: {style="overflow-y: scroll; height: 650px;"}
 ```{r, warning=FALSE}
-tableObservationPeriod(result = result, type = "gt")
+tableObservationPeriod(result = obs_result, type = "gt")
 ```
 :::
 
-## `plotObservationPeriod()`
+## `plotObservationPeriod()` — Number of subjects
 
--   Plot the results - **Number of subjects**
+. . .
 
-<center>
-
-::: {.fragment style="overflow-y: scroll; height: 650px;"}
 ```{r, fig.width=8, fig.height=6}
-plotObservationPeriod(result = result,
-                      plotType = "barplot",
-                      variableName = "Number subjects",
-                      colour = "sex")
+plotObservationPeriod(
+  result = obs_result,
+  plotType = "barplot",
+  variableName = "Number subjects"
+)
 ```
-:::
 
-</center>
+## `plotObservationPeriod()` — Duration in days
 
-## `plotObservationPeriod()`
+. . .
 
--   Plot the results - **Duration in days**
-
-<center>
-
-::: {.fragment style="overflow-y: scroll; height: 650px;"}
 ```{r, fig.width=8, fig.height=6}
-plotObservationPeriod(result = result,
-                      plotType = "densityplot",
-                      variableName = "Duration in days",
-                      colour = "sex",
-                      facet = "observation_period_ordinal")
+plotObservationPeriod(
+  result = obs_result,
+  plotType = "densityplot",
+  variableName = "Duration in days",
+  facet = "observation_period_ordinal"
+)
 ```
-:::
 
-</center>
 
-## Trends in observation period table
+
+# 3. Clinical tables
+
+## What does clinical table characterisation do?
+
+`summariseClinicalRecords()` provides a **comprehensive audit** of any clinical table in the CDM.
 
 . . .
 
-`summariseInObservation()` function summarises trends derived from the `observation_period` table.
+### Information provided:
 
-. . .
-
-### Key Information Provided:
-
--   **Number of records:** Count of entries.
--   **Number of subjects:** Count of distinct individuals (patients) represented in the table.
--   **Number of person-days:** The cumulative sum of days individuals are observed.
--   **Number of females:** Count of female subjects in observation.
--   **Median age:** The median age of the subjects at the beginning of the observation period.
-
-## `summariseInObservation()`
-
--   Choose the interval between **years**, **quarters** and **months** (default is **overall**)
--   Select the output of interest between **record**, **person**, **person-days**, **sex** and **age** (default is **record**)
--   Create the summarised result.
-
-<center>
-
-::: {.fragment style="overflow-y: scroll; height: 650px;"}
-```{r, warning=FALSE}
-result <- summariseInObservation(observationPeriod = cdm$observation_period,
-                                 interval = "years",
-                                 output = c("record","person", "person-days", "sex", "age"), 
-                                 ageGroup = list(c(0,50), c(51, Inf))) 
-```
-:::
-
-## `plotInObservation()`
-
--   Plot the results - **Number of person-days**.
-
-<center>
-
-::: {.fragment style="overflow-y: scroll; height: 700px;"}
-```{r, fig.width=10, fig.height=6}
-result |>    
-  filter(variable_name == "Number person-days") |>
-  plotInObservation(colour = "age_group")
-```
-:::
-
-## `plotInObservation()`
-
--   Plot the results - **Median age in observation**.
-
-<center>
-
-::: {.fragment style="overflow-y: scroll; height: 700px;"}
-```{r, fig.width=10, fig.height=6}
-result |>    
-  filter(variable_name == "Median age in observation") |>
-  plotInObservation(facet = "age_group")
-```
-:::
-
-## Your turn: Visualising Observation Trends
-
-. . .
-
-Create a plot showing the **quarterly trend** of the number of people in observation, stratified by **sex** and **age group** (0-30, 31-60, 61+).
-
-<center>
-
-::: {.fragment style="overflow-y: scroll; height: 650px;"}
-```{r, echo=FALSE, fig.width=13, fig.height=6}
-result <- summariseInObservation(observationPeriod = cdm$observation_period,
-                                 output = "person",
-                                 interval = "quarters",
-                                 sex = TRUE,
-                                 ageGroup = list(c(0,30), c(31,60), c(61, Inf)))
-
-plotInObservation(result = result, facet = "sex", colour = "age_group")
-```
-:::
-
-## Your turn: Visualising Observation Trends
-
-1.  Create the summarised result using `summariseInObservation()`:
-
-2.  Create the plot using `plotInObservation()`, with:
-
--   `facet = "sex"` → Separate panels by sex
--   `colour = "age_group"` → Different colors for age groups (`0-30`, `31-60`, `61+`)
-
-. . .
-
-<details>
-
-<summary>💡 Click to see solution</summary>
-
-```{r, eval = FALSE}
-result <- summariseInObservation(observationPeriod = cdm$observation_period,
-                                 output = "person",
-                                 interval = "quarters",
-                                 sex = TRUE,
-                                 ageGroup = list(c(0,30), c(31,60), c(61, Inf)))
-plotInObservation(result = result, facet = "sex", colour = "age_group")
-```
-
-# 3. Clinical tables characterisation
-
-## Check missingness
-
-. . .
-
-`summariseMissingData()` function summarises missingness in a OMOP table
-
-. . .
-
-### Key Information Provided:
-
--   **Number of missing data:** For each column of the table it counts the number of missing values.
--   **Number of zeros:** For each columns containing **concept id** it counts the number of entries equal to 0.
-
-## `summariseMissingData()`
-
--   Choose the **tables** to analyse
--   Specify the **columns** to assess for missing values (by default all columns are included)
--   Optionally run the analysis on a **sample** of each table (default is 1 million rows)
--   Create the summarised result.
-
-<center>
-
-::: {.fragment style="overflow-y: scroll; height: 650px;"}
-```{r, warning=FALSE}
-result <- summariseMissingData(cdm = cdm, 
-                               omopTableName = "drug_exposure",
-                               col = NULL,
-                               sample = 1000) 
-```
-:::
-
-## `tableMissingData()`
-
--   Visualise the result into a [gt](https://gt.rstudio.com/) table
-
-::: {.fragment style="overflow-y: scroll; height: 650px;"}
-```{r, warning=FALSE}
-tableMissingData(result = result, type = "gt")
-```
-:::
-
-## Content of the clinical tables
-
-. . .
-
-`summariseClinicalRecords()` function provides a comprehensive overview of the content of a clinical table.
-
-. . .
-
-### Key Information Provided:
-
--   **Number of records:** Number of entries in the table
--   **Number of subjects:** Number of distinct subjects represented in the table
--   **Record per person:** Summary statistics on the number of records per person
--   **Records in observation:** Number and percentage of records within the observation period
--   **Domains:** Domains associated with the concepts
--   **Concept type::** Type and source of the records (e.g., EHR, claims)
--   **Source vocabulary:** Vocabulary used for mapping the concepts
--   **Whether the concepts are standard:** Number and percentage of records mapped to standard concept IDs
+-   **General information**
+    -   Records & subjects — total counts
+    -   Records per person — mean, SD, median, IQR, min, max
+-   **Concept summary** (`conceptSummary = TRUE`)
+    -   Domains / Concept type / Vocabularies / Standard concepts
+-   **Missingness** (`missingData = TRUE`)
+-   **Quality checks** (`quality = TRUE`)
+    -   \% records in observation period
+    -   Records with end before start or start before birth date
 
 ## `summariseClinicalRecords()`
 
--   Choose the **tables** to analyse
--   Choose the statistics to compute for records per person (by default mean, standard deviation, median, q25, q75, min and max)
--   Specify which analysis to include (by default, all are included)
--   Create the summarised result.
+. . .
 
-<center>
-
-::: {.fragment style="overflow-y: scroll; height: 650px;"}
 ```{r, warning=FALSE}
-result <- summariseClinicalRecords(cdm = cdm, 
-                                   omopTableName = "condition_occurrence",
-                                   recordsPerPerson = c("mean", "sd", "median", "q25", "q75", "min", "max"),
-                                   inObservation = TRUE,
-                                   standardConcept = TRUE,
-                                   sourceVocabulary = TRUE,
-                                   domainId = TRUE,
-                                   typeConcept = TRUE) 
+clinical_result <- summariseClinicalRecords(
+  cdm            = cdm, 
+  omopTableName  = "condition_occurrence", 
+  conceptSummary = TRUE,
+  missingData    = TRUE,
+  quality        = TRUE
+)
 ```
-:::
+
+. . .
+
+-   You can pass multiple tables at once: `omopTableName = c("condition_occurrence", "drug_exposure")`
 
 ## `tableClinicalRecords()`
 
--   Visualise the result into a [gt](https://gt.rstudio.com/) table
+. . .
 
-::: {.fragment style="overflow-y: scroll; height: 650px;"}
+::: {style="overflow-y: scroll; height: 650px;"}
 ```{r, warning=FALSE}
-tableClinicalRecords(result = result, type = "gt")
+tableClinicalRecords(result = clinical_result, type = "gt")
 ```
 :::
 
-## Trends in the clinical tables
+## ✏️ Your turn: Clinical table audit {background-color="#f0f4ff"}
+
+**Task:** Characterise **both** `drug_exposure` and `procedure_occurrence` in one call. Include missing data and quality checks.
 
 . . .
 
-`summariseRecordCount()` function summarises the **record trend** over specified time intervals. Only records that fall within the observation period are considered.
+Then answer:
 
--   Choose the tables to analyse
--   Choose the interval between **years**, **quarters** and **months** (default is **overall**)
--   Create the summarised result.
-
-<center>
-
-::: {.fragment style="overflow-y: scroll; height: 650px;"}
-```{r, warning=FALSE}
-result <- summariseRecordCount(cdm = cdm, 
-                               omopTableName = "visit_occurrence", 
-                               interval = "years",
-                               dateRange = as.Date(c("2000-01-01", "2015-12-31")))
-```
-:::
-
-## `plotRecordCount()`
-
--   Visualise the result into a plot
-
-<center>
-
-::: {.fragment style="overflow-y: scroll; height: 650px;"}
-```{r, fig.width=12, fig.height=6}
-plotRecordCount(result = result, colour = "omop_table")
-```
-:::
-
-## Your turn: Visualising record trends
-
-. . .
-
-Create a plot showing the yearly trend in the number of drug and condition records, stratified by **sex** and in the **date range** 2010-2018.
-
-<center>
-
-::: {.fragment style="overflow-y: scroll; height: 650px;"}
-```{r, echo=FALSE, fig.width=12, fig.height=6 }
-result <- summariseRecordCount(cdm = cdm, 
-                               omopTableName = c("drug_exposure", "condition_occurrence"),
-                               interval = "years",
-                               sex = TRUE,
-                               dateRange = as.Date(c("2010-01-01", "2018-12-31")))
-
-plotRecordCount(result = result, facet = "omop_table", colour = "sex")
-```
-:::
-
-## Your turn: Visualising record trend
-
-1.  Create the summarised result using `summariseRecordCount()`:
-
-2.  Create the plot using `plotRecordCount()`, with:
-
--   `facet = "omop_table"` → Separate panels by table
--   `colour = "sex"` → Different colors for males and females
+1.  Which table has more records per person on average?
+2.  What % of drug records are within the observation period?
 
 . . .
 
@@ -466,181 +243,224 @@ plotRecordCount(result = result, facet = "omop_table", colour = "sex")
 <summary>💡 Click to see solution</summary>
 
 ```{r, eval=FALSE}
-result <- summariseRecordCount(cdm = cdm,
-                               omopTableName = c("drug_exposure", "condition_occurrence"),
-                               interval = "years",
-                               sex = TRUE,
-                               dateRange = as.Date(c("2010-01-01", "2018-12-31")))
+result_ex <- summariseClinicalRecords(
+  cdm           = cdm,
+  omopTableName = c("drug_exposure", "procedure_occurrence"),
+  missingData   = TRUE,
+  quality       = TRUE
+)
 
-plotRecordCount(result = result, facet = "omop_table", colour = "sex")
+tableClinicalRecords(result = result_ex, type = "gt")
 ```
 
-# 4. Concept Counts
+</details>
 
-## Concept counts
+------------------------------------------------------------------------
+
+# 4. Trends over time
+
+## What do trends tell us?
+
+- `summariseTrend()` reveals **how database content changes over time** — essential for spotting data gaps, coverage periods, and temporal changes.
+
+## `event` vs `episode`
 
 . . .
 
-`summariseConceptIdCounts()` provides the counts for each concept id available in the table
+`summariseTrend()` has two separate arguments for tables — and the choice changes **how records are counted across time intervals**.
 
 . . .
 
-### Key Information Provided:
+**`event`** — tables where occurrences happen at a **single point in time**
 
--   **Number of records:** Number of entries for each concept ID
--   **Number of subjects:** Number of distinct individuals associated with each concept ID
+-   Each record is assigned to the interval containing its **start date only**
+-   e.g. a diagnosis on 3 March 2015 → counts in 2015, nowhere else
+-   Typical tables: `condition_occurrence`, `drug_exposure`, `procedure_occurrence`, `measurement`, `observation`, `visit_occurrence`, `death`
+
+. . .
+
+**`episode`** — tables that describe **periods spanning over time**
+
+-   Each record contributes to **every interval between its start and end date**
+-   e.g. an observation period from Jan 2015 to Dec 2016 → counts in both 2015 and 2016
+-   Typical tables: `observation_period`, `drug_era`, `condition_era`
+
+## Outputs available
+
+. . .
+
+| `output` argument | What it counts                       |
+|-------------------|--------------------------------------|
+| `"record"`        | Number of records (default)          |
+| `"person"`        | Number of distinct persons           |
+| `"person-days"`   | Number of person-days (episode only) |
+| `"sex"`           | Number of females                    |
+| `"age"`           | Median age at start of period        |
+
+## `summariseTrend()`
+
+. . .
+
+```{r, warning=FALSE}
+trend_result <- summariseTrend(
+  cdm       = cdm,
+  event     = c("condition_occurrence", "drug_exposure"),
+  interval  = "years",   # "years" | "quarters" | "months" | "overall"
+  output    = "record",  # "record" | "person" | "person-days" | "sex" | "age"
+  dateRange = as.Date(c("1950-01-01", "2000-12-31"))
+)
+
+glimpse(trend_result)
+```
+
+## `summariseTrend()` — check event/episode type
+
+. . .
+
+> You can check how each table was treated in the result settings. The `type` column will show `"event"` or `"episode"` per table.
+
+. . .
+
+```{r, warning=FALSE}
+settings(trend_result) |> glimpse()
+```
+
+## `plotTrend()`
+
+. . .
+
+```{r, fig.width=12, fig.height=6}
+plotTrend(result = trend_result, facet = "omop_table", colour = "cdm_name")
+```
+
+## `tableTrend()`
+
+. . .
+
+::: {style="overflow-y: scroll; height: 650px;"}
+```{r, warning=FALSE}
+tableTrend(result = trend_result, type = "reactable")
+```
+:::
+
+## ✏️ Your turn: Sex-stratified trends {background-color="#f0f4ff"}
+
+**Task:** Create a plot showing the **yearly** trend in records for `drug_exposure` and `condition_occurrence`, stratified by **sex**, for the date range **1990–2010**.
+
+. . .
+
+Hints:
+
+-   `output = "record"` gives you record counts
+-   `sex = TRUE` gives you sex-stratified summaries
+-   `dateRange = as.Date(c("1990-01-01", "2010-12-31"))`
+-   Use `facet = "omop_table"` and `colour = "sex"` in the plot
+
+. . .
+
+<details>
+
+<summary>💡 Click to see solution</summary>
+
+```{r, eval=FALSE}
+result_sex <- summariseTrend(
+  cdm       = cdm,
+  event     = c("drug_exposure", "condition_occurrence"),
+  interval  = "years",
+  output    = "record",
+  sex       = TRUE,
+  dateRange = as.Date(c("1990-01-01", "2010-12-31"))
+)
+
+plotTrend(result = result_sex, facet = "omop_table", colour = "sex")
+```
+
+</details>
+
+------------------------------------------------------------------------
+
+# 5. Concept counts
 
 ## `summariseConceptIdCounts()`
 
--   Choose the tables to analyse
--   Specify the counting method (e.g., `countBy = "record"` by default, or "person" to count distinct subjects)
+- Counts how often each concept ID appears — useful for **feasibility** (do we have enough patients with condition X?).
 
-<center>
+. . .
 
-::: {.fragment style="overflow-y: scroll; height: 650px;"}
 ```{r, warning=FALSE}
-result <- summariseConceptIdCounts(cdm = cdm, 
-                                   omopTableName = "procedure_occurrence",
-                                   countBy = c("record", "person"))
-glimpse(result)
+concept_result <- summariseConceptIdCounts(
+  cdm           = cdm, 
+  omopTableName = "procedure_occurrence",
+  countBy       = c("record", "person")
+)
+glimpse(concept_result)
 ```
-:::
 
 ## `tableConceptIdCounts()`
 
--   Visualise the result in a interactive [reactable](https://glin.github.io/reactable/) table
--   Filter the output using the `display` option:
-    -   `display = "standard"`: Show only standard concepts
-    -   `display = "source"`: Show only source codes
-    -   `display = "missing standard"`: Show source codes without a mapped standard concept
-    -   `display = "missing source`": Show standard concepts without a mapped source code
-    -   `display = "overall" (default)`: Show all records
+- Filter using the `display` argument:
+
+. . .
+
+| `display`             | What is shown                         |
+|-----------------------|---------------------------------------|
+| `"overall"` (default) | All records                           |
+| `"standard"`          | Standard concepts only                |
+| `"source"`            | Source codes only                     |
+| `"missing standard"`  | Source codes with no standard mapping |
+| `"missing source"`    | Standard concepts with no source code |
 
 ## `tableConceptIdCounts()`
 
-<center>
+. . .
 
-::: {.fragment style="overflow-y: scroll; height: 800px;"}
 ```{r, warning=FALSE}
-tableConceptIdCounts(result = result, display = "standard",type = "reactable")
+tableConceptIdCounts(result = concept_result, display = "standard", type = "reactable")
 ```
-:::
 
 ## `tableTopConceptCounts()`
 
--   Visualise the most frequent concepts in a [gt](https://gt.rstudio.com/) table
--   Specify the **counting method** (if only one counting is present in the result, it will account for that by default)
--   Choose how many concepts to display (by default `top = 10`)
+. . .
 
-## `tableTopConceptCounts()`
-
-<center>
-
-::: {.fragment style="overflow-y: scroll; height: 650px;"}
 ```{r, warning=FALSE}
-tableTopConceptCounts(result = result, countBy = "record", top = 10, type = "gt")
-```
-:::
-
-## Your Turn: Top concepts
-
-. . .
-
-Identify the **top 5** concepts in the drug_exposure table based on the number of **subjects**
-
-<center>
-
-::: {.fragment style="overflow-y: scroll; height: 650px;"}
-```{r, echo=FALSE}
-result <- summariseConceptIdCounts(cdm = cdm, omopTableName = "drug_exposure", countBy = "person")
-
-tableTopConceptCounts(result = result, top = 5)
-```
-:::
-
-## Your turn: Top concepts
-
-1.  Create the summarised result using `summariseConceptIdCount()`
-
-2.  Display the 5 most frequent concept in using `tableTopConceptCounts()`, with:
-
--   `top = 5` → Show the 5 most frequent
-
-. . .
-
-<details>
-
-<summary>💡 Click to see solution</summary>
-
-```{r, eval=FALSE}
-result <- summariseConceptIdCounts(cdm = cdm, omopTableName = "drug_exposure", countBy = "person")
-
-tableTopConceptCounts(result = result, top = 5)
+tableTopConceptCounts(result = concept_result, countBy = "record", top = 10, type = "gt")
 ```
 
-# 5. Database Characterisation
 
-## Get a full characterisation of you database
 
-. . .
-
-`databaseCharacteristics()` function brings together all the key summaries in one place. It includes:
-
--   **Snapshot** of the database
-
--   **Characterisation of the observation period**
-
--   **Quality** checks on the tables
-
--   Overview of **clinical table content**
+# 6. Full database characterisation
 
 ## `databaseCharacteristics()`
 
--   Select the **tables** to analyse
-
--   Choose whether to stratify by **sex** and **age groups**
-
--   Define the time **interval** for temporal summaries
-
--   Set the **date range** to focus the analysis
-
--   Optionally include concept ID counts (`conceptIdCounts = FALSE` by default)
-
-<center>
-
-::: {.fragment style="overflow-y: scroll; height: 650px;"}
-```{r, warning=FALSE, eval=FALSE}
-result <- databaseCharacteristics(cdm = cdm, 
-                                  omopTableName = c("drug_exposure", "condition_occurrence"), 
-                                  sex = TRUE, 
-                                  ageGroup = list(c(0,50), c(51, Inf)), 
-                                  interval = "years", 
-                                  dateRange = as.Date(c("2010-01-01","2020-12-31")),
-                                  conceptIdCounts = FALSE)
-```
-:::
-
-## Visualise the characterisation results
+- `databaseCharacteristics()` runs **all summaries in one call**.
 
 . . .
 
-`shinyCharacteristics()` creates a **Shiny app** to explore the results of the database characterisation.
-
--   Specify the **directory** where the app should be created
-
--   Optionally customise the title, logo, and visual theme
-
-<center>
-
-::: {.fragment style="overflow-y: scroll; height: 650px;"}
 ```{r, warning=FALSE, eval=FALSE}
-shinyCharacteristics(result = result, directory = here())
+full_result <- databaseCharacteristics(
+  cdm             = cdm,
+  omopTableName   = c("drug_exposure", "condition_occurrence"),
+  sex             = TRUE,
+  ageGroup        = list(c(0, 50), c(51, Inf)),
+  interval        = "years",
+  dateRange       = as.Date(c("2010-01-01", "2020-12-31")),
+  conceptIdCounts = FALSE
+)
 ```
-:::
 
 ## `shinyCharacteristics()`
 
-<center>
+- Then launch a **Shiny app** to explore everything interactively:
+
+. . .
+
+```{r, warning=FALSE, eval=FALSE}
+shinyCharacteristics(result = full_result, directory = here())
+```
+
+## Live Shiny demo
+
+. . .
 
 ```{=html}
 <iframe src="https://dpa-pde-oxford.shinyapps.io/OmopSketchCharacterisation/"
@@ -648,27 +468,25 @@ shinyCharacteristics(result = result, directory = here())
         height="600"
         style="border: none;">
 </iframe>
-
 ```
-[Link to Shiny App](https://dpa-pde-oxford.shinyapps.io/OmopSketchCharacterisation/)
 
-## OmopSketch
+[↗ Open full app](https://dpa-pde-oxford.shinyapps.io/OmopSketchCharacterisation/)
 
-<div style="display: flex; align-items: center; justify-content: space-between;">
+------------------------------------------------------------------------
 
-<div style="flex: 1;">
+## Thank you!
 
-👉 [**Packages website**](https://ohdsi.github.io/OmopSketch/)\
-👉 [**CRAN link**](https://cran.r-project.org/package=OmopSketch)\
-👉 [**Manual**](https://cran.r-project.org/web/packages/OmopSketch/OmopSketch.pdf)
+::::: {style="display: flex; align-items: center; justify-content: space-between;"}
+::: {style="flex: 1;"}
+### Resources
 
+👉 [Package website](https://ohdsi.github.io/OmopSketch/)\
+👉 [CRAN](https://cran.r-project.org/package=OmopSketch)\
+👉 [PDF manual](https://cran.r-project.org/web/packages/OmopSketch/OmopSketch.pdf)\
 📧 <a href="mailto:cecilia.campanile@ndorms.ox.ac.uk">cecilia.campanile\@ndorms.ox.ac.uk</a>
+:::
 
-</div>
-
-<div style="flex: 1; text-align: center;">
-  <img src="https://github.com/OHDSI/OmopSketch/blob/main/man/figures/logo.png?raw=true" width="600"/>
-</div>
-
-</div>
-
+::: {style="flex: 1; text-align: center;"}
+<img src="https://github.com/OHDSI/OmopSketch/blob/main/man/figures/logo.png?raw=true" width="500"/>
+:::
+:::::
