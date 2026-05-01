@@ -78,7 +78,7 @@ cdm <- cdmFromCon(
 
 
 ```{r, echo=FALSE, message=FALSE}
-cdm <- mockCdmFromDataset(datasetName = "delphi-100k_5.4", source = "duckdb")
+cdm <- mockCdmFromDataset(datasetName = "GiBleed", source = "duckdb")
 ```
 
 . . .
