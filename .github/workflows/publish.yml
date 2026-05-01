@@ -33,6 +33,7 @@ jobs:
           deps <- unique(renv::dependencies()$Package)
           message("Installing dependencies: ", paste(deps, collapse = ", "))
           pak::pak(deps, upgrade = FALSE)
+          pak::pkg_install("ohdsi/omock")
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
