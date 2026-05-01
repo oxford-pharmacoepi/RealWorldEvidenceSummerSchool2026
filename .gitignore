@@ -9,3 +9,5 @@ _site/
 *.duckdb
 *.duckdb.wal
 /shiny/
+
+**/*.quarto_ipynb

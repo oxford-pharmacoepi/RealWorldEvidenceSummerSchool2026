@@ -119,8 +119,8 @@ library(CDMConnector)
 library(duckdb)
 library(here)
 library(dplyr)
-library(visOmopResults)
 library(omopgenerics)
+library(visOmopResults)
 ```
 
 . . .
@@ -133,7 +133,7 @@ cdmFromCon()
 
 ## Create a mock reference
 
-You can create a mock database using *omock* from one of the **24** available synthetic databases:
+You can create a mock database using *omock* from one of the **25** available synthetic databases:
 
 . . .
 
@@ -167,12 +167,6 @@ cdmVersion(cdm)
 cdmSource(cdm)
 ```
 
-## `<cdm_reference>` object
-
-```{r, message=TRUE}
-attributes(cdm)
-```
-
 ## `<cdm_table>` object
 
 . . .
@@ -185,49 +179,6 @@ cdm$person
 
 ```{r}
 class(cdm$person)
-```
-
-## `<cdm_table>` object
-. . .
-
-```{r, message=TRUE}
-cdmReference(cdm$person)
-```
-
-. . .
-
-```{r}
-tableName(cdm$person)
-```
-
-. . .
-
-```{r, message=TRUE}
-tableSource(cdm$person)
-```
-
-## `<cdm_table>` object
-
-```{r}
-cdmName(cdm$person)
-```
-
-. . .
-
-```{r}
-cdmVersion(cdm$person)
-```
-
-. . .
-
-```{r, message=TRUE}
-cdmSource(cdm$person)
-```
-
-## `<cdm_table>` object
-
-```{r, message=TRUE}
-attributes(cdm$person)
 ```
 
 ## Connecting to a database from R (the DBI package)
@@ -274,7 +225,6 @@ db <- dbConnect(
 . . .
 
 In this [CDMConnector article](https://darwin-eu.github.io/CDMConnector/articles/a04_DBI_connection_examples.html) you can see how to connect to the different supported DBMS.
-
 
 ## Databases organisation
 
@@ -635,148 +585,72 @@ settings(x)
 
 ```{r}
 x |>
-  splitGroup() |>
-  glimpse()
-```
-
-## tidy the result object
-
-. . .
-
-```{r}
-x |>
-  splitStrata() |>
-  glimpse()
-```
-
-## tidy the result object
-
-. . .
-
-```{r}
-x |>
-  splitAdditional() |>
-  glimpse()
-```
-
-## tidy the result object
-
-. . .
-
-```{r}
-x |>
-  pivotEstimates() |>
-  glimpse()
-```
-
-## tidy the result object
-
-. . .
-
-```{r}
-x |>
   tidy() |>
-  glimpse()
-```
-
-## filtering the result object
-
-. . .
-
-```{r}
-x |>
-  filter(strata_name == "overall") |>
-  glimpse()
-```
-
-## filtering the result object
-
-. . .
-
-```{r}
-x |>
-  filterStrata(sex == "Female") |>
   glimpse()
 ```
 
 ## Other objects and classes
 
-- `<codelist>`, `<codelist_with_details>`, `<conceptSetExpression>`
-- `<cohort_table>`
-- `<achilles_table>`
+-   `<codelist>`, `<codelist_with_details>`, `<conceptSetExpression>`
+-   `<cohort_table>`
+-   `<achilles_table>`
 
 ## omock
 
-<div style="display: flex; align-items: center; justify-content: space-between;">
-
-<div style="flex: 1;">
-
-👉 [**Packages website**](https://ohdsi.github.io/omock/)  
-👉 [**CRAN link**](https://cran.r-project.org/package=omock)  
+::::: {style="display: flex; align-items: center; justify-content: space-between;"}
+::: {style="flex: 1;"}
+👉 [**Packages website**](https://ohdsi.github.io/omock/)\
+👉 [**CRAN link**](https://cran.r-project.org/package=omock)\
 👉 [**Manual**](https://cran.r-project.org/web/packages/omock/omock.pdf)
 
 📧 <a href="mailto:mike.du@ndorms.ox.ac.uk">mike.du\@ndorms.ox.ac.uk</a>
+:::
 
-</div>
-
-<div style="flex: 1; text-align: center;">
-  <img src="https://github.com/OHDSI/omock/blob/main/man/figures/logo.png?raw=true" width="600"/>
-</div>
-
-</div>
+::: {style="flex: 1; text-align: center;"}
+<img src="https://github.com/OHDSI/omock/blob/main/man/figures/logo.png?raw=true" width="600"/>
+:::
+:::::
 
 ## omopgenerics
 
-<div style="display: flex; align-items: center; justify-content: space-between;">
-
-<div style="flex: 1;">
-
-👉 [**Packages website**](https://darwin-eu.github.io/omopgenerics/)  
-👉 [**CRAN link**](https://cran.r-project.org/package=omopgenerics)  
+:::: {style="display: flex; align-items: center; justify-content: space-between;"}
+::: {style="flex: 1;"}
+👉 [**Packages website**](https://darwin-eu.github.io/omopgenerics/)\
+👉 [**CRAN link**](https://cran.r-project.org/package=omopgenerics)\
 👉 [**Manual**](https://cran.r-project.org/web/packages/omopgenerics/omopgenerics.pdf)
 
 📧 <a href="mailto:marti.catalasabate@ndorms.ox.ac.uk">marti.catalasabate\@ndorms.ox.ac.uk</a>
-
-</div>
-
-</div>
+:::
+::::
 
 ## visOmopResults
 
-<div style="display: flex; align-items: center; justify-content: space-between;">
-
-<div style="flex: 1;">
-
-👉 [**Packages website**](https://darwin-eu.github.io/visOmopResults/)  
-👉 [**CRAN link**](https://cran.r-project.org/package=visOmopResults)  
+::::: {style="display: flex; align-items: center; justify-content: space-between;"}
+::: {style="flex: 1;"}
+👉 [**Packages website**](https://darwin-eu.github.io/visOmopResults/)\
+👉 [**CRAN link**](https://cran.r-project.org/package=visOmopResults)\
 👉 [**Manual**](https://cran.r-project.org/web/packages/visOmopResults/visOmopResults.pdf)
 
 📧 <a href="mailto:nuria.mercadebesora@ndorms.ox.ac.uk">nuria.mercadebesora\@ndorms.ox.ac.uk</a>
+:::
 
-</div>
-
-<div style="flex: 1; text-align: center;">
-  <img src="https://github.com/darwin-eu/visOmopResults/blob/main/man/figures/logo.png?raw=true" width="600"/>
-</div>
-
-</div>
+::: {style="flex: 1; text-align: center;"}
+<img src="https://github.com/darwin-eu/visOmopResults/blob/main/man/figures/logo.png?raw=true" width="600"/>
+:::
+:::::
 
 ## CDMConnector
 
-<div style="display: flex; align-items: center; justify-content: space-between;">
-
-<div style="flex: 1;">
-
-👉 [**Packages website**](https://darwin-eu.github.io/CDMConnector/)  
-👉 [**CRAN link**](https://cran.r-project.org/package=CDMConnector)  
+::::: {style="display: flex; align-items: center; justify-content: space-between;"}
+::: {style="flex: 1;"}
+👉 [**Packages website**](https://darwin-eu.github.io/CDMConnector/)\
+👉 [**CRAN link**](https://cran.r-project.org/package=CDMConnector)\
 👉 [**Manual**](https://cran.r-project.org/web/packages/CDMConnector/CDMConnector.pdf)
 
 📧 <a href="mailto:marti.catalasabate@ndorms.ox.ac.uk">marti.catalasabate\@ndorms.ox.ac.uk</a>
+:::
 
-</div>
-
-<div style="flex: 1; text-align: center;">
-  <img src="hexticker.png" width="600"/>
-</div>
-
-</div>
+::: {style="flex: 1; text-align: center;"}
+<img src="hexticker.png" width="600"/>
+:::
+:::::
