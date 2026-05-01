@@ -6,9 +6,9 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.37">
 <meta name="dcterms.date" content="2026-05-01">
 <title>Real World Evidence Summer School – OMOP and CDMConnector</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -17,6 +17,9 @@
 <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
 <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
 <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -95,7 +98,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-<link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-58ef0c1599aa8ec985714a9f26e7c669.css">
+<link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-911d68fc573ce484eaac5d624bdf1da3.css">
 <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
 <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
 <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -281,16 +284,15 @@
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ohdsi.github.io/omock/reference/availableMockDatasets.html">availableMockDatasets</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "delphi-100k"                         "delphi-100k_5.4"                     "empty_cdm"                          
- [4] "empty_cdm_5.3"                       "empty_cdm_5.4"                       "GiBleed"                            
- [7] "synpuf-1k"                           "synpuf-1k_5.3"                       "synpuf-1k_5.4"                      
-[10] "synthea-allergies-10k"               "synthea-breast_cancer-10k"           "synthea-contraceptives-10k"         
-[13] "synthea-covid19-10k"                 "synthea-covid19-200k"                "synthea-dermatitis-10k"             
-[16] "synthea-heart-10k"                   "synthea-hiv-10k"                     "synthea-lung_cancer-10k"            
-[19] "synthea-medications-10k"             "synthea-metabolic_syndrome-10k"      "synthea-opioid_addiction-10k"       
-[22] "synthea-rheumatoid_arthritis-10k"    "synthea-snf-10k"                     "synthea-surgery-10k"                
-[25] "synthea-total_joint_replacement-10k" "synthea-veteran_prostate_cancer-10k" "synthea-veterans-10k"               
-[28] "synthea-weight_loss-10k"            </code></pre>
+<pre><code> [1] "GiBleed"                             "empty_cdm_5.3"                       "empty_cdm_5.4"                      
+ [4] "synpuf-1k_5.3"                       "synpuf-1k_5.4"                       "synthea-allergies-10k"              
+ [7] "synthea-breast_cancer-10k"           "synthea-contraceptives-10k"          "synthea-covid19-10k"                
+[10] "synthea-covid19-200k"                "synthea-dermatitis-10k"              "synthea-heart-10k"                  
+[13] "synthea-hiv-10k"                     "synthea-lung_cancer-10k"             "synthea-medications-10k"            
+[16] "synthea-metabolic_syndrome-10k"      "synthea-opioid_addiction-10k"        "synthea-rheumatoid_arthritis-10k"   
+[19] "synthea-snf-10k"                     "synthea-surgery-10k"                 "synthea-total_joint_replacement-10k"
+[22] "synthea-veteran_prostate_cancer-10k" "synthea-veterans-10k"                "synthea-weight_loss-10k"            
+[25] "delphi-100k_5.4"                    </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/omock/reference/mockCdmFromDataset.html">mockCdmFromDataset</a></span><span class="op">(</span>datasetName <span class="op">=</span> <span class="st">"GiBleed"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
@@ -356,14 +358,14 @@ visit_occurrence, vocabulary
  *     &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt; &lt;dttm&gt;                        &lt;int&gt;
  1         6              8532          1963             12           31 1963-12-31 00:00:00            8516
  2       123              8507          1950              4           12 1950-04-12 00:00:00            8527
- 3       129              8507          1974             10            7 1974-10-07 01:00:00            8527
- 4        16              8532          1971             10           13 1971-10-13 01:00:00            8527
- 5        65              8532          1967              3           31 1967-03-31 01:00:00            8516
+ 3       129              8507          1974             10            7 1974-10-07 00:00:00            8527
+ 4        16              8532          1971             10           13 1971-10-13 00:00:00            8527
+ 5        65              8532          1967              3           31 1967-03-31 00:00:00            8516
  6        74              8532          1972              1            5 1972-01-05 00:00:00            8527
  7        42              8532          1909             11            2 1909-11-02 00:00:00            8527
- 8       187              8507          1945              7           23 1945-07-23 01:00:00            8527
+ 8       187              8507          1945              7           23 1945-07-23 00:00:00            8527
  9        18              8532          1965             11           17 1965-11-17 00:00:00            8527
-10       111              8532          1975              5            2 1975-05-02 01:00:00            8527
+10       111              8532          1975              5            2 1975-05-02 00:00:00            8527
 # ℹ 2,684 more rows
 # ℹ 11 more variables: ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;, care_site_id &lt;int&gt;,
 #   person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;, gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,
@@ -389,7 +391,7 @@ visit_occurrence, vocabulary
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpostgres.r-dbi.org">RPostgres</a></span><span class="op">)</span></span>
 <span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://rpostgres.r-dbi.org/reference/Postgres.html">Postgres</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  <span class="fu">Postgres</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  dbname <span class="op">=</span> <span class="st">"..."</span>,</span>
 <span>  host <span class="op">=</span> <span class="st">"..."</span>,</span>
 <span>  user <span class="op">=</span> <span class="st">"..."</span>,</span>
@@ -402,7 +404,7 @@ visit_occurrence, vocabulary
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://odbc.r-dbi.org">odbc</a></span><span class="op">)</span></span>
 <span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://odbc.r-dbi.org/reference/dbConnect-OdbcDriver-method.html">odbc</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  <span class="fu">odbc</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  Driver   <span class="op">=</span> <span class="st">"ODBC Driver 18 for SQL Server"</span>,</span>
 <span>  Server   <span class="op">=</span> <span class="st">"..."</span>,</span>
 <span>  Database <span class="op">=</span> <span class="st">"..."</span>,</span>
@@ -485,7 +487,7 @@ visit_occurrence, vocabulary</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">person</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Source:   table&lt;person&gt; [?? x 18]
-# Database: DuckDB 1.5.0 [root@Darwin 25.3.0:R 4.4.1//Users/martics/Documents/GitHub/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
+# Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1010-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
    person_id gender_concept_id year_of_birth month_of_birth day_of_birth birth_datetime      race_concept_id
        &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt; &lt;dttm&gt;                        &lt;int&gt;
  1         6              8532          1963             12           31 1963-12-31 00:00:00            8516
@@ -513,7 +515,7 @@ visit_occurrence, vocabulary</code></pre>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Source:   SQL [?? x 1]
-# Database: DuckDB 1.5.0 [root@Darwin 25.3.0:R 4.4.1//Users/martics/Documents/GitHub/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
+# Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1010-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
       n
   &lt;dbl&gt;
 1  2694</code></pre>
@@ -586,25 +588,56 @@ visit_occurrence, vocabulary</code></pre>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">compute</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "care_site"                    "cdm_source"                   "concept"                     
- [4] "concept_ancestor"             "concept_class"                "concept_relationship"        
- [7] "concept_synonym"              "condition_era"                "condition_occurrence"        
-[10] "cost"                         "death"                        "device_exposure"             
-[13] "domain"                       "dose_era"                     "drug_era"                    
-[16] "drug_exposure"                "drug_strength"                "fact_relationship"           
-[19] "location"                     "measurement"                  "metadata"                    
-[22] "my_prefix_drug_exposure"      "my_prefix_my_custom_name"     "my_prefix_not_my_custom_name"
-[25] "my_prefix_person"             "note"                         "note_nlp"                    
-[28] "observation"                  "observation_period"           "payer_plan_period"           
-[31] "person"                       "procedure_occurrence"         "provider"                    
-[34] "relationship"                 "source_to_concept_map"        "specimen"                    
-[37] "test_conditions"              "test_conditions_attrition"    "test_conditions_codelist"    
-[40] "test_conditions_set"          "test_medications"             "test_medications_attrition"  
-[43] "test_medications_codelist"    "test_medications_set"         "test_new_sinusitis"          
-[46] "test_new_sinusitis_attrition" "test_new_sinusitis_codelist"  "test_new_sinusitis_set"      
-[49] "test_sinusitis"               "test_sinusitis_attrition"     "test_sinusitis_codelist"     
-[52] "test_sinusitis_set"           "visit_detail"                 "visit_occurrence"            
-[55] "vocabulary"                   "og_001_1777636519"           </code></pre>
+<pre><code>  [1] "care_site"                                  "cdm_source"                                
+  [3] "concept"                                    "concept_ancestor"                          
+  [5] "concept_class"                              "concept_relationship"                      
+  [7] "concept_synonym"                            "condition_era"                             
+  [9] "condition_occurrence"                       "cost"                                      
+ [11] "death"                                      "device_exposure"                           
+ [13] "domain"                                     "dose_era"                                  
+ [15] "drug_era"                                   "drug_exposure"                             
+ [17] "drug_strength"                              "fact_relationship"                         
+ [19] "location"                                   "measurement"                               
+ [21] "metadata"                                   "my_study_age_cohort"                       
+ [23] "my_study_age_cohort_attrition"              "my_study_age_cohort_codelist"              
+ [25] "my_study_age_cohort_set"                    "my_study_aspirin"                          
+ [27] "my_study_aspirin_attrition"                 "my_study_aspirin_codelist"                 
+ [29] "my_study_aspirin_last"                      "my_study_aspirin_last_attrition"           
+ [31] "my_study_aspirin_last_codelist"             "my_study_aspirin_last_set"                 
+ [33] "my_study_aspirin_set"                       "my_study_diclofenac"                       
+ [35] "my_study_diclofenac_attrition"              "my_study_diclofenac_codelist"              
+ [37] "my_study_diclofenac_set"                    "my_study_ibuprofen"                        
+ [39] "my_study_ibuprofen_attrition"               "my_study_ibuprofen_codelist"               
+ [41] "my_study_ibuprofen_death"                   "my_study_ibuprofen_death_attrition"        
+ [43] "my_study_ibuprofen_death_codelist"          "my_study_ibuprofen_death_set"              
+ [45] "my_study_ibuprofen_set"                     "my_study_ibuprofen_years"                  
+ [47] "my_study_ibuprofen_years_attrition"         "my_study_ibuprofen_years_codelist"         
+ [49] "my_study_ibuprofen_years_set"               "my_study_intersection"                     
+ [51] "my_study_intersection_attrition"            "my_study_intersection_codelist"            
+ [53] "my_study_intersection_set"                  "my_study_medications"                      
+ [55] "my_study_medications_attrition"             "my_study_medications_codelist"             
+ [57] "my_study_medications_collapsed"             "my_study_medications_collapsed_attrition"  
+ [59] "my_study_medications_collapsed_codelist"    "my_study_medications_collapsed_set"        
+ [61] "my_study_medications_requirement"           "my_study_medications_requirement_attrition"
+ [63] "my_study_medications_requirement_codelist"  "my_study_medications_requirement_set"      
+ [65] "my_study_medications_set"                   "my_study_medications_trimmed"              
+ [67] "my_study_medications_trimmed_attrition"     "my_study_medications_trimmed_codelist"     
+ [69] "my_study_medications_trimmed_set"           "note"                                      
+ [71] "note_nlp"                                   "observation"                               
+ [73] "observation_period"                         "payer_plan_period"                         
+ [75] "person"                                     "procedure_occurrence"                      
+ [77] "provider"                                   "relationship"                              
+ [79] "source_to_concept_map"                      "specimen"                                  
+ [81] "test_conditions"                            "test_conditions_attrition"                 
+ [83] "test_conditions_codelist"                   "test_conditions_set"                       
+ [85] "test_medications"                           "test_medications_attrition"                
+ [87] "test_medications_codelist"                  "test_medications_set"                      
+ [89] "test_new_sinusitis"                         "test_new_sinusitis_attrition"              
+ [91] "test_new_sinusitis_codelist"                "test_new_sinusitis_set"                    
+ [93] "test_sinusitis"                             "test_sinusitis_attrition"                  
+ [95] "test_sinusitis_codelist"                    "test_sinusitis_set"                        
+ [97] "visit_detail"                               "visit_occurrence"                          
+ [99] "vocabulary"                                 "og_001_1777642019"                         </code></pre>
 </div>
 </div>
 </div>
@@ -618,25 +651,57 @@ visit_occurrence, vocabulary</code></pre>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">compute</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"my_saved_table"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "care_site"                    "cdm_source"                   "concept"                     
- [4] "concept_ancestor"             "concept_class"                "concept_relationship"        
- [7] "concept_synonym"              "condition_era"                "condition_occurrence"        
-[10] "cost"                         "death"                        "device_exposure"             
-[13] "domain"                       "dose_era"                     "drug_era"                    
-[16] "drug_exposure"                "drug_strength"                "fact_relationship"           
-[19] "location"                     "measurement"                  "metadata"                    
-[22] "my_prefix_drug_exposure"      "my_prefix_my_custom_name"     "my_prefix_not_my_custom_name"
-[25] "my_prefix_person"             "my_saved_table"               "note"                        
-[28] "note_nlp"                     "observation"                  "observation_period"          
-[31] "payer_plan_period"            "person"                       "procedure_occurrence"        
-[34] "provider"                     "relationship"                 "source_to_concept_map"       
-[37] "specimen"                     "test_conditions"              "test_conditions_attrition"   
-[40] "test_conditions_codelist"     "test_conditions_set"          "test_medications"            
-[43] "test_medications_attrition"   "test_medications_codelist"    "test_medications_set"        
-[46] "test_new_sinusitis"           "test_new_sinusitis_attrition" "test_new_sinusitis_codelist" 
-[49] "test_new_sinusitis_set"       "test_sinusitis"               "test_sinusitis_attrition"    
-[52] "test_sinusitis_codelist"      "test_sinusitis_set"           "visit_detail"                
-[55] "visit_occurrence"             "vocabulary"                   "og_001_1777636519"           </code></pre>
+<pre><code>  [1] "care_site"                                  "cdm_source"                                
+  [3] "concept"                                    "concept_ancestor"                          
+  [5] "concept_class"                              "concept_relationship"                      
+  [7] "concept_synonym"                            "condition_era"                             
+  [9] "condition_occurrence"                       "cost"                                      
+ [11] "death"                                      "device_exposure"                           
+ [13] "domain"                                     "dose_era"                                  
+ [15] "drug_era"                                   "drug_exposure"                             
+ [17] "drug_strength"                              "fact_relationship"                         
+ [19] "location"                                   "measurement"                               
+ [21] "metadata"                                   "my_saved_table"                            
+ [23] "my_study_age_cohort"                        "my_study_age_cohort_attrition"             
+ [25] "my_study_age_cohort_codelist"               "my_study_age_cohort_set"                   
+ [27] "my_study_aspirin"                           "my_study_aspirin_attrition"                
+ [29] "my_study_aspirin_codelist"                  "my_study_aspirin_last"                     
+ [31] "my_study_aspirin_last_attrition"            "my_study_aspirin_last_codelist"            
+ [33] "my_study_aspirin_last_set"                  "my_study_aspirin_set"                      
+ [35] "my_study_diclofenac"                        "my_study_diclofenac_attrition"             
+ [37] "my_study_diclofenac_codelist"               "my_study_diclofenac_set"                   
+ [39] "my_study_ibuprofen"                         "my_study_ibuprofen_attrition"              
+ [41] "my_study_ibuprofen_codelist"                "my_study_ibuprofen_death"                  
+ [43] "my_study_ibuprofen_death_attrition"         "my_study_ibuprofen_death_codelist"         
+ [45] "my_study_ibuprofen_death_set"               "my_study_ibuprofen_set"                    
+ [47] "my_study_ibuprofen_years"                   "my_study_ibuprofen_years_attrition"        
+ [49] "my_study_ibuprofen_years_codelist"          "my_study_ibuprofen_years_set"              
+ [51] "my_study_intersection"                      "my_study_intersection_attrition"           
+ [53] "my_study_intersection_codelist"             "my_study_intersection_set"                 
+ [55] "my_study_medications"                       "my_study_medications_attrition"            
+ [57] "my_study_medications_codelist"              "my_study_medications_collapsed"            
+ [59] "my_study_medications_collapsed_attrition"   "my_study_medications_collapsed_codelist"   
+ [61] "my_study_medications_collapsed_set"         "my_study_medications_requirement"          
+ [63] "my_study_medications_requirement_attrition" "my_study_medications_requirement_codelist" 
+ [65] "my_study_medications_requirement_set"       "my_study_medications_set"                  
+ [67] "my_study_medications_trimmed"               "my_study_medications_trimmed_attrition"    
+ [69] "my_study_medications_trimmed_codelist"      "my_study_medications_trimmed_set"          
+ [71] "note"                                       "note_nlp"                                  
+ [73] "observation"                                "observation_period"                        
+ [75] "payer_plan_period"                          "person"                                    
+ [77] "procedure_occurrence"                       "provider"                                  
+ [79] "relationship"                               "source_to_concept_map"                     
+ [81] "specimen"                                   "test_conditions"                           
+ [83] "test_conditions_attrition"                  "test_conditions_codelist"                  
+ [85] "test_conditions_set"                        "test_medications"                          
+ [87] "test_medications_attrition"                 "test_medications_codelist"                 
+ [89] "test_medications_set"                       "test_new_sinusitis"                        
+ [91] "test_new_sinusitis_attrition"               "test_new_sinusitis_codelist"               
+ [93] "test_new_sinusitis_set"                     "test_sinusitis"                            
+ [95] "test_sinusitis_attrition"                   "test_sinusitis_codelist"                   
+ [97] "test_sinusitis_set"                         "visit_detail"                              
+ [99] "visit_occurrence"                           "vocabulary"                                
+[101] "og_001_1777642019"                         </code></pre>
 </div>
 </div>
 </div>
@@ -668,7 +733,7 @@ visit_occurrence, vocabulary</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_saved_table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Source:   table&lt;my_saved_table&gt; [?? x 2]
-# Database: DuckDB 1.5.0 [root@Darwin 25.3.0:R 4.4.1//Users/martics/Documents/GitHub/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
+# Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1010-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
    person_id condition_start_date
        &lt;int&gt; &lt;date&gt;              
  1       263 2015-10-02          
@@ -723,25 +788,56 @@ visit_occurrence, vocabulary</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "care_site"                    "cdm_source"                   "concept"                     
- [4] "concept_ancestor"             "concept_class"                "concept_relationship"        
- [7] "concept_synonym"              "condition_era"                "condition_occurrence"        
-[10] "cost"                         "death"                        "device_exposure"             
-[13] "domain"                       "dose_era"                     "drug_era"                    
-[16] "drug_exposure"                "drug_strength"                "fact_relationship"           
-[19] "location"                     "measurement"                  "metadata"                    
-[22] "my_prefix_drug_exposure"      "my_prefix_my_custom_name"     "my_prefix_not_my_custom_name"
-[25] "my_prefix_person"             "note"                         "note_nlp"                    
-[28] "observation"                  "observation_period"           "payer_plan_period"           
-[31] "person"                       "procedure_occurrence"         "provider"                    
-[34] "relationship"                 "source_to_concept_map"        "specimen"                    
-[37] "test_conditions"              "test_conditions_attrition"    "test_conditions_codelist"    
-[40] "test_conditions_set"          "test_medications"             "test_medications_attrition"  
-[43] "test_medications_codelist"    "test_medications_set"         "test_new_sinusitis"          
-[46] "test_new_sinusitis_attrition" "test_new_sinusitis_codelist"  "test_new_sinusitis_set"      
-[49] "test_sinusitis"               "test_sinusitis_attrition"     "test_sinusitis_codelist"     
-[52] "test_sinusitis_set"           "visit_detail"                 "visit_occurrence"            
-[55] "vocabulary"                   "og_001_1777636519"           </code></pre>
+<pre><code>  [1] "care_site"                                  "cdm_source"                                
+  [3] "concept"                                    "concept_ancestor"                          
+  [5] "concept_class"                              "concept_relationship"                      
+  [7] "concept_synonym"                            "condition_era"                             
+  [9] "condition_occurrence"                       "cost"                                      
+ [11] "death"                                      "device_exposure"                           
+ [13] "domain"                                     "dose_era"                                  
+ [15] "drug_era"                                   "drug_exposure"                             
+ [17] "drug_strength"                              "fact_relationship"                         
+ [19] "location"                                   "measurement"                               
+ [21] "metadata"                                   "my_study_age_cohort"                       
+ [23] "my_study_age_cohort_attrition"              "my_study_age_cohort_codelist"              
+ [25] "my_study_age_cohort_set"                    "my_study_aspirin"                          
+ [27] "my_study_aspirin_attrition"                 "my_study_aspirin_codelist"                 
+ [29] "my_study_aspirin_last"                      "my_study_aspirin_last_attrition"           
+ [31] "my_study_aspirin_last_codelist"             "my_study_aspirin_last_set"                 
+ [33] "my_study_aspirin_set"                       "my_study_diclofenac"                       
+ [35] "my_study_diclofenac_attrition"              "my_study_diclofenac_codelist"              
+ [37] "my_study_diclofenac_set"                    "my_study_ibuprofen"                        
+ [39] "my_study_ibuprofen_attrition"               "my_study_ibuprofen_codelist"               
+ [41] "my_study_ibuprofen_death"                   "my_study_ibuprofen_death_attrition"        
+ [43] "my_study_ibuprofen_death_codelist"          "my_study_ibuprofen_death_set"              
+ [45] "my_study_ibuprofen_set"                     "my_study_ibuprofen_years"                  
+ [47] "my_study_ibuprofen_years_attrition"         "my_study_ibuprofen_years_codelist"         
+ [49] "my_study_ibuprofen_years_set"               "my_study_intersection"                     
+ [51] "my_study_intersection_attrition"            "my_study_intersection_codelist"            
+ [53] "my_study_intersection_set"                  "my_study_medications"                      
+ [55] "my_study_medications_attrition"             "my_study_medications_codelist"             
+ [57] "my_study_medications_collapsed"             "my_study_medications_collapsed_attrition"  
+ [59] "my_study_medications_collapsed_codelist"    "my_study_medications_collapsed_set"        
+ [61] "my_study_medications_requirement"           "my_study_medications_requirement_attrition"
+ [63] "my_study_medications_requirement_codelist"  "my_study_medications_requirement_set"      
+ [65] "my_study_medications_set"                   "my_study_medications_trimmed"              
+ [67] "my_study_medications_trimmed_attrition"     "my_study_medications_trimmed_codelist"     
+ [69] "my_study_medications_trimmed_set"           "note"                                      
+ [71] "note_nlp"                                   "observation"                               
+ [73] "observation_period"                         "payer_plan_period"                         
+ [75] "person"                                     "procedure_occurrence"                      
+ [77] "provider"                                   "relationship"                              
+ [79] "source_to_concept_map"                      "specimen"                                  
+ [81] "test_conditions"                            "test_conditions_attrition"                 
+ [83] "test_conditions_codelist"                   "test_conditions_set"                       
+ [85] "test_medications"                           "test_medications_attrition"                
+ [87] "test_medications_codelist"                  "test_medications_set"                      
+ [89] "test_new_sinusitis"                         "test_new_sinusitis_attrition"              
+ [91] "test_new_sinusitis_codelist"                "test_new_sinusitis_set"                    
+ [93] "test_sinusitis"                             "test_sinusitis_attrition"                  
+ [95] "test_sinusitis_codelist"                    "test_sinusitis_set"                        
+ [97] "visit_detail"                               "visit_occurrence"                          
+ [99] "vocabulary"                                 "og_001_1777642019"                         </code></pre>
 </div>
 </div>
 </div>
@@ -777,25 +873,56 @@ visit_occurrence, vocabulary</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "care_site"                    "cdm_source"                   "concept"                     
- [4] "concept_ancestor"             "concept_class"                "concept_relationship"        
- [7] "concept_synonym"              "condition_era"                "condition_occurrence"        
-[10] "cost"                         "death"                        "device_exposure"             
-[13] "domain"                       "dose_era"                     "drug_era"                    
-[16] "drug_exposure"                "drug_strength"                "fact_relationship"           
-[19] "location"                     "measurement"                  "metadata"                    
-[22] "my_prefix_drug_exposure"      "my_prefix_my_custom_name"     "my_prefix_not_my_custom_name"
-[25] "my_prefix_person"             "note"                         "note_nlp"                    
-[28] "observation"                  "observation_period"           "payer_plan_period"           
-[31] "person"                       "procedure_occurrence"         "provider"                    
-[34] "relationship"                 "source_to_concept_map"        "specimen"                    
-[37] "test_conditions"              "test_conditions_attrition"    "test_conditions_codelist"    
-[40] "test_conditions_set"          "test_medications"             "test_medications_attrition"  
-[43] "test_medications_codelist"    "test_medications_set"         "test_new_sinusitis"          
-[46] "test_new_sinusitis_attrition" "test_new_sinusitis_codelist"  "test_new_sinusitis_set"      
-[49] "test_sinusitis"               "test_sinusitis_attrition"     "test_sinusitis_codelist"     
-[52] "test_sinusitis_set"           "visit_detail"                 "visit_occurrence"            
-[55] "vocabulary"                  </code></pre>
+<pre><code> [1] "care_site"                                  "cdm_source"                                
+ [3] "concept"                                    "concept_ancestor"                          
+ [5] "concept_class"                              "concept_relationship"                      
+ [7] "concept_synonym"                            "condition_era"                             
+ [9] "condition_occurrence"                       "cost"                                      
+[11] "death"                                      "device_exposure"                           
+[13] "domain"                                     "dose_era"                                  
+[15] "drug_era"                                   "drug_exposure"                             
+[17] "drug_strength"                              "fact_relationship"                         
+[19] "location"                                   "measurement"                               
+[21] "metadata"                                   "my_study_age_cohort"                       
+[23] "my_study_age_cohort_attrition"              "my_study_age_cohort_codelist"              
+[25] "my_study_age_cohort_set"                    "my_study_aspirin"                          
+[27] "my_study_aspirin_attrition"                 "my_study_aspirin_codelist"                 
+[29] "my_study_aspirin_last"                      "my_study_aspirin_last_attrition"           
+[31] "my_study_aspirin_last_codelist"             "my_study_aspirin_last_set"                 
+[33] "my_study_aspirin_set"                       "my_study_diclofenac"                       
+[35] "my_study_diclofenac_attrition"              "my_study_diclofenac_codelist"              
+[37] "my_study_diclofenac_set"                    "my_study_ibuprofen"                        
+[39] "my_study_ibuprofen_attrition"               "my_study_ibuprofen_codelist"               
+[41] "my_study_ibuprofen_death"                   "my_study_ibuprofen_death_attrition"        
+[43] "my_study_ibuprofen_death_codelist"          "my_study_ibuprofen_death_set"              
+[45] "my_study_ibuprofen_set"                     "my_study_ibuprofen_years"                  
+[47] "my_study_ibuprofen_years_attrition"         "my_study_ibuprofen_years_codelist"         
+[49] "my_study_ibuprofen_years_set"               "my_study_intersection"                     
+[51] "my_study_intersection_attrition"            "my_study_intersection_codelist"            
+[53] "my_study_intersection_set"                  "my_study_medications"                      
+[55] "my_study_medications_attrition"             "my_study_medications_codelist"             
+[57] "my_study_medications_collapsed"             "my_study_medications_collapsed_attrition"  
+[59] "my_study_medications_collapsed_codelist"    "my_study_medications_collapsed_set"        
+[61] "my_study_medications_requirement"           "my_study_medications_requirement_attrition"
+[63] "my_study_medications_requirement_codelist"  "my_study_medications_requirement_set"      
+[65] "my_study_medications_set"                   "my_study_medications_trimmed"              
+[67] "my_study_medications_trimmed_attrition"     "my_study_medications_trimmed_codelist"     
+[69] "my_study_medications_trimmed_set"           "note"                                      
+[71] "note_nlp"                                   "observation"                               
+[73] "observation_period"                         "payer_plan_period"                         
+[75] "person"                                     "procedure_occurrence"                      
+[77] "provider"                                   "relationship"                              
+[79] "source_to_concept_map"                      "specimen"                                  
+[81] "test_conditions"                            "test_conditions_attrition"                 
+[83] "test_conditions_codelist"                   "test_conditions_set"                       
+[85] "test_medications"                           "test_medications_attrition"                
+[87] "test_medications_codelist"                  "test_medications_set"                      
+[89] "test_new_sinusitis"                         "test_new_sinusitis_attrition"              
+[91] "test_new_sinusitis_codelist"                "test_new_sinusitis_set"                    
+[93] "test_sinusitis"                             "test_sinusitis_attrition"                  
+[95] "test_sinusitis_codelist"                    "test_sinusitis_set"                        
+[97] "visit_detail"                               "visit_occurrence"                          
+[99] "vocabulary"                                </code></pre>
 </div>
 </div>
 </section><section id="insert-a-table" class="slide level2"><h2>Insert a table</h2>
@@ -830,30 +957,61 @@ visit_occurrence, vocabulary</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb80"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "care_site"                    "cdm_source"                   "concept"                     
- [4] "concept_ancestor"             "concept_class"                "concept_relationship"        
- [7] "concept_synonym"              "condition_era"                "condition_occurrence"        
-[10] "cost"                         "death"                        "device_exposure"             
-[13] "domain"                       "dose_era"                     "drug_era"                    
-[16] "drug_exposure"                "drug_strength"                "fact_relationship"           
-[19] "location"                     "measurement"                  "metadata"                    
-[22] "my_prefix_drug_exposure"      "my_prefix_my_custom_name"     "my_prefix_not_my_custom_name"
-[25] "my_prefix_person"             "my_test_table"                "note"                        
-[28] "note_nlp"                     "observation"                  "observation_period"          
-[31] "payer_plan_period"            "person"                       "procedure_occurrence"        
-[34] "provider"                     "relationship"                 "source_to_concept_map"       
-[37] "specimen"                     "test_conditions"              "test_conditions_attrition"   
-[40] "test_conditions_codelist"     "test_conditions_set"          "test_medications"            
-[43] "test_medications_attrition"   "test_medications_codelist"    "test_medications_set"        
-[46] "test_new_sinusitis"           "test_new_sinusitis_attrition" "test_new_sinusitis_codelist" 
-[49] "test_new_sinusitis_set"       "test_sinusitis"               "test_sinusitis_attrition"    
-[52] "test_sinusitis_codelist"      "test_sinusitis_set"           "visit_detail"                
-[55] "visit_occurrence"             "vocabulary"                  </code></pre>
+<pre><code>  [1] "care_site"                                  "cdm_source"                                
+  [3] "concept"                                    "concept_ancestor"                          
+  [5] "concept_class"                              "concept_relationship"                      
+  [7] "concept_synonym"                            "condition_era"                             
+  [9] "condition_occurrence"                       "cost"                                      
+ [11] "death"                                      "device_exposure"                           
+ [13] "domain"                                     "dose_era"                                  
+ [15] "drug_era"                                   "drug_exposure"                             
+ [17] "drug_strength"                              "fact_relationship"                         
+ [19] "location"                                   "measurement"                               
+ [21] "metadata"                                   "my_study_age_cohort"                       
+ [23] "my_study_age_cohort_attrition"              "my_study_age_cohort_codelist"              
+ [25] "my_study_age_cohort_set"                    "my_study_aspirin"                          
+ [27] "my_study_aspirin_attrition"                 "my_study_aspirin_codelist"                 
+ [29] "my_study_aspirin_last"                      "my_study_aspirin_last_attrition"           
+ [31] "my_study_aspirin_last_codelist"             "my_study_aspirin_last_set"                 
+ [33] "my_study_aspirin_set"                       "my_study_diclofenac"                       
+ [35] "my_study_diclofenac_attrition"              "my_study_diclofenac_codelist"              
+ [37] "my_study_diclofenac_set"                    "my_study_ibuprofen"                        
+ [39] "my_study_ibuprofen_attrition"               "my_study_ibuprofen_codelist"               
+ [41] "my_study_ibuprofen_death"                   "my_study_ibuprofen_death_attrition"        
+ [43] "my_study_ibuprofen_death_codelist"          "my_study_ibuprofen_death_set"              
+ [45] "my_study_ibuprofen_set"                     "my_study_ibuprofen_years"                  
+ [47] "my_study_ibuprofen_years_attrition"         "my_study_ibuprofen_years_codelist"         
+ [49] "my_study_ibuprofen_years_set"               "my_study_intersection"                     
+ [51] "my_study_intersection_attrition"            "my_study_intersection_codelist"            
+ [53] "my_study_intersection_set"                  "my_study_medications"                      
+ [55] "my_study_medications_attrition"             "my_study_medications_codelist"             
+ [57] "my_study_medications_collapsed"             "my_study_medications_collapsed_attrition"  
+ [59] "my_study_medications_collapsed_codelist"    "my_study_medications_collapsed_set"        
+ [61] "my_study_medications_requirement"           "my_study_medications_requirement_attrition"
+ [63] "my_study_medications_requirement_codelist"  "my_study_medications_requirement_set"      
+ [65] "my_study_medications_set"                   "my_study_medications_trimmed"              
+ [67] "my_study_medications_trimmed_attrition"     "my_study_medications_trimmed_codelist"     
+ [69] "my_study_medications_trimmed_set"           "my_test_table"                             
+ [71] "note"                                       "note_nlp"                                  
+ [73] "observation"                                "observation_period"                        
+ [75] "payer_plan_period"                          "person"                                    
+ [77] "procedure_occurrence"                       "provider"                                  
+ [79] "relationship"                               "source_to_concept_map"                     
+ [81] "specimen"                                   "test_conditions"                           
+ [83] "test_conditions_attrition"                  "test_conditions_codelist"                  
+ [85] "test_conditions_set"                        "test_medications"                          
+ [87] "test_medications_attrition"                 "test_medications_codelist"                 
+ [89] "test_medications_set"                       "test_new_sinusitis"                        
+ [91] "test_new_sinusitis_attrition"               "test_new_sinusitis_codelist"               
+ [93] "test_new_sinusitis_set"                     "test_sinusitis"                            
+ [95] "test_sinusitis_attrition"                   "test_sinusitis_codelist"                   
+ [97] "test_sinusitis_set"                         "visit_detail"                              
+ [99] "visit_occurrence"                           "vocabulary"                                </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb82"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_test_table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Source:   table&lt;my_test_table&gt; [?? x 2]
-# Database: DuckDB 1.5.0 [root@Darwin 25.3.0:R 4.4.1//Users/martics/Documents/GitHub/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
+# Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1010-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
    speed  dist
    &lt;dbl&gt; &lt;dbl&gt;
  1     4     2
@@ -934,12 +1092,12 @@ visit_occurrence, vocabulary</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb98"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "drug_exposure"      "my_custom_name"     "my_test_table"      "not_my_custom_name" "person"            </code></pre>
+<pre><code>[1] "my_test_table"</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb100"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_test_table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Source:   table&lt;my_prefix_my_test_table&gt; [?? x 2]
-# Database: DuckDB 1.5.0 [root@Darwin 25.3.0:R 4.4.1//Users/martics/Documents/GitHub/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
+# Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1010-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
    speed  dist
    &lt;dbl&gt; &lt;dbl&gt;
  1     4     2
@@ -961,7 +1119,7 @@ visit_occurrence, vocabulary</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb102"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/dropSourceTable.html">dropSourceTable</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, name <span class="op">=</span> <span class="st">"my_prefix_my_test_table"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "drug_exposure"      "my_custom_name"     "my_test_table"      "not_my_custom_name" "person"            </code></pre>
+<pre><code>[1] "my_test_table"</code></pre>
 </div>
 </div>
 </section><section id="use-a-prefix-4" class="slide level2"><h2>Use a prefix</h2>
@@ -996,7 +1154,7 @@ visit_occurrence, vocabulary</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb111"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/dropSourceTable.html">dropSourceTable</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, name <span class="op">=</span> <span class="st">"my_test_table"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "drug_exposure"      "my_custom_name"     "not_my_custom_name" "person"            </code></pre>
+<pre><code>character(0)</code></pre>
 </div>
 </div>
 </section><section id="use-a-prefix-6" class="slide level2"><h2>Use a prefix</h2>

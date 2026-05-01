@@ -6,9 +6,9 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.37">
 <meta name="dcterms.date" content="2026-05-01">
 <title>Real World Evidence Summer School – PhenotypeR</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -17,6 +17,9 @@
 <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
 <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
 <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -95,7 +98,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-<link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-58ef0c1599aa8ec985714a9f26e7c669.css">
+<link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-911d68fc573ce484eaac5d624bdf1da3.css">
 <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
 <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
 <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -236,7 +239,7 @@
 <p><strong>Database diagnostics</strong></p>
 <ul>
 <li class="fragment">Summarises the databases metadata and the observation period.</li>
-<li class="fragment"><code><a href="https://ohdsi.github.io/PhenotypeR/reference/databaseDiagnostics.html">databaseDiagnostics()</a></code></li>
+<li class="fragment"><code>databaseDiagnostics()</code></li>
 </ul>
 </li>
 </ul>
@@ -248,7 +251,7 @@
 <p><strong>Codelist diagnostics</strong></p>
 <ul>
 <li class="fragment">Summarises the codelist use associated to our cohort.</li>
-<li class="fragment"><code><a href="https://ohdsi.github.io/PhenotypeR/reference/codelistDiagnostics.html">codelistDiagnostics()</a></code></li>
+<li class="fragment"><code>codelistDiagnostics()</code></li>
 </ul>
 </li>
 </ul>
@@ -258,7 +261,7 @@
 <p><strong>Cohort diagnostics</strong></p>
 <ul>
 <li class="fragment">Summarises baseline characteristics, attrition, overlap, and large-scale characteristics. It also allows to compare our results with a matched cohort.</li>
-<li class="fragment"><code><a href="https://ohdsi.github.io/PhenotypeR/reference/cohortDiagnostics.html">cohortDiagnostics()</a></code></li>
+<li class="fragment"><code>cohortDiagnostics()</code></li>
 </ul>
 </li>
 </ul>
@@ -270,7 +273,7 @@
 <p><strong>Population diagnostics</strong></p>
 <ul>
 <li class="fragment">Incidence and prevalence of our cohort in the database.</li>
-<li class="fragment"><code><a href="https://ohdsi.github.io/PhenotypeR/reference/populationDiagnostics.html">populationDiagnostics()</a></code></li>
+<li class="fragment"><code>populationDiagnostics()</code></li>
 </ul>
 </li>
 </ul>
@@ -339,7 +342,7 @@
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Run Phenotype Diagnostics </span></span>
-<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/PhenotypeR/reference/phenotypeDiagnostics.html">phenotypeDiagnostics</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">medications</span>,</span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">phenotypeDiagnostics</span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">medications</span>,</span>
 <span>                               databaseDiagnostics <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                               codelistDiagnostics <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                               cohortDiagnostics <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -350,7 +353,7 @@
 <span>                               populationSample <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>                               populationDateRange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>,<span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://ohdsi.github.io/PhenotypeR/reference/shinyDiagnostics.html">shinyDiagnostics</a></span><span class="op">(</span>result <span class="op">=</span> <span class="va">result</span>, directory <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu">shinyDiagnostics</span><span class="op">(</span>result <span class="op">=</span> <span class="va">result</span>, directory <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section><section id="visualise-the-results" class="title-slide slide level1 center"><h1>Visualise the results</h1>
 <p>See the results in the <a href="https://dpa-pde-oxford.shinyapps.io/PhenotypeR_RWESummerSchool/">shiny app</a></p>
