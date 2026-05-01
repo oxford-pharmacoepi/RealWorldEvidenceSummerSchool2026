@@ -43,12 +43,3 @@ c("delphi" = "delphi-100k_5.4", "GiBleed" = "GiBleed") |>
   })
 
 unlink(path, recursive = TRUE)
-
-con <- duckdb::dbConnect(drv = duckdb::duckdb(dbdir = here::here("Databases", "delphi.duckdb")))
-cdm <- CDMConnector::cdmFromCon(
-  con = con,
-  cdmSchema = "main",
-  writeSchema = "results",
-  writePrefix = "os_"
-)
-CDMConnector::cdmDisconnect(cdm = cdm)
