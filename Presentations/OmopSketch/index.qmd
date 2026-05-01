@@ -65,7 +65,19 @@ library(omock)
 
 . . .
 
-```{r}
+```{r, eval=FALSE}
+con <- dbConnect(drv = duckdb(dbdir = here("Databases", "delphi.duckdb")))
+
+cdm <- cdmFromCon(
+  con = con,
+  cdmSchema = "main",
+  writeSchema = "results",
+  writePrefix = "os_"
+)
+```
+
+
+```{r, echo=FALSE, message=FALSE}
 cdm <- mockCdmFromDataset(datasetName = "delphi-100k_5.4", source = "duckdb")
 ```
 
@@ -113,7 +125,6 @@ glimpse(snapshot)
 tableOmopSnapshot(result = snapshot, type = "gt")
 ```
 :::
-
 
 # 2. Observation period
 
@@ -174,8 +185,6 @@ plotObservationPeriod(
   facet = "observation_period_ordinal"
 )
 ```
-
-
 
 # 3. Clinical tables
 
@@ -261,7 +270,7 @@ tableClinicalRecords(result = result_ex, type = "gt")
 
 ## What do trends tell us?
 
-- `summariseTrend()` reveals **how database content changes over time** — essential for spotting data gaps, coverage periods, and temporal changes.
+-   `summariseTrend()` reveals **how database content changes over time** — essential for spotting data gaps, coverage periods, and temporal changes.
 
 ## `event` vs `episode`
 
@@ -383,7 +392,7 @@ plotTrend(result = result_sex, facet = "omop_table", colour = "sex")
 
 ## `summariseConceptIdCounts()`
 
-- Counts how often each concept ID appears — useful for **feasibility** (do we have enough patients with condition X?).
+-   Counts how often each concept ID appears — useful for **feasibility** (do we have enough patients with condition X?).
 
 . . .
 
@@ -398,7 +407,7 @@ glimpse(concept_result)
 
 ## `tableConceptIdCounts()`
 
-- Filter using the `display` argument:
+-   Filter using the `display` argument:
 
 . . .
 
@@ -426,13 +435,11 @@ tableConceptIdCounts(result = concept_result, display = "standard", type = "reac
 tableTopConceptCounts(result = concept_result, countBy = "record", top = 10, type = "gt")
 ```
 
-
-
 # 6. Full database characterisation
 
 ## `databaseCharacteristics()`
 
-- `databaseCharacteristics()` runs **all summaries in one call**.
+-   `databaseCharacteristics()` runs **all summaries in one call**.
 
 . . .
 
@@ -450,7 +457,7 @@ full_result <- databaseCharacteristics(
 
 ## `shinyCharacteristics()`
 
-- Then launch a **Shiny app** to explore everything interactively:
+-   Then launch a **Shiny app** to explore everything interactively:
 
 . . .
 

@@ -45,11 +45,9 @@ jobs:
         shell: Rscript {0}
         run: |
           dir.create(Sys.getenv("MOCK_DATASETS_FOLDER"))
-          omock::downloadMockDataset(datasetName = "GiBleed")
+          omock::downloadMockDataset(datasetName = "delphi-100k_5.4")
           omock::downloadMockDataset(datasetName = "synthea-covid19-10k")
           omock:::getDrugStrength()
-          omock::mockDatasetsFolder()
-          omock::isMockDatasetDownloaded()
 
       - name: Render Quarto website
         run: quarto render
