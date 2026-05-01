@@ -65,20 +65,8 @@ library(omock)
 
 . . .
 
-```{r, eval=FALSE}
+```{r}
 con <- dbConnect(drv = duckdb(dbdir = here("Databases", "delphi.duckdb")))
-
-cdm <- cdmFromCon(
-  con = con,
-  cdmSchema = "main",
-  writeSchema = "results",
-  writePrefix = "os_"
-)
-```
-
-
-```{r, echo=FALSE, message=FALSE}
-con <- dbConnect(drv = duckdb(dbdir = "/Users/martics/Documents/GitHub/AnalyticsTrack2026/Databases/delphi.duckdb"))
 
 cdm <- cdmFromCon(
   con = con,
