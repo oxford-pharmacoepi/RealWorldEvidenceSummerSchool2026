@@ -1754,21 +1754,21 @@
     "href": "Presentations/PhenotypeR/index.html#introduction",
     "title": "PhenotypeR",
     "section": "Introduction",
-    "text": "Introduction\n\nPhenotypeR package is designed to review cohorts in OMOP CDM.\n\n\n\n\n\nThe code is publicly available in OHDSI’s GitHub repository PhenoypeR.\n\n\n\n\n\nPhenotypeR 0.1.6 is available in CRAN.\n\n\n\n\n\nVignettes with further information can be found in the package website."
+    "text": "Introduction\n\nPhenotypeR package can help us to assess the research-readiness of a set of cohorts we have defined.\n\n\n\n\n\nThe code is publicly available in OHDSI’s GitHub repository PhenoypeR.\n\n\n\n\n\nPhenotypeR 0.4 is available in CRAN.\n\n\n\n\n\nVignettes with further information can be found in the package website."
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#set-of-functions-individual-diagnostics-assessment",
     "href": "Presentations/PhenotypeR/index.html#set-of-functions-individual-diagnostics-assessment",
     "title": "PhenotypeR",
     "section": "Set of Functions: Individual Diagnostics Assessment",
-    "text": "Set of Functions: Individual Diagnostics Assessment\n\n\n\n\n\n\n\nDatabase diagnostics\n\nSummarises the databases metadata and the observation period.\ndatabaseDiagnostics()\n\n\n\n\n\n\n\n\nCodelist diagnostics\n\nSummarises the codelist use associated to our cohort.\ncodelistDiagnostics()\n\n\n\n\n\n\nCohort diagnostics\n\nSummarises baseline characteristics, attrition, overlap, and large-scale characteristics. It also allows to compare our results with a matched cohort.\ncohortDiagnostics()\n\n\n\n\n\n\n\n\nPopulation diagnostics\n\nIncidence and prevalence of our cohort in the database.\npopulationDiagnostics()"
+    "text": "Set of Functions: Individual Diagnostics Assessment\n\n\n\n\n\n\n\nDatabase diagnostics\n\ndatabaseDiagnostics()\n\n\n\n\n\n\n\n\nCodelist diagnostics\n\ncodelistDiagnostics()\n\n\n\n\n\n\nCohort diagnostics\n\ncohortDiagnostics()\n\n\n\n\n\n\n\n\nPopulation diagnostics\n\npopulationDiagnostics()"
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#set-of-functions-phenotype-diagnostics",
     "href": "Presentations/PhenotypeR/index.html#set-of-functions-phenotype-diagnostics",
     "title": "PhenotypeR",
     "section": "Set of Functions: Phenotype Diagnostics",
-    "text": "Set of Functions: Phenotype Diagnostics\n\nComprises all the diagnostics that are being offered in this package.\n\n\n\nresult &lt;- phenotypeDiagnostics(\n  cohort,\n  databaseDiagnostics = TRUE,\n  codelistDiagnostics = TRUE,\n  cohortDiagnostics = TRUE,\n  survival = TRUE,\n  match = TRUE,\n  matchedSample = NULL,\n  populationDiagnostics = TRUE,\n  populationSample = NULL,\n  populationDateRange = as.Date(c(NA,NA))\n)\n\n\nCreate a shiny app to visualize all the results\n\n\n\n\nshinyDiagnostics(result = result, directory = here())"
+    "text": "Set of Functions: Phenotype Diagnostics\n\nComprises all the diagnostics that are being offered in this package.\n\n\n\nresult &lt;- phenotypeDiagnostics(\n  cohort,\n  databaseDiagnostics = list(),\n  codelistDiagnostics = list(),\n  cohortDiagnostics = list(),\n  populationDiagnostics = list()\n)\n\n\nRun only some of the diagnostics:\n\n\n\n\nresult &lt;- phenotypeDiagnostics(\n  cohort,\n  databaseDiagnostics = NULL,\n  codelistDiagnostics = list(),\n  cohortDiagnostics = NULL,\n  populationDiagnostics = list()\n)"
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#run-phenotype-diagnostics---example",
@@ -1782,7 +1782,7 @@
     "href": "Presentations/PhenotypeR/index.html#phenotyper",
     "title": "PhenotypeR",
     "section": "PhenotypeR",
-    "text": "PhenotypeR\n\n\n👉 Packages website\n👉 CRAN link\n👉 Manual\n📧 marta.alcaldeherraiz@ndorms.ox.ac.uk"
+    "text": "PhenotypeR\n\n\n👉 Package website\n👉 CRAN link\n👉 GitHub link\n👉 Manual 📧"
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#extra---phenotyper-shiny-app",
@@ -2532,5 +2532,96 @@
     "title": "CohortSurvival",
     "section": "CohortSurvival",
     "text": "CohortSurvival\n\n\n👉 Packages website\n👉 CRAN link\n👉 Manual\n📧 kim.lopez@spc.ox.ac.uk"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#database-diagnostics",
+    "href": "Presentations/PhenotypeR/index.html#database-diagnostics",
+    "title": "PhenotypeR",
+    "section": "Database Diagnostics",
+    "text": "Database Diagnostics\n\nSummarise the database metadata including:\n\nSnapshot\nSummary of the person table\n\nSummary of the observation period\n\nSummary of the clinical tables (i.e., condition_occurrence) where the concepts of the codelist defining your cohort are found."
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#database-diagnostics-1",
+    "href": "Presentations/PhenotypeR/index.html#database-diagnostics-1",
+    "title": "PhenotypeR",
+    "section": "Database Diagnostics",
+    "text": "Database Diagnostics\n\ndb_diagnostics &lt;- databaseDiagnostics(\n  cohort,\n  cohortId = NULL,\n  snapshot = TRUE,\n  personTableSummary = TRUE,\n  observationPeriodsSummary = TRUE,\n  clinicalRecordsSummary = TRUE\n)\n\n# Modify databaseDiagnostics in phenotypeDiagnostics:\nresult &lt;- phenotypeDiagnostics(\n  cohort,\n  databaseDiagnostics = list(\n    \"cohortId\" = c(1,2),\n    \"snapshot\" = FALSE\n  )\n)"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#codelist-diagnostics",
+    "href": "Presentations/PhenotypeR/index.html#codelist-diagnostics",
+    "title": "PhenotypeR",
+    "section": "Codelist Diagnostics",
+    "text": "Codelist Diagnostics\n\nSummarise the codelist associated with your cohort including:\n\n\nAchilles codes use (only if ACHILLES tables are present)\n\nOrphan codes use (only if ACHILLES tables are present)\nCohort code use\n\nMeasurement code use (only if measurement concepts are present in your codelist)\n\nDrug diagnostics (only if drug concepts are present in your codelist)"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#codelist-diagnostics-1",
+    "href": "Presentations/PhenotypeR/index.html#codelist-diagnostics-1",
+    "title": "PhenotypeR",
+    "section": "Codelist Diagnostics",
+    "text": "Codelist Diagnostics\n\ncl_diagnostics &lt;- codelistDiagnostics(\n  cohort,\n  cohortId = NULL,\n  achillesCodeUse = TRUE,\n  orphanCodeUse = TRUE,\n  cohortCodeUse = TRUE,\n  drugDiagnostics = TRUE,\n  measurementDiagnostics = TRUE,\n  measurementDiagnosticsSample = 20000,\n  drugDiagnosticsSample = 20000\n)\n\n# Modify codelistDiagnostics in phenotypeDiagnostics:\nresult &lt;- phenotypeDiagnostics(\n  cohort,\n  codelistDiagnostics = list(\n    \"cohortId\" = c(1,2),\n    \"achillesCodeUse\" = FALSE\n  )\n)"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#cohort-diagnostics",
+    "href": "Presentations/PhenotypeR/index.html#cohort-diagnostics",
+    "title": "PhenotypeR",
+    "section": "Cohort Diagnostics",
+    "text": "Cohort Diagnostics\n\nSummarise your cohort characteristics:\n\nCohort count & attrition\n\nCohort characteristics: Baseline characteristics of your cohort\n\nLarge scale characteristics: Summary of the records from clinical tables within a time window\n\nCompare cohorts: Overlap and timing between cohorts (only if more than one cohort are present)\n\nCohort survival: Survival until the event of death (if death table is present)"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#cohort-diagnostics-1",
+    "href": "Presentations/PhenotypeR/index.html#cohort-diagnostics-1",
+    "title": "PhenotypeR",
+    "section": "Cohort Diagnostics",
+    "text": "Cohort Diagnostics\n\nc_diagnostics &lt;- cohortDiagnostics(\n  cohort,\n  cohortId = NULL,\n  cohortCount = TRUE,\n  cohortCharacteristics = TRUE,\n  largeScaleCharacteristics = TRUE,\n  compareCohorts = TRUE,\n  cohortSurvival = FALSE, # Notice that by default, cohortSurvival it's not run!!\n  cohortSample = 20000,\n  matchedSample = 1000\n)\n\n# Modify cohortDiagnostics in phenotypeDiagnostics:\nresult &lt;- phenotypeDiagnostics(\n  cohort,\n  cohortDiagnostics = list(\n    \"cohortSample\" = 1000\n  )\n)"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#population-diagnostics",
+    "href": "Presentations/PhenotypeR/index.html#population-diagnostics",
+    "title": "PhenotypeR",
+    "section": "Population Diagnostics",
+    "text": "Population Diagnostics\n\nContextualises the frequency of your study cohorts in the database calculating:\n\nIncidence\nPeriod Prevalence"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#population-diagnostics-1",
+    "href": "Presentations/PhenotypeR/index.html#population-diagnostics-1",
+    "title": "PhenotypeR",
+    "section": "Population Diagnostics",
+    "text": "Population Diagnostics\n\nc_diagnostics &lt;- populationDiagnostics(\n  cohort,\n  cohortId = NULL,\n  incidence = TRUE,\n  periodPrevalence = TRUE,\n  populationSample = 1e+05,\n  populationDateRange = as.Date(c(NA, NA))\n)\n\n# Modify populationDiagnostics in phenotypeDiagnostics:\nresult &lt;- phenotypeDiagnostics(\n  cohort,\n  populationDiagnostics = list(\n    \"populationSample\" = 10000\n  )\n)"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#summary",
+    "href": "Presentations/PhenotypeR/index.html#summary",
+    "title": "PhenotypeR",
+    "section": "Summary:",
+    "text": "Summary:\n\n\n\n\n\n\n\nDatabase diagnostics\n\ndatabaseDiagnostics()\n\n\n\n\n\n\n\n\nCodelist diagnostics\n\ncodelistDiagnostics()\n\n\n\n\n\n\nCohort diagnostics\n\ncohortDiagnostics()\n\n\n\n\n\n\n\n\nPopulation diagnostics\n\npopulationDiagnostics()\n\n\n\n\n\n\nRun all the diagnostics together:\n\n\n\n\nresult &lt;- phenotypeDiagnostics(\n  cohort,\n  databaseDiagnostics = list(), \n  codelistDiagnostics = list(), \n  cohortDiagnostics = list(), \n  populationDiagnostics = list(), \n  stagingDirectory = NULL\n)\n\nshinyDiagnostics(result = result, \n                 directory = here(), \n                 minCellCount = 5, \n                 removeEmptyTabs = FALSE)"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#create-a-shiny-app-to-visualise-all-the-results",
+    "href": "Presentations/PhenotypeR/index.html#create-a-shiny-app-to-visualise-all-the-results",
+    "title": "PhenotypeR",
+    "section": "Create a shiny app to visualise all the results!",
+    "text": "Create a shiny app to visualise all the results!\n\nCreate a shiny app to visualize all the results\n\n\n\nshinyDiagnostics(result = result, \n                 directory = here(), \n                 minCellCount = 5, \n                 removeEmptyTabs = FALSE)\n\nSee an example in here"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#extra-create-a-database-description-manually",
+    "href": "Presentations/PhenotypeR/index.html#extra-create-a-database-description-manually",
+    "title": "PhenotypeR",
+    "section": "Extra: Create a database description manually!",
+    "text": "Extra: Create a database description manually!\n\ndownloadDatabaseDescriptionTemplate(\n  directory = here(),\n  name = \"GiBleed\") # Name of your database!!!!"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#extra-create-a-clinical-description-manually",
+    "href": "Presentations/PhenotypeR/index.html#extra-create-a-clinical-description-manually",
+    "title": "PhenotypeR",
+    "section": "Extra: Create a clinical description manually!",
+    "text": "Extra: Create a clinical description manually!\n\ndownloadClinicalDescriptionTemplate(\n  directory = here(),\n  name = \"type_2_diabetes\") # Name of your cohort!!!!"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#import-your-descriptions-in-the-shiny-app",
+    "href": "Presentations/PhenotypeR/index.html#import-your-descriptions-in-the-shiny-app",
+    "title": "PhenotypeR",
+    "section": "Import your descriptions in the shiny app:",
+    "text": "Import your descriptions in the shiny app:\n\nshinyDiagnostics(result = result, \n                 directory = here(), \n                 minCellCount = 5,\n                 clinicalDescriptionsDir = NULL,\n                 databaseDescriptionsDir = NULL,\n                 removeEmptyTabs = FALSE)"
   }
 ]

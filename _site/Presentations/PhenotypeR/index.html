@@ -9,7 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.25">
-<meta name="dcterms.date" content="2026-05-01">
+<meta name="dcterms.date" content="2026-05-12">
 <title>Real World Evidence Summer School – PhenotypeR</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -203,10 +203,10 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">2026-05-01</p>
+  <p class="date">2026-05-12</p>
 </section><section id="introduction" class="slide level2"><h2>Introduction</h2>
 <ul>
-<li class="fragment">PhenotypeR package is designed to review cohorts in OMOP CDM.</li>
+<li class="fragment">PhenotypeR package can help us to assess the research-readiness of a set of cohorts we have defined.</li>
 </ul>
 <div style="margin-bottom: 10px;">
 
@@ -218,7 +218,7 @@
 
 </div>
 <ul>
-<li class="fragment">PhenotypeR 0.1.6 is available in <a href="https://cran.r-project.org/web/packages/PhenotypeR/index.html" class="link">CRAN</a>.</li>
+<li class="fragment">PhenotypeR 0.4 is available in <a href="https://cran.r-project.org/web/packages/PhenotypeR/index.html" class="link">CRAN</a>.</li>
 </ul>
 <div style="margin-bottom: 10px;">
 
@@ -235,8 +235,7 @@
 <li class="fragment">
 <p><strong>Database diagnostics</strong></p>
 <ul>
-<li class="fragment">Summarises the databases metadata and the observation period.</li>
-<li class="fragment"><code><a href="https://ohdsi.github.io/PhenotypeR/reference/databaseDiagnostics.html">databaseDiagnostics()</a></code></li>
+<li class="fragment"><code>databaseDiagnostics()</code></li>
 </ul>
 </li>
 </ul>
@@ -247,8 +246,7 @@
 <li class="fragment">
 <p><strong>Codelist diagnostics</strong></p>
 <ul>
-<li class="fragment">Summarises the codelist use associated to our cohort.</li>
-<li class="fragment"><code><a href="https://ohdsi.github.io/PhenotypeR/reference/codelistDiagnostics.html">codelistDiagnostics()</a></code></li>
+<li class="fragment"><code>codelistDiagnostics()</code></li>
 </ul>
 </li>
 </ul>
@@ -257,8 +255,7 @@
 <li class="fragment">
 <p><strong>Cohort diagnostics</strong></p>
 <ul>
-<li class="fragment">Summarises baseline characteristics, attrition, overlap, and large-scale characteristics. It also allows to compare our results with a matched cohort.</li>
-<li class="fragment"><code><a href="https://ohdsi.github.io/PhenotypeR/reference/cohortDiagnostics.html">cohortDiagnostics()</a></code></li>
+<li class="fragment"><code>cohortDiagnostics()</code></li>
 </ul>
 </li>
 </ul>
@@ -269,8 +266,7 @@
 <li class="fragment">
 <p><strong>Population diagnostics</strong></p>
 <ul>
-<li class="fragment">Incidence and prevalence of our cohort in the database.</li>
-<li class="fragment"><code><a href="https://ohdsi.github.io/PhenotypeR/reference/populationDiagnostics.html">populationDiagnostics()</a></code></li>
+<li class="fragment"><code>populationDiagnostics()</code></li>
 </ul>
 </li>
 </ul>
@@ -283,152 +279,280 @@
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">phenotypeDiagnostics</span><span class="op">(</span></span>
 <span>  <span class="va">cohort</span>,</span>
-<span>  databaseDiagnostics <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  codelistDiagnostics <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  cohortDiagnostics <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  survival <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  match <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  matchedSample <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  populationDiagnostics <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  populationSample <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  populationDateRange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>,<span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
+<span>  databaseDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  codelistDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  cohortDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  populationDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
-<li class="fragment">Create a shiny app to visualize all the results</li>
+<li class="fragment">Run only some of the diagnostics:</li>
 </ul>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">shinyDiagnostics</span><span class="op">(</span>result <span class="op">=</span> <span class="va">result</span>, directory <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">phenotypeDiagnostics</span><span class="op">(</span></span>
+<span>  <span class="va">cohort</span>,</span>
+<span>  databaseDiagnostics <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  codelistDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  cohortDiagnostics <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  populationDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-</section><section id="run-phenotype-diagnostics---example" class="slide level2"><h2>Run Phenotype Diagnostics - Example</h2>
+</section><section id="create-a-shiny-app-to-visualise-all-the-results" class="slide level2"><h2>Create a shiny app to visualise all the results!</h2>
+<ul>
+<li class="fragment">Create a shiny app to visualize all the results</li>
+</ul>
+<div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://darwin-eu.github.io/CDMConnector/">CDMConnector</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://darwin-eu.github.io/CodelistGenerator/">CodelistGenerator</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ohdsi.github.io/CohortConstructor/">CohortConstructor</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://darwin-eu.github.io/CohortCharacteristics/">CohortCharacteristics</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ohdsi.github.io/PhenotypeR/">PhenotypeR</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ohdsi.github.io/omock/">omock</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r.duckdb.org/">duckdb</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Create mock cdm</span></span>
-<span><span class="va">datasetName</span> <span class="op">&lt;-</span> <span class="st">"synpuf-1k_5.3"</span></span>
-<span><span class="va">dbdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">datasetName</span>, <span class="st">".duckdb"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span>drv <span class="op">=</span> <span class="fu"><a href="https://r.duckdb.org/reference/duckdb.html">duckdb</a></span><span class="op">(</span>dbdir <span class="op">=</span> <span class="va">dbdir</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/omock/reference/mockCdmFromDataset.html">mockCdmFromDataset</a></span><span class="op">(</span>datasetName <span class="op">=</span> <span class="va">datasetName</span><span class="op">)</span></span>
-<span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/insertCdmTo.html">insertCdmTo</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, to <span class="op">=</span> <span class="fu"><a href="https://darwin-eu.github.io/CDMConnector/reference/dbSource.html">dbSource</a></span><span class="op">(</span>con <span class="op">=</span> <span class="va">con</span>, writeSchema <span class="op">=</span> <span class="st">"main"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="va">cdm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu">buildAchillesTables</span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Create mock cohorts</span></span>
-<span><span class="va">drug_codes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/CodelistGenerator/reference/getDrugIngredientCodes.html">getDrugIngredientCodes</a></span><span class="op">(</span></span>
-<span>  cdm <span class="op">=</span> <span class="va">cdm</span>, </span>
-<span>  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"diclofenac"</span>, <span class="st">"acetaminophen"</span><span class="op">)</span>,</span>
-<span>  nameStyle <span class="op">=</span> <span class="st">"{concept_name}"</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">cdm</span><span class="op">$</span><span class="va">medications</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/CohortConstructor/reference/conceptCohort.html">conceptCohort</a></span><span class="op">(</span></span>
-<span>  cdm <span class="op">=</span> <span class="va">cdm</span>, </span>
-<span>  conceptSet <span class="op">=</span> <span class="va">drug_codes</span>, </span>
-<span>  name <span class="op">=</span> <span class="st">"medications"</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Run Phenotype Diagnostics </span></span>
-<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/PhenotypeR/reference/phenotypeDiagnostics.html">phenotypeDiagnostics</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">medications</span>,</span>
-<span>                               databaseDiagnostics <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                               codelistDiagnostics <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                               cohortDiagnostics <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                               survival <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                               match <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                               matchedSample <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>                               populationDiagnostics <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                               populationSample <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>                               populationDateRange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>,<span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://ohdsi.github.io/PhenotypeR/reference/shinyDiagnostics.html">shinyDiagnostics</a></span><span class="op">(</span>result <span class="op">=</span> <span class="va">result</span>, directory <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">shinyDiagnostics</span><span class="op">(</span>result <span class="op">=</span> <span class="va">result</span>, </span>
+<span>                 directory <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="op">)</span>, </span>
+<span>                 minCellCount <span class="op">=</span> <span class="fl">5</span>, </span>
+<span>                 removeEmptyTabs <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section><section id="visualise-the-results" class="title-slide slide level1 center"><h1>Visualise the results</h1>
-<p>See the results in the <a href="https://dpa-pde-oxford.shinyapps.io/PhenotypeR_RWESummerSchool/">shiny app</a></p>
+<p>See an example in <a href="https://dpa-pde-oxford.shinyapps.io/PhenotypeRShiny_OHDSIEuropeWorkshop/">here</a></p>
+</div>
+</section><section id="database-diagnostics" class="slide level2"><h2>Database Diagnostics</h2>
+<ul>
+<li class="fragment">Summarise the database metadata including:
+<ol type="1">
+<li class="fragment"><strong>Snapshot</strong></li>
+<li class="fragment">Summary of the <strong>person table</strong>
+</li>
+<li class="fragment">Summary of the <strong>observation period</strong>
+</li>
+<li class="fragment">Summary of the <strong>clinical tables</strong> (i.e., <em>condition_occurrence</em>) where the concepts of the codelist defining your cohort are found.</li>
+</ol>
+</li>
+</ul></section><section id="database-diagnostics-1" class="slide level2"><h2>Database Diagnostics</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">db_diagnostics</span> <span class="op">&lt;-</span> <span class="fu">databaseDiagnostics</span><span class="op">(</span></span>
+<span>  <span class="va">cohort</span>,</span>
+<span>  cohortId <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  snapshot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  personTableSummary <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  observationPeriodsSummary <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  clinicalRecordsSummary <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Modify databaseDiagnostics in phenotypeDiagnostics:</span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">phenotypeDiagnostics</span><span class="op">(</span></span>
+<span>  <span class="va">cohort</span>,</span>
+<span>  databaseDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    <span class="st">"cohortId"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>,</span>
+<span>    <span class="st">"snapshot"</span> <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="codelist-diagnostics" class="slide level2"><h2>Codelist Diagnostics</h2>
+<ul>
+<li class="fragment">Summarise the codelist associated with your cohort including:
+<ol type="1">
+<li class="fragment">
+<strong>Achilles codes use</strong> (only if ACHILLES tables are present)</li>
+<li class="fragment">
+<strong>Orphan codes use</strong> (only if ACHILLES tables are present)</li>
+<li class="fragment"><strong>Cohort code use</strong></li>
+<li class="fragment">
+<strong>Measurement code use</strong> (only if measurement concepts are present in your codelist)</li>
+<li class="fragment">
+<strong>Drug diagnostics</strong> (only if drug concepts are present in your codelist)</li>
+</ol>
+</li>
+</ul></section><section id="codelist-diagnostics-1" class="slide level2"><h2>Codelist Diagnostics</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cl_diagnostics</span> <span class="op">&lt;-</span> <span class="fu">codelistDiagnostics</span><span class="op">(</span></span>
+<span>  <span class="va">cohort</span>,</span>
+<span>  cohortId <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  achillesCodeUse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  orphanCodeUse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  cohortCodeUse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  drugDiagnostics <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  measurementDiagnostics <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  measurementDiagnosticsSample <span class="op">=</span> <span class="fl">20000</span>,</span>
+<span>  drugDiagnosticsSample <span class="op">=</span> <span class="fl">20000</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Modify codelistDiagnostics in phenotypeDiagnostics:</span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">phenotypeDiagnostics</span><span class="op">(</span></span>
+<span>  <span class="va">cohort</span>,</span>
+<span>  codelistDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    <span class="st">"cohortId"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>,</span>
+<span>    <span class="st">"achillesCodeUse"</span> <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="cohort-diagnostics" class="slide level2"><h2>Cohort Diagnostics</h2>
+<ul>
+<li class="fragment">Summarise your cohort characteristics:
+<ol type="1">
+<li class="fragment"><strong>Cohort count &amp; attrition</strong></li>
+<li class="fragment">
+<strong>Cohort characteristics</strong>: Baseline characteristics of your cohort</li>
+<li class="fragment">
+<strong>Large scale characteristics</strong>: Summary of the records from clinical tables within a time window</li>
+<li class="fragment">
+<strong>Compare cohorts</strong>: Overlap and timing between cohorts (only if more than one cohort are present)</li>
+<li class="fragment">
+<strong>Cohort survival</strong>: Survival until the event of death (if death table is present)</li>
+</ol>
+</li>
+</ul></section><section id="cohort-diagnostics-1" class="slide level2"><h2>Cohort Diagnostics</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">c_diagnostics</span> <span class="op">&lt;-</span> <span class="fu">cohortDiagnostics</span><span class="op">(</span></span>
+<span>  <span class="va">cohort</span>,</span>
+<span>  cohortId <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  cohortCount <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  cohortCharacteristics <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  largeScaleCharacteristics <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  compareCohorts <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  cohortSurvival <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># Notice that by default, cohortSurvival it's not run!!</span></span>
+<span>  cohortSample <span class="op">=</span> <span class="fl">20000</span>,</span>
+<span>  matchedSample <span class="op">=</span> <span class="fl">1000</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Modify cohortDiagnostics in phenotypeDiagnostics:</span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">phenotypeDiagnostics</span><span class="op">(</span></span>
+<span>  <span class="va">cohort</span>,</span>
+<span>  cohortDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    <span class="st">"cohortSample"</span> <span class="op">=</span> <span class="fl">1000</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="population-diagnostics" class="slide level2"><h2>Population Diagnostics</h2>
+<ul>
+<li class="fragment">Contextualises the frequency of your study cohorts in the database calculating:
+<ol type="1">
+<li class="fragment"><strong>Incidence</strong></li>
+<li class="fragment"><strong>Period Prevalence</strong></li>
+</ol>
+</li>
+</ul></section><section id="population-diagnostics-1" class="slide level2"><h2>Population Diagnostics</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">c_diagnostics</span> <span class="op">&lt;-</span> <span class="fu">populationDiagnostics</span><span class="op">(</span></span>
+<span>  <span class="va">cohort</span>,</span>
+<span>  cohortId <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  incidence <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  periodPrevalence <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  populationSample <span class="op">=</span> <span class="fl">1e+05</span>,</span>
+<span>  populationDateRange <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Modify populationDiagnostics in phenotypeDiagnostics:</span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">phenotypeDiagnostics</span><span class="op">(</span></span>
+<span>  <span class="va">cohort</span>,</span>
+<span>  populationDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    <span class="st">"populationSample"</span> <span class="op">=</span> <span class="fl">10000</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="summary" class="slide level2"><h2>Summary:</h2>
+<div style="margin-bottom: 10px;">
+
+</div>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li class="fragment">
+<p><strong>Database diagnostics</strong></p>
+<ul>
+<li class="fragment"><code>databaseDiagnostics()</code></li>
+</ul>
+</li>
+</ul>
+<div style="margin-bottom: 10px;">
+
+</div>
+<ul>
+<li class="fragment">
+<p><strong>Codelist diagnostics</strong></p>
+<ul>
+<li class="fragment"><code>codelistDiagnostics()</code></li>
+</ul>
+</li>
+</ul>
+</div><div class="column" style="width:55%;">
+<ul>
+<li class="fragment">
+<p><strong>Cohort diagnostics</strong></p>
+<ul>
+<li class="fragment"><code>cohortDiagnostics()</code></li>
+</ul>
+</li>
+</ul>
+<div style="margin-bottom: 10px;">
+
+</div>
+<ul>
+<li class="fragment">
+<p><strong>Population diagnostics</strong></p>
+<ul>
+<li class="fragment"><code>populationDiagnostics()</code></li>
+</ul>
+</li>
+</ul>
+</div></div>
+<div class="fragment">
+<ul>
+<li class="fragment">Run all the diagnostics together:</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">phenotypeDiagnostics</span><span class="op">(</span></span>
+<span>  <span class="va">cohort</span>,</span>
+<span>  databaseDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span>, </span>
+<span>  codelistDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span>, </span>
+<span>  cohortDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span>, </span>
+<span>  populationDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span>, </span>
+<span>  stagingDirectory <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">shinyDiagnostics</span><span class="op">(</span>result <span class="op">=</span> <span class="va">result</span>, </span>
+<span>                 directory <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="op">)</span>, </span>
+<span>                 minCellCount <span class="op">=</span> <span class="fl">5</span>, </span>
+<span>                 removeEmptyTabs <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section><section id="extra-create-a-database-description-manually" class="slide level2"><h2>Extra: Create a database description manually!</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">downloadDatabaseDescriptionTemplate</span><span class="op">(</span></span>
+<span>  directory <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  name <span class="op">=</span> <span class="st">"GiBleed"</span><span class="op">)</span> <span class="co"># Name of your database!!!!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+<img data-src="Figures/database_description.png" class="r-stretch"></section><section id="extra-create-a-clinical-description-manually" class="slide level2"><h2>Extra: Create a clinical description manually!</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">downloadClinicalDescriptionTemplate</span><span class="op">(</span></span>
+<span>  directory <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  name <span class="op">=</span> <span class="st">"type_2_diabetes"</span><span class="op">)</span> <span class="co"># Name of your cohort!!!!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+<img data-src="Figures/clinical_description.png" class="r-stretch"></section><section id="import-your-descriptions-in-the-shiny-app" class="slide level2"><h2>Import your descriptions in the shiny app:</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">shinyDiagnostics</span><span class="op">(</span>result <span class="op">=</span> <span class="va">result</span>, </span>
+<span>                 directory <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="op">)</span>, </span>
+<span>                 minCellCount <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>                 clinicalDescriptionsDir <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>                 databaseDescriptionsDir <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>                 removeEmptyTabs <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section><section id="phenotyper" class="slide level2"><h2>PhenotypeR</h2>
 <div style="display: flex; align-items: center; justify-content: space-between;">
 <div style="flex: 1;">
-<p>👉 <a href="https://ohdsi.github.io/PhenotypeR/"><strong>Packages website</strong></a><br>
+<p>👉 <a href="https://ohdsi.github.io/PhenotypeR/"><strong>Package website</strong></a><br>
 👉 <a href="https://cran.r-project.org/package=PhenotypeR"><strong>CRAN link</strong></a><br>
-👉 <a href="https://cran.r-project.org/web/packages/PhenotypeR/PhenotypeR.pdf"><strong>Manual</strong></a></p>
-<p>📧 <a href="mailto:marta.alcaldeherraiz@ndorms.ox.ac.uk">marta.alcaldeherraiz@ndorms.ox.ac.uk</a></p>
+👉 <a href="https://github.com/OHDSI/PhenotypeR"><strong>GitHub link</strong></a><br>
+👉 <a href="https://cran.r-project.org/web/packages/PhenotypeR/PhenotypeR.pdf"><strong>Manual</strong></a> 📧</p>
 </div>
 <div style="flex: 1; text-align: center;">
 <p><img src="https://github.com/OHDSI/PhenotypeR/blob/main/man/figures/logo.png?raw=true" width="600"></p>
 </div>
 </div>
-</section><section id="extra---phenotyper-shiny-app" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s1.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-1" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s2.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-2" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s4.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-3" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s5.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-4" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s6.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-5" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s29.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-6" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s7.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-7" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s8.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-8" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s9.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-9" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s10.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-10" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s11.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-11" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s12.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-12" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s13.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-13" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s31.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-14" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s14.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-15" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s15.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-16" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s16.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-17" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s17.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-18" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s18.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-19" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s19.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-20" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s20.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-21" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s21.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-22" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s22.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-23" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s23.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-24" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s24.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-25" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s30.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-26" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s25.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-27" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s26.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-28" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
-
-<img data-src="s27.png" class="r-stretch"></section><section id="extra---phenotyper-shiny-app-29" class="slide level2"><h2>Extra - PhenotypeR shiny app</h2>
 
 
-
-<img data-src="s28.png" class="r-stretch"></section></section>
+</section>
 </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
