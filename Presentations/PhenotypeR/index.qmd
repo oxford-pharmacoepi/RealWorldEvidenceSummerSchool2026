@@ -325,6 +325,11 @@ downloadClinicalDescriptionTemplate(
 
 ![](Figures/clinical_description.png)
 
+## Extra: Or do it with AI
+- Visit [Descriptions shiny app](https://dpa-pde-oxford.shinyapps.io/PhenotypeDescriptionsShiny/)
+
+![](Figures/ClinicalDescriptionUsingAI.png)
+
 ## Import your descriptions in the shiny app:
 
 ```{r, eval = FALSE}

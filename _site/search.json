@@ -2623,5 +2623,12 @@
     "title": "PhenotypeR",
     "section": "Import your descriptions in the shiny app:",
     "text": "Import your descriptions in the shiny app:\n\nshinyDiagnostics(result = result, \n                 directory = here(), \n                 minCellCount = 5,\n                 clinicalDescriptionsDir = NULL,\n                 databaseDescriptionsDir = NULL,\n                 removeEmptyTabs = FALSE)"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#extra-or-do-it-with-ai",
+    "href": "Presentations/PhenotypeR/index.html#extra-or-do-it-with-ai",
+    "title": "PhenotypeR",
+    "section": "Extra: Or do it with AI",
+    "text": "Extra: Or do it with AI\n\nVisit Descriptions shiny app"
   }
 ]
