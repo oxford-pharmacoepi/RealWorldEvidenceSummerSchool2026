@@ -9,7 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.25">
-<meta name="dcterms.date" content="2026-05-12">
+<meta name="dcterms.date" content="2026-05-15">
 <title>Real World Evidence Summer School – PhenotypeR</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -203,7 +203,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">2026-05-12</p>
+  <p class="date">2026-05-15</p>
 </section><section id="introduction" class="slide level2"><h2>Introduction</h2>
 <ul>
 <li class="fragment">PhenotypeR package can help us to assess the research-readiness of a set of cohorts we have defined.</li>
@@ -515,21 +515,7 @@
 <span>                 removeEmptyTabs <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-</section><section id="extra-create-a-database-description-manually" class="slide level2"><h2>Extra: Create a database description manually!</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">downloadDatabaseDescriptionTemplate</span><span class="op">(</span></span>
-<span>  directory <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  name <span class="op">=</span> <span class="st">"GiBleed"</span><span class="op">)</span> <span class="co"># Name of your database!!!!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-
-<img data-src="Figures/database_description.png" class="r-stretch"></section><section id="extra-create-a-clinical-description-manually" class="slide level2"><h2>Extra: Create a clinical description manually!</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">downloadClinicalDescriptionTemplate</span><span class="op">(</span></span>
-<span>  directory <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  name <span class="op">=</span> <span class="st">"type_2_diabetes"</span><span class="op">)</span> <span class="co"># Name of your cohort!!!!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-
-<img data-src="Figures/clinical_description.png" class="r-stretch"></section><section id="extra-or-do-it-with-ai" class="slide level2"><h2>Extra: Or do it with AI</h2>
+</section><section id="extra-adding-context-to-your-results" class="slide level2"><h2>Extra: Adding context to your results</h2>
 <ul>
 <li class="fragment">Visit <a href="https://dpa-pde-oxford.shinyapps.io/PhenotypeDescriptionsShiny/">Descriptions shiny app</a>
 </li>
@@ -537,7 +523,7 @@
 
 <img data-src="Figures/ClinicalDescriptionUsingAI.png" class="r-stretch"></section><section id="import-your-descriptions-in-the-shiny-app" class="slide level2"><h2>Import your descriptions in the shiny app:</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">shinyDiagnostics</span><span class="op">(</span>result <span class="op">=</span> <span class="va">result</span>, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">shinyDiagnostics</span><span class="op">(</span>result <span class="op">=</span> <span class="va">result</span>, </span>
 <span>                 directory <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="op">)</span>, </span>
 <span>                 minCellCount <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>                 clinicalDescriptionsDir <span class="op">=</span> <span class="cn">NULL</span>,</span>
