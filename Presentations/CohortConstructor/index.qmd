@@ -255,7 +255,6 @@ cdm <- cdmFromCon(
 )
 ```
 
-
 ## Demographics based - Example
 
 ::: {style="margin-bottom: 15px;"}
@@ -411,16 +410,17 @@ cdm <- cdmFromCon(
 :::
 
 **Create a cohort of aspirin use using the following codelist:**
+
 ```{r, eval=FALSE}
 aspirinCodes <- list("aspirin" = c(1112807L, 19059056L)) |> newCodelist()
 ```
-
 
 -   *How many records does it have? And how many subjects?*
 
 . . .
 
 ```{r, echo=FALSE}
+aspirinCodes <- list("aspirin" = c(1112807L, 19059056L)) |> newCodelist()
 cdm$aspirin <- conceptCohort(cdm = cdm, conceptSet = aspirinCodes, name = "aspirin")
 summariseCohortCount(cohort = cdm$aspirin) |> tableCohortCount()
 ```
@@ -488,7 +488,7 @@ tableCohortCount(reuslt = counts)
     -   `requireInDateRange()`
 
     -   `requireMincohortCount()`
-    
+
     -   `requireDuration()`
 ::::
 :::::::
@@ -586,7 +586,7 @@ tableCohortAttrition(
 
 . . .
 
-Amoxicillin codelist: 
+Amoxicillin codelist:
 
 ```{r, eval=FALSE}
 amoxicillinCodes <- list(
@@ -676,7 +676,7 @@ tableCohortAttrition(result = result)
     -   `trimDemographics()`
 
     -   `trimToDateRange()`
-    
+
     -   `trimDuration()`
 
 ::: {style="margin-bottom: 10px;"}
@@ -737,11 +737,12 @@ tableCohortAttrition(
 
 **Generate a osteoarthritis cohort. Since osteoarthritis is considered a chronic disease, define the cohort exit logic such that once a patient meet the entry criteria, they should stay in the cohort for the remainder of their recorded history.**
 
-Osteoarthritis codelist: 
+Osteoarthritis codelist:
 
 ```{r, eval=FALSE}
 osteoarthritisCodes <- list("osteoarthritis" = c(80180L)) |> newCodelist()
 ```
+
 . . .
 
 <details>
@@ -751,7 +752,7 @@ osteoarthritisCodes <- list("osteoarthritis" = c(80180L)) |> newCodelist()
 ```{r, eval=FALSE}
 osteoarthritisCodes <- list("osteoarthritis" = c(80180L)) |> newCodelist()
 cdm$osteoarthritis <- conceptCohort(
-  cdm = cdm, conceptSet = osteoarthritis, name = "osteoarthritis"
+  cdm = cdm, conceptSet = osteoarthritisCodes, name = "osteoarthritis"
 )
 cdm$osteoarthritis <- cdm$osteoarthritis |> 
   exitAtObservationEnd(persistAcrossObservationPeriods = TRUE)
@@ -769,7 +770,7 @@ tableCohortAttrition(result = result)
 ```{r, echo=FALSE}
 osteoarthritisCodes <- list("osteoarthritis" = c(80180L)) |> newCodelist()
 cdm$osteoarthritis <- conceptCohort(
-  cdm = cdm, conceptSet = osteoarthritis, name = "osteoarthritis"
+  cdm = cdm, conceptSet = osteoarthritisCodes, name = "osteoarthritis"
 )
 cdm$osteoarthritis <- cdm$osteoarthritis |> 
   exitAtObservationEnd(persistAcrossObservationPeriods = TRUE)
@@ -789,7 +790,7 @@ tableCohortAttrition(result = result)
     -   `yearCohorts()`
 
     -   `stratifyCohorts()`
-    
+
     -   `timeWindowCohorts()`
 
 ::: {style="margin-bottom: 10x;"}
@@ -892,7 +893,7 @@ settings(x = cdm$intersection)
 
 ## ✏️ Exercise 4 - Transformation and Combination
 
-**From the initial ibuprofen base cohort, generate six independent cohorts stratified by calendar year. Each resulting cohort should be temporally constrained to capture only those exposures with occurring in the years 1975 through 1980, inclusive.**
+**Create an ibuprofen base cohort, generate six independent cohorts stratified by calendar year. Each resulting cohort should be temporally constrained to capture only those exposures with occurring in the years 1975 through 1980, inclusive.**
 
 -   *How many records and subjects are in each cohort?*
 
@@ -903,6 +904,8 @@ settings(x = cdm$intersection)
 <summary>💡 Click to see solution</summary>
 
 ```{r, eval=FALSE}
+codes <- getDrugIngredientCodes(cdm = cdm, name = "ibuprofen")
+cdm$ibuprofen <- conceptCohort(cdm = cdm, conceptSet = codes, name = "ibuprofen")
 cdm$ibuprofen_years <- cdm$ibuprofen |>
   yearCohorts(years = 1975:1980, name = "ibuprofen_years")
 counts <- summariseCohortCount(cohort = cdm$ibuprofen_years)
@@ -912,6 +915,8 @@ tableCohortCount(result = counts)
 </details>
 
 ```{r, echo=FALSE}
+codes <- getDrugIngredientCodes(cdm = cdm, name = "ibuprofen")
+cdm$ibuprofen <- conceptCohort(cdm = cdm, conceptSet = codes, name = "ibuprofen")
 cdm$ibuprofen_years <- cdm$ibuprofen |>
   yearCohorts(years = 1975:1980, name = "ibuprofen_years")
 counts <- summariseCohortCount(cohort = cdm$ibuprofen_years)
