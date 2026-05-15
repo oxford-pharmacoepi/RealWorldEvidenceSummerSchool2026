@@ -9,3 +9,4 @@
 /shiny/
 
 **/*.quarto_ipynb
+_site/
