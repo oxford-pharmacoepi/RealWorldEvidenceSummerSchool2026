@@ -43,7 +43,6 @@ editor: visual
 
 -   Vignettes with further information can be found in the package [website](https://ohdsi.github.io/PhenotypeR/){.link}.
 
-
 ## Set of Functions: Individual Diagnostics Assessment
 
 ::: {style="margin-bottom: 10px;"}
@@ -77,7 +76,6 @@ editor: visual
 ::::
 :::::::
 
-
 ## Set of Functions: Phenotype Diagnostics
 
 -   Comprises all the diagnostics that are being offered in this package.
@@ -107,7 +105,6 @@ result <- phenotypeDiagnostics(
   populationDiagnostics = list()
 )
 ```
-
 
 ## Create a shiny app to visualise all the results!
 
@@ -188,7 +185,6 @@ result <- phenotypeDiagnostics(
 )
 ```
 
-
 ## Cohort Diagnostics
 
 -   Summarise your cohort characteristics:
@@ -251,7 +247,6 @@ result <- phenotypeDiagnostics(
 
 ## Summary:
 
-
 ::: {style="margin-bottom: 10px;"}
 :::
 
@@ -305,28 +300,11 @@ shinyDiagnostics(result = result,
                  removeEmptyTabs = FALSE)
 ```
 
-## Extra: Create a database description manually!
 
-```{r, eval = FALSE}
-downloadDatabaseDescriptionTemplate(
-  directory = here(),
-  name = "GiBleed") # Name of your database!!!!
-```
 
-![](Figures/database_description.png)
+## Extra: Adding context to your results
 
-## Extra: Create a clinical description manually!
-
-```{r, eval = FALSE}
-downloadClinicalDescriptionTemplate(
-  directory = here(),
-  name = "type_2_diabetes") # Name of your cohort!!!!
-```
-
-![](Figures/clinical_description.png)
-
-## Extra: Or do it with AI
-- Visit [Descriptions shiny app](https://dpa-pde-oxford.shinyapps.io/PhenotypeDescriptionsShiny/)
+-   Visit [Descriptions shiny app](https://dpa-pde-oxford.shinyapps.io/PhenotypeDescriptionsShiny/)
 
 ![](Figures/ClinicalDescriptionUsingAI.png)
 
