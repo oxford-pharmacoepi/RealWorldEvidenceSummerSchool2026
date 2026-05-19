@@ -26,7 +26,6 @@ editor: source
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 options(width = 200)
-source(here::here("Presentations/CohortConstructor/practical.R"))
 ```
 
 ## Introduction
