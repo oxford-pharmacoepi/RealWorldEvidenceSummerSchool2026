@@ -15,11 +15,11 @@
 
 ## Wednesday
 
+- [**PatientProfiles**](PatientProfiles/index.qmd)
 - [**CohortCharacteristics**](CohortCharacteristics/index.qmd)
-- [**IncidencePrevalence**](IncidencePrevalence/index.qmd)
 
 ## Thursday
 
 - [**DrugUtilisation**](DrugUtilisation/index.qmd)
-- [**CohortSurvival**](CohortSurvival/index.qmd)
+- [**IncidencePrevalence**](IncidencePrevalence/index.qmd)
 - [**Final remarks**](final_remarks.qmd)

@@ -189,10 +189,10 @@ We have three types of functions:
 
 . . .
 
-To get summarise cohort count for your cohort, pipe in below to your cohort table.
+Use `summariseCohortCount()` to get cohort count for your cohort, pipe in below to your cohort table.
 
 ```{r, echo = T, eval = T}
- results <- cdm$sinusitis |>
+results <- cdm$sinusitis |>
   summariseCohortCount()
 ```
 
@@ -204,14 +204,36 @@ Its return the cohort counts in a `summarised_result` object format.
 glimpse(results)
 ```
 
+## summariseCohortCount
+
+::: {.callout-note}
+Yesterday we saw the function `cohortCount()` to see the counts of a `<cohort_table>`.
+```{r}
+cohortCount(cdm$sinusitis)
+```
+The function `summariseCohortCount()` produces a similar result but in a standardised output (`<summarised_result>`).
+:::
+
 ## tableCohortCount
 
 . . .
 
-To get a tidy table from the `summarised_result` object.
+To get a tidy table from the `<summarised_result>` object.
 
 ```{r, echo = T, eval = T}
 tableCohortCount(result = results)
+```
+
+## plotCohortCount
+
+. . .
+
+Use `plotCohortCount()` to visualise the plots in a *ggplot2* object.
+
+```{r, echo = T, eval = T}
+result <- summariseCohortAttrition(cohort = cdm$sinusitis, cohortId = 1) 
+
+plotCohortAttrition(result = result, type = "png")
 ```
 
 ## summariseCohortAttrition
@@ -227,27 +249,47 @@ To get summarise cohort attrition, pipe in below to your cohort table.
 
 . . .
 
-Its return the cohort attrition in a `summarised_result` object format.
+It return the cohort attrition in a `summarised_result` object format.
 
 ```{r, echo = T, eval = T}
 glimpse(results)
 ```
 
+## summariseCohortAttrition
+
+::: {.callout-note}
+Yesterday we saw the function `attrition()` to see the attrition of a `<cohort_table>`.
+```{r}
+attrition(cdm$sinusitis)
+```
+The function `summariseCohortAttrition()` produces a similar result but in a standardised output (`<summarised_result>`).
+:::
+
 ## tableCohortAttrition
 
 . . .
 
-To get a tidy table from the `summarised_result` object.
+To get a tidy table from the `<summarised_result>` object.
 
 ```{r, echo = T, eval = T}
 tableCohortAttrition(result = results)
+```
+
+## Plot cohort Attrition
+
+. . .
+
+You can create a flowchart of your cohort attrition like:
+
+```{r, echo = T, eval = T}
+plotCohortAttrition(result = result, type = "png")
 ```
 
 ## summariseCharacteristics
 
 . . .
 
-To get summarise characteristics for your cohort, pipe in below to your cohort table.
+The main functionality of the package is to extract the characteristics of your cohort `summariseCharacteristics()`.
 
 ```{r, echo = T, eval = T}
  results <- cdm$sinusitis |>
@@ -256,7 +298,7 @@ To get summarise characteristics for your cohort, pipe in below to your cohort t
 
 . . .
 
-Its return the cohort characteristics in a `summarised_result` object format.
+Its return the cohort characteristics in a `<summarised_result>` object format.
 
 ```{r, echo = T, eval = T}
 glimpse(results)
@@ -266,7 +308,7 @@ glimpse(results)
 
 . . .
 
-To get a tidy table from the `summarised_result` object.
+To get a tidy table from the `<summarised_result>` object.
 
 ```{r, echo = T, eval = T}
 tableCharacteristics(result = results, header = "cohort_name")
@@ -286,32 +328,27 @@ tableCharacteristics(result = results, header = "cohort_name")
 
 -   `cohortIntersect` count/flag/date/days
 
--   `conceptIntersect`count/flag/date/days
+-   `conceptIntersect` count/flag/date/days
 
 -   [link](https://darwin-eu.github.io/CohortCharacteristics/reference/summariseCharacteristics.html)
 
 ## ageGroup example
 
 ```{r, echo = T, eval = F}
-cdm$sinusitis |>
-  summariseCharacteristics(ageGroup = list(c(0,10),c(11,18), c(19,150))) |>
-  tableCharacteristics(header = "cohort_name")
+result <- summariseCharacteristics(cdm$sinusitis, ageGroup = list(c(0,10), c(11,18), c(19,150)))
+tableCharacteristics(result = result, header = "cohort_name")
 ```
 
 ## ageGroup example
 
-```{r, echo = F, eval = T, results = 'asis'}
-res <- cdm$sinusitis |>
-  summariseCharacteristics(ageGroup = list(c(0,10),c(11,18), c(19,150))) |>
-  tableCharacteristics(header = "cohort_name")
-
-# Wrap the result in a scrollable div
-cat("<div style='max-height:400px; overflow-y:auto; border:1px solid #ccc; padding:10px;'>")
-print(res)
-cat("</div>")
+:::{style="max-height: 750px; overflow-y: auto;"}
+```{r, echo = F, eval = T}
+result <- summariseCharacteristics(cdm$sinusitis, ageGroup = list(c(0,10), c(11,18), c(19,150)))
+tableCharacteristics(result = result, header = "cohort_name")
 ```
+:::
 
-## strata example
+## Strata example
 
 ```{r, echo = T, eval = F}
 result <- cdm$sinusitis |> 
@@ -320,27 +357,22 @@ result <- cdm$sinusitis |>
 tableCharacteristics(result = result, header = "age_group")  
 ```
 
-## strata example
+## Strata example
 
+:::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = F, eval = T, results = 'asis'}
-res <- cdm$sinusitis |> 
+result <- cdm$sinusitis |> 
   addAge(ageGroup = list(c(0,10),c(11,18), c(19,150))) |>
-  summariseCharacteristics(cohortId = 1,
-                           strata = list("age_group")) |>
-  tableCharacteristics(header = "age_group")
-
-# Wrap the result in a scrollable div
-cat("<div style='max-height:400px; overflow-y:auto; border:1px solid #ccc; padding:10px;'>")
-print(res)
-cat("</div>")
-
+  summariseCharacteristics(cohortId = 1, strata = list("age_group"))
+tableCharacteristics(result = result, header = "age_group")  
 ```
+:::
 
 ## intersection with another table
 
 . . .
 
-you can get the count/flag/date/days with other tables
+you can get the count/flag/date/days with other tables.
 
 ```{r, echo = T, eval = F}
 result <- cdm$sinusitis |>
@@ -385,13 +417,26 @@ res <- cdm$sinusitis |>
     )
   ) |>
   tableCharacteristics(header = "cohort_name")
-
-# Wrap the result in a scrollable div
-cat("<div style='max-height:400px; overflow-y:auto; border:1px solid #ccc; padding:10px;'>")
-print(res)
-cat("</div>")
-
 ```
+
+## Intersections
+
+:::{.callout-note .nonincremental}
+The arguments of the intersection functions match the *PatientProfiles* functions that we have just seen:
+
+- `tableIntersectFlag` -> `PatientProfiles::addTableIntersectFlag()`
+- `tableIntersectCount` -> `PatientProfiles::addTableIntersectCount()`
+- `tableIntersectDays` -> `PatientProfiles::addTableIntersectDays()`
+- `tableIntersectDate` -> `PatientProfiles::addTableIntersectDate()`
+- `conceptIntersectFlag` -> `PatientProfiles::addConceptIntersectFlag()`
+- `conceptIntersectCount` -> `PatientProfiles::addConceptIntersectCount()`
+- `conceptIntersectDays` -> `PatientProfiles::addConceptIntersectDays()`
+- `conceptIntersectDate` -> `PatientProfiles::addConceptIntersectDate()`
+- `cohortIntersectFlag` -> `PatientProfiles::addCohortIntersectFlag()`
+- `cohortIntersectCount` -> `PatientProfiles::addCohortIntersectCount()`
+- `cohortIntersectDays` -> `PatientProfiles::addCohortIntersectDays()`
+- `cohortIntersectDate` -> `PatientProfiles::addCohortIntersectDate()`
+:::
 
 ## Your turn
 
@@ -452,18 +497,6 @@ plotCharacteristics(result = result,
                     facet = "cohort_name",
                     colour = "cdm_name") +
   ggtitle("Median age of the cohort")
-```
-
-## Plot cohort Attrition
-
-. . .
-
-Another useful function is `plotCohortAttrition` and `summariseCohortAttrition`, it return the attrition flowchart of your cohorts.
-
-```{r, echo = T, eval = T}
-result <- summariseCohortAttrition(cohort = cdm$sinusitis, cohortId = 1) 
-
-plotCohortAttrition(result = result, type = "png")
 ```
 
 ## Your turn
@@ -631,7 +664,7 @@ tableTopLargeScaleCharacteristics(result = result, topConcepts = 5)
 👉 [**CRAN link**](https://cran.r-project.org/web/packages/CohortCharacteristics)\
 👉 [**Manual**](https://cran.r-project.org/web/packages/CohortCharacteristics/CohortCharacteristics.pdf)
 
-📧 <a href="mailto:marti.catalasabate@ndorms.ox.ac.uk">marti.catalasabate\@ndorms.ox.ac.uk</a>
+📧 <a href="mailto:marta.alcaldeherraiz@ndorms.ox.ac.uk">marta.alcaldeherraiz\@ndorms.ox.ac.uk</a>
 :::
 
 ::: {style="flex: 1; text-align: center;"}
