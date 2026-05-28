@@ -164,6 +164,10 @@ We have three types of functions:
 
 ## Contents
 
+-   [summariseCohortCount](https://darwin-eu.github.io/CohortCharacteristics/reference/summariseCohortCount.html)
+
+-   [summariseCohortAttrition](https://darwin-eu.github.io/CohortCharacteristics/reference/summariseCohortAttrition.html)
+
 -   [summariseCharacteristics](https://darwin-eu.github.io/CohortCharacteristics/reference/summariseCharacteristics.html)
 
 -   [summariseLargeScaleCharacteristics](https://darwin-eu.github.io/CohortCharacteristics/reference/summariseLargeScaleCharacteristics.html)
@@ -171,6 +175,64 @@ We have three types of functions:
 -   [summariseCohortTiming](https://darwin-eu.github.io/CohortCharacteristics/articles/summarise_cohort_timing.html)
 
 -   [summariseCohortOverlap](https://darwin-eu.github.io/CohortCharacteristics/articles/summarise_cohort_overlap.html)
+
+## summariseCohortCount
+
+. . .
+
+To get summarise cohort count for your cohort, pipe in below to your cohort table.
+
+```{r, echo = T, eval = T}
+ results <- cdm$sinusitis |>
+  summariseCohortCount()
+```
+
+. . .
+
+Its return the cohort counts in a `summarised_result` object format.
+
+```{r, echo = T, eval = T}
+glimpse(results)
+```
+
+## tableCohortCount
+
+. . .
+
+To get a tidy table from the `summarised_result` object.
+
+```{r, echo = T, eval = T}
+tableCohortCount(result = results)
+```
+
+## summariseCohortAttrition
+
+. . .
+
+To get summarise cohort attrition, pipe in below to your cohort table.
+
+```{r, echo = T, eval = T}
+ results <- cdm$sinusitis |>
+  summariseCohortAttrition()
+```
+
+. . .
+
+Its return the cohort attrition in a `summarised_result` object format.
+
+```{r, echo = T, eval = T}
+glimpse(results)
+```
+
+## tableCohortAttrition
+
+. . .
+
+To get a tidy table from the `summarised_result` object.
+
+```{r, echo = T, eval = T}
+tableCohortAttrition(result = results)
+```
 
 
 ## summariseCharacteristics
@@ -550,6 +612,7 @@ result <- cdm$new_sinusitis |>
   )
 tableTopLargeScaleCharacteristics(result = result, topConcepts = 5)
 ```
+
 </details>
 
 ## CohortCharacteristics
