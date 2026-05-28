@@ -96,17 +96,17 @@ library(DBI)
 
 . . .
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 con <- dbConnect(drv = duckdb(dbdir = here("Databases", "delphi.duckdb")))
 ```
 
 . . .
 
-```{r, echo=FALSE, eval = FALSE}
+```{r, echo=FALSE, eval = TRUE}
 dbExecute(con, "SET memory_limit = '2GB'")
 ```
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 cdm <- cdmFromCon(
   con = con,
   cdmSchema = "main",
@@ -118,7 +118,7 @@ cdm <- cdmFromCon(
 . . .
 
 ```{r, echo = FALSE}
-cdm <- omock::mockCdmFromDataset(source = "duckdb", datasetName ="GiBleed" )
+#cdm <- omock::mockCdmFromDataset(source = "duckdb", datasetName ="GiBleed" )
 ```
 
 ## Create a cohort
