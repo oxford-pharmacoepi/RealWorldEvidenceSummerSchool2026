@@ -78,7 +78,7 @@ library(CohortCharacteristics)
 
 ## Let's get started
 
-Lets create a reference to the *delphi* dataset, remember that the results shown in this presentation is using a different dataset (*GiBleed*).
+Lets create a reference to the *delphi* dataset, remember that the results shown in this presentation are created using a different dataset (*GiBleed*).
 
 ```{r, echo = TRUE, eval=FALSE}
 con <- dbConnect(drv = duckdb(dbdir = here("Databases", "delphi.duckdb")))
@@ -198,7 +198,7 @@ results <- cdm$sinusitis |>
 
 . . .
 
-Its return the cohort counts in a `summarised_result` object format.
+It return the cohort counts in a `summarised_result` object format.
 
 ```{r, echo = T, eval = T}
 glimpse(results)
@@ -231,9 +231,22 @@ tableCohortCount(result = results)
 Use `plotCohortCount()` to visualise the plots in a *ggplot2* object.
 
 ```{r, echo = T, eval = T}
-result <- summariseCohortAttrition(cohort = cdm$sinusitis, cohortId = 1) 
+results |>
+  filter(variable_name == "Number records") |>
+  plotCohortCount(colour = "cohort_name")
+```
 
-plotCohortAttrition(result = result, type = "png")
+## plot functions in ggplot
+
+Note that the plot functions are ggplot2 objects that you can later edit (if you are familiar with the ggplot2 interface), For example here we changed the legend and the axis titles:
+
+```{r}
+p <- results |>
+  filter(variable_name == "Number records") |>
+  plotCohortCount(colour = "cohort_name")
+p +
+  labs(y = "N Records", fill = "Disease", colour = "Disease", title = "My plot") +
+  theme(legend.position = "top")
 ```
 
 ## summariseCohortAttrition
@@ -243,7 +256,7 @@ plotCohortAttrition(result = result, type = "png")
 To get summarise cohort attrition, pipe in below to your cohort table.
 
 ```{r, echo = T, eval = T}
- results <- cdm$sinusitis |>
+results <- cdm$sinusitis |>
   summariseCohortAttrition()
 ```
 
