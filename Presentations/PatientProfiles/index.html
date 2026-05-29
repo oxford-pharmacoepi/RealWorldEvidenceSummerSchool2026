@@ -325,7 +325,7 @@
 <div class="fragment">
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># Source:   table&lt;og_007_1780052585&gt; [?? x 5]
+<pre><code># Source:   table&lt;og_007_1780055350&gt; [?? x 5]
 # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1015-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/Databases/delphi.duckdb]
    cohort_definition_id subject_id cohort_start_date cohort_end_date sex   
                   &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;chr&gt; 
@@ -364,7 +364,7 @@
 <div class="fragment">
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># Source:   table&lt;og_008_1780052585&gt; [?? x 5]
+<pre><code># Source:   table&lt;og_008_1780055350&gt; [?? x 5]
 # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1015-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/Databases/delphi.duckdb]
    cohort_definition_id subject_id cohort_start_date cohort_end_date   age
                   &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;int&gt;
@@ -401,18 +401,18 @@
 <div class="cell-output cell-output-stdout">
 <pre><code># Source:   SQL [?? x 4]
 # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1015-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/Databases/delphi.duckdb]
-   person_id drug_exposure_start_date   age age_group
-       &lt;int&gt; &lt;date&gt;                   &lt;int&gt; &lt;chr&gt;    
- 1     16392 2007-02-27                   8 0 to 39  
- 2      3936 2008-01-22                   3 0 to 39  
- 3     85278 2010-11-16                  12 0 to 39  
- 4      5058 2010-03-02                   5 0 to 39  
- 5      1819 2010-08-30                  21 0 to 39  
- 6     46344 2011-10-17                  17 0 to 39  
- 7     58438 2005-01-21                   3 0 to 39  
- 8     67668 2007-12-27                  10 0 to 39  
- 9     47910 2009-03-09                  33 0 to 39  
-10     71803 2006-05-26                  13 0 to 39  
+   person_id drug_exposure_start_date   age age_group  
+       &lt;int&gt; &lt;date&gt;                   &lt;int&gt; &lt;chr&gt;      
+ 1     43498 2010-09-07                  12 0 to 39    
+ 2     98518 2009-12-30                  16 0 to 39    
+ 3     11342 2010-01-02                  11 0 to 39    
+ 4     63969 2005-04-04                  60 40 or above
+ 5     82086 2007-06-12                   8 0 to 39    
+ 6     18472 2009-01-21                   6 0 to 39    
+ 7     12965 2008-07-01                  21 0 to 39    
+ 8     84558 2008-01-06                   8 0 to 39    
+ 9     91843 2008-01-14                  54 40 or above
+10     79306 2006-01-02                  11 0 to 39    
 # ℹ more rows</code></pre>
 </div>
 </div>
@@ -439,16 +439,16 @@
 # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1015-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/Databases/delphi.duckdb]
    person_id drug_exposure_start_date   age age_group category
        &lt;int&gt; &lt;date&gt;                   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;   
- 1     43498 2010-09-07                  12 &lt;40       kids    
- 2     98518 2009-12-30                  16 &lt;40       kids    
- 3     11342 2010-01-02                  11 &lt;40       kids    
- 4     63969 2005-04-04                  60 &gt;=40      adults  
- 5     82086 2007-06-12                   8 &lt;40       kids    
- 6     18472 2009-01-21                   6 &lt;40       kids    
- 7     12965 2008-07-01                  21 &lt;40       adults  
- 8     84558 2008-01-06                   8 &lt;40       kids    
- 9     91843 2008-01-14                  54 &gt;=40      adults  
-10     79306 2006-01-02                  11 &lt;40       kids    
+ 1     53362 2011-06-16                  62 &gt;=40      adults  
+ 2     71542 2007-12-03                  28 &lt;40       adults  
+ 3     87857 2009-05-31                  12 &lt;40       kids    
+ 4     67451 2006-11-13                   5 &lt;40       kids    
+ 5      2558 2005-01-03                  28 &lt;40       adults  
+ 6     36736 2011-01-04                   8 &lt;40       kids    
+ 7     17166 2009-01-01                  19 &lt;40       adults  
+ 8      4492 2006-11-17                  28 &lt;40       adults  
+ 9      8514 2008-01-02                  18 &lt;40       adults  
+10     24853 2005-01-05                  12 &lt;40       kids    
 # ℹ more rows</code></pre>
 </div>
 </div>
@@ -484,20 +484,20 @@
 <div class="fragment">
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># Source:   table&lt;og_012_1780052589&gt; [?? x 5]
+<pre><code># Source:   table&lt;og_012_1780055354&gt; [?? x 5]
 # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1015-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/Databases/delphi.duckdb]
    cohort_definition_id subject_id cohort_start_date cohort_end_date prior_observation
                   &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;                      &lt;int&gt;
- 1                    1       4612 1997-08-17        1997-08-17                      0
- 2                    1      31655 1996-08-18        1996-08-18                      0
- 3                    1      35460 2000-11-14        2000-11-14                      0
- 4                    1      96030 1999-02-11        1999-02-11                      0
- 5                    1       2196 1997-01-02        1997-01-02                      0
- 6                    1       9529 1997-02-27        1997-02-27                      0
- 7                    1      46510 1995-10-10        1995-10-10                      0
- 8                    1      88681 1993-07-13        1993-07-13                      0
- 9                    1      98938 1998-10-25        1998-10-25                      0
-10                    1       1323 1994-05-27        1994-05-27                      0
+ 1                    1      15433 1977-10-04        1977-10-04                      0
+ 2                    1      25811 1980-09-16        1980-09-16                      0
+ 3                    1      99247 1992-01-08        1992-01-08                      0
+ 4                    1      16153 1977-08-04        1977-08-04                      0
+ 5                    1      31534 2002-12-06        2002-12-06                      0
+ 6                    1      44273 1992-05-31        1992-05-31                      0
+ 7                    1      67595 1971-01-29        1971-01-29                      0
+ 8                    1      69539 2003-02-06        2003-02-06                      0
+ 9                    1      33056 1999-04-18        1999-04-18                      0
+10                    1         56 1998-06-18        1998-06-18                      0
 # ℹ more rows</code></pre>
 </div>
 </div>
@@ -564,20 +564,20 @@
 <div class="fragment">
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># Source:   table&lt;og_016_1780052591&gt; [?? x 5]
+<pre><code># Source:   table&lt;og_016_1780055356&gt; [?? x 5]
 # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1015-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/Databases/delphi.duckdb]
    cohort_definition_id subject_id cohort_start_date cohort_end_date future_observation
                   &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;                       &lt;int&gt;
- 1                    1       4612 1997-08-17        1997-08-17                    4889
- 2                    1      31655 1996-08-18        1996-08-18                    5534
- 3                    1      35460 2000-11-14        2000-11-14                    3979
- 4                    1      96030 1999-02-11        1999-02-11                    4512
- 5                    1       2196 1997-01-02        1997-01-02                    5453
- 6                    1       9529 1997-02-27        1997-02-27                    5074
- 7                    1      46510 1995-10-10        1995-10-10                    5834
- 8                    1      88681 1993-07-13        1993-07-13                    6712
- 9                    1      98938 1998-10-25        1998-10-25                    4451
-10                    1       1323 1994-05-27        1994-05-27                    6381
+ 1                    1      15433 1977-10-04        1977-10-04                   12162
+ 2                    1      25811 1980-09-16        1980-09-16                   11399
+ 3                    1      99247 1992-01-08        1992-01-08                    6990
+ 4                    1      16153 1977-08-04        1977-08-04                   12216
+ 5                    1      31534 2002-12-06        2002-12-06                    3260
+ 6                    1      44273 1992-05-31        1992-05-31                    7057
+ 7                    1      67595 1971-01-29        1971-01-29                   14892
+ 8                    1      69539 2003-02-06        2003-02-06                    3039
+ 9                    1      33056 1999-04-18        1999-04-18                    4636
+10                    1         56 1998-06-18        1998-06-18                    4598
 # ℹ more rows</code></pre>
 </div>
 </div>
@@ -643,7 +643,7 @@
 <div class="fragment">
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># Source:   table&lt;og_019_1780052593&gt; [?? x 5]
+<pre><code># Source:   table&lt;og_019_1780055357&gt; [?? x 5]
 # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1015-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/Databases/delphi.duckdb]
    cohort_definition_id subject_id cohort_start_date cohort_end_date date_of_birth
                   &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;date&gt;       
@@ -674,7 +674,7 @@
 <div class="fragment">
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># Source:   table&lt;og_021_1780052593&gt; [?? x 8]
+<pre><code># Source:   table&lt;og_021_1780055358&gt; [?? x 8]
 # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1015-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/Databases/delphi.duckdb]
    cohort_definition_id subject_id cohort_start_date cohort_end_date   age sex    prior_observation
                   &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;int&gt; &lt;chr&gt;              &lt;int&gt;
@@ -713,7 +713,7 @@
 <div class="fragment">
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># Source:   table&lt;og_023_1780052594&gt; [?? x 8]
+<pre><code># Source:   table&lt;og_023_1780055358&gt; [?? x 8]
 # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1015-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/Databases/delphi.duckdb]
    cohort_definition_id subject_id cohort_start_date cohort_end_date   age age_group observation_start
                   &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;int&gt; &lt;chr&gt;     &lt;date&gt;           
@@ -933,20 +933,20 @@
 <div class="fragment">
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># Source:   table&lt;og_024_1780052594&gt; [?? x 6]
+<pre><code># Source:   table&lt;og_024_1780055359&gt; [?? x 6]
 # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1015-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/Databases/delphi.duckdb]
    cohort_definition_id subject_id cohort_start_date cohort_end_date acetaminophen_1_to_180
                   &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;                           &lt;dbl&gt;
- 1                    1       4612 1997-08-17        1997-08-17                           0
- 2                    1      31655 1996-08-18        1996-08-18                           0
- 3                    1      35460 2000-11-14        2000-11-14                           0
- 4                    1      96030 1999-02-11        1999-02-11                           0
- 5                    1       2196 1997-01-02        1997-01-02                           0
- 6                    1       9529 1997-02-27        1997-02-27                           0
- 7                    1      46510 1995-10-10        1995-10-10                           0
- 8                    1      88681 1993-07-13        1993-07-13                           0
- 9                    1      98938 1998-10-25        1998-10-25                           0
-10                    1       1323 1994-05-27        1994-05-27                           0
+ 1                    1      15433 1977-10-04        1977-10-04                           0
+ 2                    1      25811 1980-09-16        1980-09-16                           0
+ 3                    1      99247 1992-01-08        1992-01-08                           0
+ 4                    1      16153 1977-08-04        1977-08-04                           0
+ 5                    1      31534 2002-12-06        2002-12-06                           0
+ 6                    1      44273 1992-05-31        1992-05-31                           0
+ 7                    1      67595 1971-01-29        1971-01-29                           0
+ 8                    1      69539 2003-02-06        2003-02-06                           0
+ 9                    1      33056 1999-04-18        1999-04-18                           0
+10                    1         56 1998-06-18        1998-06-18                           0
 # ℹ more rows
 # ℹ 1 more variable: acetaminophen_181_to_365 &lt;dbl&gt;</code></pre>
 </div>
@@ -969,20 +969,20 @@
 <div class="fragment">
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># Source:   table&lt;og_037_1780052596&gt; [?? x 5]
+<pre><code># Source:   table&lt;og_037_1780055360&gt; [?? x 5]
 # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1015-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/Databases/delphi.duckdb]
    cohort_definition_id subject_id cohort_start_date cohort_end_date number_prescriptions
                   &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;                         &lt;dbl&gt;
- 1                    1       4612 1997-08-17        1997-08-17                         0
- 2                    1      31655 1996-08-18        1996-08-18                         0
- 3                    1      35460 2000-11-14        2000-11-14                         0
- 4                    1      96030 1999-02-11        1999-02-11                         0
- 5                    1       2196 1997-01-02        1997-01-02                         0
- 6                    1       9529 1997-02-27        1997-02-27                         0
- 7                    1      46510 1995-10-10        1995-10-10                         0
- 8                    1      88681 1993-07-13        1993-07-13                         0
- 9                    1      98938 1998-10-25        1998-10-25                         0
-10                    1       1323 1994-05-27        1994-05-27                         0
+ 1                    1      15433 1977-10-04        1977-10-04                         0
+ 2                    1      25811 1980-09-16        1980-09-16                         0
+ 3                    1      99247 1992-01-08        1992-01-08                         0
+ 4                    1      16153 1977-08-04        1977-08-04                         0
+ 5                    1      31534 2002-12-06        2002-12-06                         0
+ 6                    1      44273 1992-05-31        1992-05-31                         0
+ 7                    1      67595 1971-01-29        1971-01-29                         0
+ 8                    1      69539 2003-02-06        2003-02-06                         0
+ 9                    1      33056 1999-04-18        1999-04-18                         0
+10                    1         56 1998-06-18        1998-06-18                         0
 # ℹ more rows</code></pre>
 </div>
 </div>
@@ -1006,20 +1006,20 @@
 <div class="fragment">
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># Source:   table&lt;og_046_1780052597&gt; [?? x 5]
+<pre><code># Source:   table&lt;og_046_1780055362&gt; [?? x 5]
 # Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1015-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/Databases/delphi.duckdb]
    cohort_definition_id subject_id cohort_start_date cohort_end_date first_acetaminophen
                   &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;date&gt;             
- 1                    1       4612 1997-08-17        1997-08-17      NA                 
- 2                    1      31655 1996-08-18        1996-08-18      NA                 
- 3                    1      35460 2000-11-14        2000-11-14      NA                 
- 4                    1      96030 1999-02-11        1999-02-11      NA                 
- 5                    1       2196 1997-01-02        1997-01-02      NA                 
- 6                    1       9529 1997-02-27        1997-02-27      NA                 
- 7                    1      46510 1995-10-10        1995-10-10      NA                 
- 8                    1      88681 1993-07-13        1993-07-13      NA                 
- 9                    1      98938 1998-10-25        1998-10-25      NA                 
-10                    1       1323 1994-05-27        1994-05-27      NA                 
+ 1                    1      15433 1977-10-04        1977-10-04      NA                 
+ 2                    1      25811 1980-09-16        1980-09-16      NA                 
+ 3                    1      99247 1992-01-08        1992-01-08      NA                 
+ 4                    1      16153 1977-08-04        1977-08-04      NA                 
+ 5                    1      31534 2002-12-06        2002-12-06      NA                 
+ 6                    1      44273 1992-05-31        1992-05-31      NA                 
+ 7                    1      67595 1971-01-29        1971-01-29      NA                 
+ 8                    1      69539 2003-02-06        2003-02-06      NA                 
+ 9                    1      33056 1999-04-18        1999-04-18      NA                 
+10                    1         56 1998-06-18        1998-06-18      NA                 
 # ℹ more rows</code></pre>
 </div>
 </div>
@@ -1043,9 +1043,9 @@
 Columns: 5
 Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1015-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/Databases/delphi.duckdb]
 $ cohort_definition_id &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
-$ subject_id           &lt;int&gt; 4612, 31655, 35460, 96030, 2196, 9529, 46510, 88681, 98938, 1323, 12385, 13962,…
-$ cohort_start_date    &lt;date&gt; 1997-08-17, 1996-08-18, 2000-11-14, 1999-02-11, 1997-01-02, 1997-02-27, 1995-1…
-$ cohort_end_date      &lt;date&gt; 1997-08-17, 1996-08-18, 2000-11-14, 1999-02-11, 1997-01-02, 1997-02-27, 1995-1…
+$ subject_id           &lt;int&gt; 15433, 25811, 99247, 16153, 31534, 44273, 67595, 69539, 33056, 56, 17539, 76308…
+$ cohort_start_date    &lt;date&gt; 1977-10-04, 1980-09-16, 1992-01-08, 1977-08-04, 2002-12-06, 1992-05-31, 1971-0…
+$ cohort_end_date      &lt;date&gt; 1977-10-04, 1980-09-16, 1992-01-08, 1977-08-04, 2002-12-06, 1992-05-31, 1971-0…
 $ next_tramadol        &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</code></pre>
 </div>
 </div>
