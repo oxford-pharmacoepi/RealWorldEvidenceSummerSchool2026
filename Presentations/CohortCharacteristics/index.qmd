@@ -323,9 +323,11 @@ glimpse(results)
 
 To get a tidy table from the `<summarised_result>` object.
 
+:::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = T, eval = T}
 tableCharacteristics(result = results, header = "cohort_name")
 ```
+:::
 
 ## Commonly used arguments for summariseCharacteristics
 
@@ -343,14 +345,16 @@ tableCharacteristics(result = results, header = "cohort_name")
 
 -   `conceptIntersect`: count/flag/date/days
 
--   [link](https://darwin-eu.github.io/CohortCharacteristics/reference/summariseCharacteristics.html)
+-   [link to documentation](https://darwin-eu.github.io/CohortCharacteristics/reference/summariseCharacteristics.html)
 
 ## ageGroup example
 
+:::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = T, eval = F}
 result <- summariseCharacteristics(cdm$sinusitis, ageGroup = list(c(0,10), c(11,18), c(19,150)))
 tableCharacteristics(result = result, header = "cohort_name")
 ```
+:::
 
 ## ageGroup example
 
@@ -363,12 +367,14 @@ tableCharacteristics(result = result, header = "cohort_name")
 
 ## Strata example
 
+:::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = T, eval = F}
 result <- cdm$sinusitis |> 
   addAge(ageGroup = list(c(0,10),c(11,18), c(19,150))) |>
   summariseCharacteristics(cohortId = 1, strata = list("age_group"))
 tableCharacteristics(result = result, header = "age_group")  
 ```
+:::
 
 ## Strata example
 
@@ -387,50 +393,80 @@ tableCharacteristics(result = result, header = "age_group")
 
 You can get count/flag/date/days summaries with other tables.
 
+:::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = T, eval = F}
 result <- cdm$sinusitis |>
   summariseCharacteristics(
     tableIntersectCount = list(
       "Number of visits prior year" = list(
-        tableName = "visit_occurrence", window = c(-365, 0)
+        tableName = "visit_occurrence", 
+        window = c(-365, 0)
       )
     ),
     cohortIntersectFlag = list(
       "Conditions any time prior" = list(
-        targetCohortTable = "conditions", window = c(-Inf, 0)
+        targetCohortTable = "conditions", 
+        window = c(-Inf, 0)
       ),
       "Medications prior year" = list(
-        targetCohortTable = "medications", window = c(-365, 0)
+        targetCohortTable = "medications", 
+        window = c(-365, 0)
+      )
+    ),
+    conceptIntersectDays = list(
+      "Time since last X-ray" = list(
+        conceptSet = list(pelvis_x_ray = 4145310L, clavicle_x_ray = 4058899L, chest_x_ray = 4163872L),
+        window = c(-Inf, 0)
+      ),
+      "Time to immunotherapy" = list(
+        conceptSet = list(immunotherapy = 4107731),
+        window = c(0, Inf)
       )
     )
   )
 
 tableCharacteristics(result = result, header = "cohort_name")
 ```
+:::
 
 ## Intersection with another table
 
 You can get count/flag/date/days summaries with other tables.
 
-```{r, echo = F, eval = T, results = 'asis'}
-res <- cdm$sinusitis |>
+:::{style="max-height: 750px; overflow-y: auto;"}
+```{r, echo = F, eval = T}
+cdm$sinusitis |>
   summariseCharacteristics(
     tableIntersectCount = list(
       "Number of visits prior year" = list(
-        tableName = "visit_occurrence", window = c(-365, 0)
+        tableName = "visit_occurrence", 
+        window = c(-365, 0)
       )
     ),
     cohortIntersectFlag = list(
       "Conditions any time prior" = list(
-        targetCohortTable = "conditions", window = c(-Inf, 0)
+        targetCohortTable = "conditions", 
+        window = c(-Inf, 0)
       ),
       "Medications prior year" = list(
-        targetCohortTable = "medications", window = c(-365, 0)
+        targetCohortTable = "medications", 
+        window = c(-365, 0)
+      )
+    ),
+    conceptIntersectDays = list(
+      "Time since last X-ray" = list(
+        conceptSet = list(pelvis_x_ray = 4145310L, clavicle_x_ray = 4058899L, chest_x_ray = 4163872L),
+        window = c(-Inf, 0)
+      ),
+      "Time to immunotherapy" = list(
+        conceptSet = list(immunotherapy = 4107731),
+        window = c(0, Inf)
       )
     )
   ) |>
   tableCharacteristics(header = "cohort_name")
 ```
+:::
 
 ## Intersections
 
@@ -459,11 +495,13 @@ Can you characterise the `new_sinusitis` table in the cdm object and see how its
 
 <summary>💡 Click to see solution</summary>
 
+:::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, eval = FALSE}
 result <- summariseCharacteristics(cdm$new_sinusitis)
 
 tableCharacteristics(result = result, header = "cohort_name")
 ```
+:::
 
 </details>
 
