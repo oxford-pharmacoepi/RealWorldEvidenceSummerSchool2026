@@ -27,7 +27,7 @@ editor: visual
 ---
 
 ```{r, echo=FALSE}
-options(width = 120)
+options(width = 110)
 ```
 
 ## What you will be able to do
@@ -103,7 +103,7 @@ con <- dbConnect(drv = duckdb(dbdir = here("Databases", "delphi.duckdb")))
 . . .
 
 ```{r, echo=FALSE, eval = TRUE}
-dbExecute(con, "SET memory_limit = '2GB'")
+x <- dbExecute(con, "SET memory_limit = '2GB'")
 ```
 
 ```{r, eval = TRUE}
@@ -146,7 +146,7 @@ cdm$medications <- conceptCohort(
 
 . . .
 
-# Add characteristics
+# Add demographics
 
 . . .
 
@@ -226,7 +226,7 @@ cdm$drug_exposure |>
     indexDate = "drug_exposure_start_date",
     ageGroup = list(c(0, 39), c(40, Inf))
   ) |>
-  glimpse()
+   select("person_id",  "drug_exposure_start_date", "age", "age_group")
 ```
 
 . . .
@@ -237,7 +237,7 @@ cdm$drug_exposure |>
     indexDate = "drug_exposure_start_date",
     ageGroup = list(c(0, 39), c(40, Inf))
   ) |>
-  glimpse()
+  select("person_id", "drug_exposure_start_date", "age", "age_group")
 ```
 
 ## addAge()
@@ -254,7 +254,8 @@ cdm$drug_exposure |>
       "age_group" = list("<40" = c(0, 39), ">=40" = c(40, Inf)),
       "category" = list("kids" = c(0, 17), "adults" = c(18, Inf))
     )
-  )
+  ) |>
+  select("person_id",  "drug_exposure_start_date", "age", "age_group", "category")
 ```
 
 . . .
@@ -267,7 +268,8 @@ cdm$drug_exposure |>
       "age_group" = list("<40" = c(0, 39), ">=40" = c(40, Inf)),
       "category" = list("kids" = c(0, 17), "adults" = c(18, Inf))
     )
-  )
+  ) |>
+  select("person_id", "drug_exposure_start_date",  "age", "age_group", "category")
 ```
 
 ## addPriorObservation()
@@ -278,7 +280,7 @@ How much lookback time did each person have before the index date?
 
 . . .
 
-```{r, echo = F}
+```{r, echo = F, fig.width=14, fig.height=7, out.width="100%"}
 library(ggplot2)
 library(ggforce)
 library(dplyr)
@@ -388,7 +390,7 @@ cdm$condition_occurrence |>
     priorObservationName = "start_observation", # name of the column
     priorObservationType = "date" # default = "days"
   ) |>
-  glimpse()
+ select("person_id", "condition_occurrence_id", "condition_concept_id", "condition_start_date", "start_observation")
 ```
 
 . . .
@@ -400,7 +402,7 @@ cdm$condition_occurrence |>
     priorObservationName = "start_observation", # name of the column
     priorObservationType = "date" # default = "days"
   ) |>
-  select("person_id", starts_with("condition"), "start_observation")
+  select("person_id", "condition_occurrence_id", "condition_concept_id", "condition_start_date", "start_observation")
 ```
 
 ## addFutureObservation()
@@ -409,7 +411,7 @@ cdm$condition_occurrence |>
 
 How much follow-up time did each person have after the index date? . . .
 
-```{r, echo = F}
+```{r, echo = F, fig.width=14, fig.height=7, out.width="100%"}
 p
 ```
 
@@ -470,7 +472,7 @@ Is each index date inside an observation period?
 
 . . .
 
-```{r, echo = F}
+```{r, echo = F, fig.width=14, fig.height=7, out.width="100%"}
 p
 ```
 
@@ -511,7 +513,7 @@ p +
 ```{r, echo=TRUE, eval = F}
 cdm$condition_occurrence |>
   addInObservation(indexDate = "condition_start_date") |>
-  filter(in_observation == 0) |>
+  filter(in_observation == 1) |>
   select("condition_concept_id", "person_id", "condition_start_date", "in_observation")
 ```
 
@@ -520,7 +522,7 @@ cdm$condition_occurrence |>
 ```{r, echo = F, eval = T}
 cdm$condition_occurrence |>
   addInObservation(indexDate = "condition_start_date") |>
-  filter(in_observation == 0) |>
+  filter(in_observation == 1) |>
   select("condition_concept_id", "person_id", "condition_start_date", "in_observation")
 ```
 
@@ -627,8 +629,7 @@ Starting from `cdm$my_cohort`, create a table with:
     priorObservationType = "days"
     futureObservation = TRUE,
     futureObservationType = "days"
-  ) |>
-  glimpse()
+  ) 
 ```
 
 . . .
