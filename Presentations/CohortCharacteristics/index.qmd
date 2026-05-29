@@ -284,9 +284,11 @@ The function `summariseCohortAttrition()` produces a similar result but in a sta
 
 To get a tidy table from the `<summarised_result>` object.
 
+:::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = T, eval = T}
 tableCohortAttrition(result = results)
 ```
+:::
 
 ## plotCohortAttrition
 
@@ -294,9 +296,11 @@ tableCohortAttrition(result = results)
 
 You can create a cohort attrition flowchart like this:
 
+:::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = T, eval = T}
 plotCohortAttrition(result = results, type = "png")
 ```
+:::
 
 ## summariseCharacteristics
 
@@ -379,7 +383,7 @@ tableCharacteristics(result = result, header = "age_group")
 ## Strata example
 
 :::{style="max-height: 750px; overflow-y: auto;"}
-```{r, echo = F, eval = T, results = 'asis'}
+```{r, echo = F, eval = T}
 result <- cdm$sinusitis |> 
   addAge(ageGroup = list(c(0,10),c(11,18), c(19,150))) |>
   summariseCharacteristics(cohortId = 1, strata = list("age_group"))
@@ -491,13 +495,30 @@ The arguments of the intersection functions match the *PatientProfiles* function
 
 Can you characterise the `new_sinusitis` table in the cdm object and see how its patient characteristics differ from those of the sinusitis cohort?
 
+- Start with only demographics
+- Add the medications that they took the last 180 days.
+- Add the conditions that were recorded in the last 2 years.
+- Customise with time to / time from another event.
+
 <details>
 
 <summary>💡 Click to see solution</summary>
 
 :::{style="max-height: 750px; overflow-y: auto;"}
-```{r, eval = FALSE}
-result <- summariseCharacteristics(cdm$new_sinusitis)
+```{r, eval = TRUE}
+result <- summariseCharacteristics(
+  cohort = cdm$new_sinusitis,
+  cohortIntersectFlag = list(
+      "Conditions prior 2 years" = list(
+        targetCohortTable = "conditions", 
+        window = c(-730, 0)
+      ),
+      "Medications prior 180 days" = list(
+        targetCohortTable = "medications", 
+        window = c(-180, 0)
+      )
+    )
+)
 
 tableCharacteristics(result = result, header = "cohort_name")
 ```
@@ -514,9 +535,9 @@ You can plot a variable from the `summariseCharacteristics()` output using `plot
 ```{r, echo = T, eval = T}
 result <- cdm$sinusitis |>
   summariseCharacteristics() |>
-  filter(variable_name == "Age" & strata_level == "overall")
+  filter(variable_name == "Age")
 
-plotCharacteristics(result = result, plotStyle = "boxplot")
+plotCharacteristics(result = result, plotStyle = "boxplot", colour = "cohort_name")
 ```
 
 ## Plots
@@ -531,37 +552,18 @@ plotCharacteristics(result = result,
                     facet = "cohort_name",
                     colour = "cdm_name")
 ```
-
-## Plots
-
-. . .
-
-These plots are ggplot objects and are compatible with the usual ggplot commands.
-
-```{r, echo = T, eval = T}
-result <- cdm$sinusitis |>
-  summariseCharacteristics() |>
-  filter(variable_name == "Age" & estimate_name == "median")
-
-plotCharacteristics(result = result, 
-                    plotStyle = "barplot", 
-                    facet = "cohort_name",
-                    colour = "cdm_name") +
-  ggtitle("Median age of the cohort")
-```
-
 ## Your turn
 
-Can you create a bar plot for sex in the `new_sinusitis` table in the cdm object?
+Can you create a bar plot the percentage of sex in the `sinusitis` table?
 
 <details>
 
 <summary>💡 Click to see solution</summary>
 
 ```{r, eval = TRUE}
-result <- cdm$new_sinusitis |>
+result <- cdm$sinusitis |>
   summariseCharacteristics() |>
-  filter(variable_name == "Sex" & estimate_name == "count")
+  filter(variable_name == "Sex" & estimate_name == "percentage")
 
 plotCharacteristics(result = result,
                     plotStyle = "barplot",
@@ -597,6 +599,20 @@ glimpse(result)
 ```{r, echo = T, eval = T}
 tableTopLargeScaleCharacteristics(result = result, topConcepts = 5)
 ```
+
+## tidy
+
+You can create a tidy table that you can explore with the `tidy()` funciton:
+
+```{r}
+tidy(result)
+```
+
+## tidy
+
+::: {.callout-note}
+The `tidy()` function works for any `<summarised_result>` object that we create.
+:::
 
 ## summariseCohortOverlap
 
@@ -669,7 +685,6 @@ plotCohortTiming(
   timeScale = "years",
   uniqueCombinations = FALSE
 )
-
 ```
 
 ## plotCohortTiming
@@ -689,7 +704,7 @@ plotCohortTiming(
 
 ## Your turn
 
-Can you get the large-scale characteristics from the `drug_exposure` table for the `new_sinusitis` cohort table using an anytime-prior time window?
+Can you get the large-scale characteristics from the `drug_exposure` table for the `new_sinusitis` cohort table using an anytime-prior time window? Visualise the result showing the top 5 most frequent codes.
 
 <details>
 
