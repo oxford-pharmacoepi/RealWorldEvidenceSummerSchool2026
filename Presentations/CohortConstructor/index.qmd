@@ -21,11 +21,11 @@ format:
 execute:
   echo: true
   eval: true
-editor: visual
+editor: source
 ---
 
-```{r, echo=FALSE}
-options(width = 120)
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+options(width = 200)
 ```
 
 ## Introduction
@@ -240,13 +240,7 @@ library(gt)
 library(here)
 
 con <- dbConnect(drv = duckdb(dbdir = here("Databases", "GiBleed.duckdb")))
-```
 
-```{r, echo=FALSE}
-dbExecute(con, "SET memory_limit = '2GB'")
-```
-
-```{r}
 cdm <- cdmFromCon(
   con = con,
   cdmSchema = "main",
@@ -395,7 +389,7 @@ library(dplyr)
 library(gt)
 library(here)
 
-con <- dbConnect(drv = duckdb(dbdir = here("Databases", "GiBleed.duckdb")))
+con <- dbConnect(drv = duckdb(dbdir = here("Databases", "delphi.duckdb")))
 cdm <- cdmFromCon(
   con = con,
   cdmSchema = "main",
@@ -409,34 +403,43 @@ cdm <- cdmFromCon(
 ::: {style="margin-bottom: 15px;"}
 :::
 
-**Create a cohort of aspirin use using the following codelist:**
+**Create a base cohort table named `base_conditions_cohort` that has two cohorts: chronic kidney disease and acute kidney injury. Use the codelist below.**
 
 ```{r, eval=FALSE}
-aspirinCodes <- list("aspirin" = c(1112807L, 19059056L)) |> newCodelist()
+codes <- list(
+  "chronic_kidney_disease" = c(46271022L),
+  "acute_kidney_injury" = c(197320L)
+) |> newCodelist()
 ```
 
--   *How many records does it have? And how many subjects?*
-
-. . .
-
-```{r, echo=FALSE}
-aspirinCodes <- list("aspirin" = c(1112807L, 19059056L)) |> newCodelist()
-cdm$aspirin <- conceptCohort(cdm = cdm, conceptSet = aspirinCodes, name = "aspirin")
-summariseCohortCount(cohort = cdm$aspirin) |> tableCohortCount()
-```
+::: {style="margin-bottom: 20px;"}
+:::
 
 <details>
 
 <summary>💡 Click to see solution</summary>
 
 ```{r, eval=FALSE}
-aspirinCodes <- list("aspirin" = c(1112807L, 19059056L)) |> newCodelist()
-cdm$aspirin <- conceptCohort(cdm = cdm, conceptSet = aspirin, name = "aspirin")
-counts <- summariseCohortCount(cohort = cdm$aspirin) 
-tableCohortCount(reuslt = counts)
+codes <- list(
+  "chronic_kidney_disease" = c(46271022L),
+  "acute_kidney_injury" = c(197320L)
+) |> newCodelist()
+
+cdm$base_conditions_cohort <- conceptCohort(cdm = cdm, conceptSet = codes, name = "base_conditions_cohort")
+
+summariseCohortCount(cohort = cdm$base_conditions_cohort) |> 
+  tableCohortCount()
 ```
 
 </details>
+
+*Move to the next slide to see the cohort attrition*
+
+## ✏️ Exercise 1 - Base cohorts
+
+```{r, echo=FALSE}
+knitr::include_graphics(here::here("Presentations", "CohortConstructor", "exercise_1.png"))
+```
 
 # Requirements and Filtering
 
@@ -516,7 +519,8 @@ cdm$medications_requirement <- cdm$medications |>
   requireDemographics(
     ageRange = list(c(18, 150)),
     sex = "Female", 
-    minPriorObservation = 30
+    minPriorObservation = 30,
+    name = "medications_requirement"
   )
 ```
 
@@ -542,7 +546,7 @@ tableCohortAttrition(
 ::: {style="margin-bottom: 10px;"}
 :::
 
--   Now, we only want to keep those exposures coinciding with at least one healthcare visit on that same day:
+-   Now, we only want to keep those records for which prescription happened on the same day of a healthcare visit.
 
 . . .
 
@@ -550,6 +554,7 @@ tableCohortAttrition(
 cdm$medications_requirement <- cdm$medications_requirement |> 
   requireTableIntersect(
     tableName = "visit_occurrence",
+    indexDate = "cohort_start_date",
     window = c(0, 0),
     intersections = c(1, Inf)
   )
@@ -576,24 +581,20 @@ tableCohortAttrition(
 
 ## ✏️ Exercise 2 - Requirement and filtering
 
-**Create a new cohort named "aspirin_last" by applying the following criteria to the base aspirin cohort:**
+**Create a new cohort named "study_cohort" by applying the following criteria to the base conditions cohort:**
 
--   Include only the **last** drug exposure for each subject.
+-   For both cohorts, require that records start between January 1, 1990, and December 31, 2011.
 
--   Include exposures that **start between** January 1, 1960, and December 31, 1979.
-
--   **Exclude** individuals with an **amoxicillin** exposure in the 7 days prior to aspirin start.
+-   For both cohorts, include only patients with no previous history (before diagnosis) of diabetes. Use the diabetes codes below.
 
 . . .
 
-Amoxicillin codelist:
-
 ```{r, eval=FALSE}
-amoxicillinCodes <- list(
-  "amoxicillin" = c(1713332L, 1713671L, 19073183L, 19073188L)
-) |>
-  newCodelist()
+diabetesCodes <- list("diabetes" = c(201254L, 201826L)) |> newCodelist()
 ```
+
+::: {style="margin-bottom: 20px;"}
+:::
 
 . . .
 
@@ -602,43 +603,32 @@ amoxicillinCodes <- list(
 <summary>💡 Click to see solution</summary>
 
 ```{r, eval=FALSE}
-amoxicillinCodes <- list(
-  "amoxicillin" = c(1713332L, 1713671L, 19073183L, 19073188L)
-) |>
-  newCodelist()
-cdm$aspirin_last <- cdm$aspirin |>
-  requireIsLastEntry(name = "aspirin_last") |>
-  requireInDateRange(dateRange = as.Date(c("1960-01-01", "1979-12-31"))) |>
+diabetesCodes <- list("diabetes" = c(201254L, 201826L)) |> newCodelist()
+
+cdm$study_cohort <- cdm$base_conditions_cohort |>
+  requireInDateRange(
+    dateRange = as.Date(c("1990-01-01", "2011-12-31")),
+    name = "study_cohort"
+  ) |>
   requireConceptIntersect(
-    conceptSet = amoxicillinCodes,
-    window = list(c(-7, 0)),
-    intersections = 0
+    conceptSet = diabetesCodes,
+    window = list(c(-Inf, 0)),
+    intersections = 0,
+    name = "study_cohort"
   )
-result <- summariseCohortAttrition(cdm$aspirin_last)
-tableCohortAttrition(result = result)
+
+summariseCohortAttrition(cohort = cdm$study_cohort) |>
+  tableCohortAttrition()
 ```
 
 </details>
 
-*Move to the next slide to see the attrition.*
+*Move to the next slide to see the cohort attrition*
 
 ## ✏️ Exercise 2 - Requirement and filtering
 
 ```{r, echo=FALSE}
-amoxicillinCodes <- list(
-  "amoxicillin" = c(1713332L, 1713671L, 19073183L, 19073188L)
-) |>
-  newCodelist()
-cdm$aspirin_last <- cdm$aspirin |>
-  requireIsLastEntry(name = "aspirin_last") |>
-  requireInDateRange(dateRange = as.Date(c("1960-01-01", "1979-12-31"))) |>
-  requireConceptIntersect(
-    conceptSet = amoxicillinCodes,
-    window = list(c(-7, 0)),
-    intersections = 0
-  )
-result <- summariseCohortAttrition(cdm$aspirin_last)
-tableCohortAttrition(result = result)
+knitr::include_graphics(here::here("Presentations", "CohortConstructor", "exercise_2.png"))
 ```
 
 # Update cohort entry and exit
@@ -735,30 +725,40 @@ tableCohortAttrition(
 
 ## ✏️ Exercise 3 - Update cohort entry and exit
 
-**Generate a osteoarthritis cohort. Since osteoarthritis is considered a chronic disease, define the cohort exit logic such that once a patient meet the entry criteria, they should stay in the cohort for the remainder of their recorded history.**
-
-Osteoarthritis codelist:
-
-```{r, eval=FALSE}
-osteoarthritisCodes <- list("osteoarthritis" = c(80180L)) |> newCodelist()
-```
+**1)** **Since Chronic Kidney Disease (CKD) is a chronic condition, define its cohort exit so patients remain in the cohort from first diagnostic date to the end of patient's observation.**
 
 . . .
+
+**2)** **For this mock study, we will assume Acute Kidney Injury (AKI) lasts 180 days; define its cohort exit so that patients remain in the cohort for exactly 180 days after their initial diagnosis date.**
+
+. . .
+
+👉*Use the `cohortId` argument to choose which cohort to modify.*
+
+. . .
+
+::: {style="margin-bottom: 20px;"}
+:::
 
 <details>
 
 <summary>💡 Click to see solution</summary>
 
 ```{r, eval=FALSE}
-osteoarthritisCodes <- list("osteoarthritis" = c(80180L)) |> newCodelist()
-cdm$osteoarthritis <- conceptCohort(
-  cdm = cdm, conceptSet = osteoarthritisCodes, name = "osteoarthritis"
-)
-cdm$osteoarthritis <- cdm$osteoarthritis |> 
-  exitAtObservationEnd(persistAcrossObservationPeriods = TRUE)
+cdm$study_cohort <- cdm$study_cohort |>
+  exitAtObservationEnd(
+    cohortId = "chronic_kidney_disease",
+    persistAcrossObservationPeriods = TRUE,
+    name = "study_cohort"
+  ) |>
+  padCohortStart(
+    days = 180,
+    cohortId = "acute_kidney_injury",
+    name = "study_cohort"
+  )
 
-result <- summariseCohortAttrition(cdm$osteoarthritis)
-tableCohortAttrition(result = result)
+summariseCohortAttrition(cohort = cdm$study_cohort) |>
+  tableCohortAttrition()
 ```
 
 </details>
@@ -768,15 +768,7 @@ tableCohortAttrition(result = result)
 ## ✏️ Exercise 3 - Update cohort entry and exit
 
 ```{r, echo=FALSE}
-osteoarthritisCodes <- list("osteoarthritis" = c(80180L)) |> newCodelist()
-cdm$osteoarthritis <- conceptCohort(
-  cdm = cdm, conceptSet = osteoarthritisCodes, name = "osteoarthritis"
-)
-cdm$osteoarthritis <- cdm$osteoarthritis |> 
-  exitAtObservationEnd(persistAcrossObservationPeriods = TRUE)
-
-result <- summariseCohortAttrition(cdm$osteoarthritis)
-tableCohortAttrition(result = result)
+knitr::include_graphics(here::here("Presentations", "CohortConstructor", "exercise_3.png"))
 ```
 
 # Transformation and Combination
@@ -893,9 +885,17 @@ settings(x = cdm$intersection)
 
 ## ✏️ Exercise 4 - Transformation and Combination
 
-**Create an ibuprofen base cohort, generate six independent cohorts stratified by calendar year. Each resulting cohort should be temporally constrained to capture only those exposures with occurring in the years 1975 through 1980, inclusive.**
+**Create a third cohort containing patients with Chronic Kidney Disease who also experience an Acute Kidney Injury. Use one of the last set of functions so that the final "study_cohort" table includes three distinct cohorts: "acute_kidney_injury", "chronic_kidney_disease", and "acute_kidney_injury_chronic_kidney_disease".**
 
--   *How many records and subjects are in each cohort?*
+. . .
+
+::: {style="margin-bottom: 15px;"}
+:::
+
+**Finally, rename cohorts so they are called "aki", "ckd", and "aki_ckd", respectively.**
+
+::: {style="margin-bottom: 20px;"}
+:::
 
 . . .
 
@@ -904,114 +904,28 @@ settings(x = cdm$intersection)
 <summary>💡 Click to see solution</summary>
 
 ```{r, eval=FALSE}
-codes <- getDrugIngredientCodes(cdm = cdm, name = "ibuprofen")
-cdm$ibuprofen <- conceptCohort(cdm = cdm, conceptSet = codes, name = "ibuprofen")
-cdm$ibuprofen_years <- cdm$ibuprofen |>
-  yearCohorts(years = 1975:1980, name = "ibuprofen_years")
-counts <- summariseCohortCount(cohort = cdm$ibuprofen_years)
-tableCohortCount(result = counts)
+cdm$study_cohort <- cdm$study_cohort |>
+  intersectCohorts(
+    keepOriginalCohorts = TRUE,
+    name = "study_cohort",
+  ) |>
+   renameCohort(
+    newCohortName = c("aki", "ckd", "aki_ckd")
+  )
+
+summariseCohortAttrition(cohort = cdm$study_cohort) |>
+  tableCohortAttrition() 
 ```
 
 </details>
-
-```{r, echo=FALSE}
-codes <- getDrugIngredientCodes(cdm = cdm, name = "ibuprofen")
-cdm$ibuprofen <- conceptCohort(cdm = cdm, conceptSet = codes, name = "ibuprofen")
-cdm$ibuprofen_years <- cdm$ibuprofen |>
-  yearCohorts(years = 1975:1980, name = "ibuprofen_years")
-counts <- summariseCohortCount(cohort = cdm$ibuprofen_years)
-tableCohortCount(result = counts)
-```
-
-## ✏️ \[Optional\] Exercise 5
-
-**Use CohortConstructor to create a cohort with the following criteria:**
-
--   **Index Treatment: individuals with a recorded exposure to diclofenac**
-
--   **Demographic Restrictions: females aged 16 years or older at the time of the index date**
-
--   **Demographic Restrictions: at least 365 days of continuous observation prior to exposure**
-
--   **Exclusion Criteria: exclude patients with any prior exposure to amoxicillin (at any time before the index date).**
-
--   **Cohort Logic: patients should exit the cohort at the first discontinuation of the index treatment (only first exposure is required). Define drug exposures by allowing a 7-day persistence window (gap) between successive records.**
-
-. . .
 
 *Move to the next slide to see the attrition.*
 
-## ✏️ \[Optional\] Exercise 5
-
-*Move to the next slide to see the solution.*
+## ✏️ Exercise 4 - Transformation and Combination
 
 ```{r, echo=FALSE}
-amoxicillin <- list(
-    "amoxicillin" = c(1713332L, 1713671L, 19073183L, 19073188L)
-) |>
-    newCodelist()
-diclofenac <- list("diclofenac" = c(1124300L)) |>
-    newCodelist()
-
-cdm$diclofenac <- conceptCohort(
-  cdm = cdm, 
-  conceptSet = diclofenac, 
-  name = "diclofenac"
-) |>
-  requireDemographics(
-    sex = "Female",
-    ageRange = list(c(16, 150)), 
-    minPriorObservation = 365
-  ) |>
-  requireConceptIntersect(
-    conceptSet = amoxicillin,
-    window = list(c(-Inf, -1)),
-    intersections = 0
-  ) |>
-  collapseCohorts(gap = 7) |>
-  requireIsFirstEntry()
-
-result <- summariseCohortAttrition(cdm$diclofenac)
-tableCohortAttrition(result = result)
+knitr::include_graphics(here::here("Presentations", "CohortConstructor", "exercise_4.png"))
 ```
-
-## ✏️ \[Optional\] Exercise 5
-
-<details>
-
-<summary>💡 Click to see solution</summary>
-
-```{r, eval=FALSE}
-amoxicillin <- list(
-    "amoxicillin" = c(1713332L, 1713671L, 19073183L, 19073188L)
-) |>
-    newCodelist()
-diclofenac <- list("diclofenac" = c(1124300L)) |>
-    newCodelist()
-
-cdm$diclofenac <- conceptCohort(
-  cdm = cdm, 
-  conceptSet = diclofenac, 
-  name = "diclofenac"
-) |>
-  requireDemographics(
-    sex = "Female",
-    ageRange = list(c(16, 150)), 
-    minPriorObservation = 365
-  ) |>
-  requireConceptIntersect(
-    conceptSet = amoxicillin,
-    window = list(c(-Inf, -1)),
-    intersections = 0
-  ) |>
-  collapseCohorts(gap = 7) |>
-  requireIsFirstEntry()
-
-result <- summariseCohortAttrition(cdm$diclofenac)
-tableCohortAttrition(result = result)
-```
-
-</details>
 
 ## CohortConstructor
 
