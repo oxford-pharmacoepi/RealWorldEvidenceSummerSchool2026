@@ -48,10 +48,9 @@ options(width = 110)
 
 4.  Build intersection features.
 
-. . . 
+. . .
 
 <center><img src="https://github.com/darwin-eu/PatientProfiles/blob/main/man/figures/logo.png?raw=true" alt="OmopSketch logo" width="350"/></center>
-
 
 ## Settings
 
@@ -125,7 +124,7 @@ cdm <- cdmFromCon(
 
 Using **CohortConstructor** we will create:
 
--   `my_cohort`: people with epilepsy-related records.
+-   `my_cohort`: people with arthritis-related records.
 -   `medications`: people with acetaminophen records.
 
 . . .
@@ -133,7 +132,7 @@ Using **CohortConstructor** we will create:
 ```{r}
 cdm$my_cohort <- conceptCohort(
   cdm = cdm,
-  conceptSet = list(epilepsy = c(380378, 4055361, 4316060)),
+  conceptSet = list(arthritis = c(80180, 80809)),
   name = "my_cohort"
 )
 
@@ -546,6 +545,32 @@ cdm$my_cohort |>
   addDateOfBirth()
 ```
 
+## addBirthday()
+
+. . .
+
+Use `addBirthday()` to add specific birthdays of individuals, accounting for leap years and correcting the invalid dates to the next valid date
+
+. . .
+
+```{r, echo = T, eval = F}
+cdm$my_cohort |>
+  addDateOfBirth() |>
+  addBirthday(
+    birthday = 5, # default is 0
+    birthdayName = "5th_birthday"
+    )
+```
+
+. . .
+
+```{r, echo = F, eval = T}
+cdm$my_cohort |>
+  addDateOfBirth() |>
+  addBirthday(birthday = 5, 
+              birthdayName = "5th_birthday")
+```
+
 ## addDemographics()
 
 . . .
@@ -609,11 +634,11 @@ cdm$my_cohort |>
 Starting from `cdm$my_cohort`, create a table with:
 
 -   sex
--   age at cohort entry
 -   age groups `<18`, `18-64`, and `65+`
 -   prior observation in days
 -   future observation in days
 
+## Your Turn
 . . .
 
 ```{r, eval = FALSE}
@@ -626,7 +651,7 @@ Starting from `cdm$my_cohort`, create a table with:
       "65+" = c(65, Inf)
     ), 
     priorObservation = TRUE,
-    priorObservationType = "days"
+    priorObservationType = "days",
     futureObservation = TRUE,
     futureObservationType = "days"
   ) 
@@ -634,6 +659,21 @@ Starting from `cdm$my_cohort`, create a table with:
 
 . . .
 
+```{r, echo = FALSE}
+ cdm$my_cohort |>
+  addDemographics(
+    age = FALSE,
+    ageGroup = list(
+      "<18" = c(0, 17),
+      "18-64" = c(18, 64),
+      "65+" = c(65, Inf)
+    ), 
+    priorObservation = TRUE,
+    priorObservationType = "days",
+    futureObservation = TRUE,
+    futureObservationType = "days"
+  ) 
+```
 ## Choosing a characteristic helper
 
 . . .
@@ -656,42 +696,34 @@ Starting from `cdm$my_cohort`, create a table with:
 -   When was the first or last event?
 -   How many days until or since the event?
 
-## 12 functions
-
-:::::: columns
-::: {.column width="45%"}
--   [addCohortIntersectFlag](https://darwin-eu-dev.github.io/PatientProfiles/reference/addCohortIntersectFlag.html)
-
--   [addCohortIntersectCount](https://darwin-eu-dev.github.io/PatientProfiles/reference/addCohortIntersectCount.html)
-
--   [addConceptIntersectFlag](https://darwin-eu-dev.github.io/PatientProfiles/reference/addConceptIntersectFlag.html)
-
--   [addConceptIntersectCount](https://darwin-eu-dev.github.io/PatientProfiles/reference/addConceptIntersectCount.html)
-
--   [addTableIntersectFlag](https://darwin-eu-dev.github.io/PatientProfiles/reference/addTableIntersectFlag.html)
-
--   [addTableIntersectCount](https://darwin-eu-dev.github.io/PatientProfiles/reference/addTableIntersectCount.html)
+## 15 functions
+::::: columns
+::: {.column width="30%"}
+-   [addCohortIntersectFlag](https://darwin-eu.github.io/PatientProfiles/reference/addCohortIntersectFlag.html)
+-   [addCohortIntersectCount](https://darwin-eu.github.io/PatientProfiles/reference/addCohortIntersectCount.html)
+-   [addCohortIntersectDays](https://darwin-eu.github.io/PatientProfiles/reference/addCohortIntersectDays.html)
+-   [addCohortIntersectDate](https://darwin-eu.github.io/PatientProfiles/reference/addCohortIntersectDate.html)
+-   [addCohortIntersectField](https://darwin-eu.github.io/PatientProfiles/reference/addCohortIntersectField.html)
 :::
-
-::: {.column width="10%"}
-<!-- empty column to create gap -->
+::: {.column width="5%"}
 :::
-
-::: {.column width="45%"}
--   [addCohortIntersectDays](https://darwin-eu-dev.github.io/PatientProfiles/reference/addCohortIntersectDays.html)
-
--   [addCohortIntersectDate](https://darwin-eu-dev.github.io/PatientProfiles/reference/addCohortIntersectDate.html)
-
--   [addConceptIntersectDays](https://darwin-eu-dev.github.io/PatientProfiles/reference/addConceptIntersectDays.html)
-
--   [addConceptIntersectDate](https://darwin-eu-dev.github.io/PatientProfiles/reference/addConceptIntersectDate.html)
-
--   [addTableIntersectDays](https://darwin-eu-dev.github.io/PatientProfiles/reference/addTableIntersectDays.html)
-
--   [addTableIntersectDate](https://darwin-eu-dev.github.io/PatientProfiles/reference/addTableIntersectDate.html)
+::: {.column width="30%"}
+-   [addConceptIntersectFlag](https://darwin-eu.github.io/PatientProfiles/reference/addConceptIntersectFlag.html)
+-   [addConceptIntersectCount](https://darwin-eu.github.io/PatientProfiles/reference/addConceptIntersectCount.html)
+-   [addConceptIntersectDays](https://darwin-eu.github.io/PatientProfiles/reference/addConceptIntersectDays.html)
+-   [addConceptIntersectDate](https://darwin-eu.github.io/PatientProfiles/reference/addConceptIntersectDate.html)
+-   [addConceptIntersectField](https://darwin-eu.github.io/PatientProfiles/reference/addConceptIntersectField.html)
 :::
-::::::
-
+::: {.column width="5%"}
+:::
+::: {.column width="30%"}
+-   [addTableIntersectFlag](https://darwin-eu.github.io/PatientProfiles/reference/addTableIntersectFlag.html)
+-   [addTableIntersectCount](https://darwin-eu.github.io/PatientProfiles/reference/addTableIntersectCount.html)
+-   [addTableIntersectDays](https://darwin-eu.github.io/PatientProfiles/reference/addTableIntersectDays.html)
+-   [addTableIntersectDate](https://darwin-eu.github.io/PatientProfiles/reference/addTableIntersectDate.html)
+-   [addTableIntersectField](https://darwin-eu.github.io/PatientProfiles/reference/addTableIntersectField.html)
+:::
+:::::
 ## How to choose
 
 . . .
@@ -728,6 +760,18 @@ Starting from `cdm$my_cohort`, create a table with:
 | Concept set              | `addConceptIntersectDays()` |
 | OMOP table               | `addTableIntersectDays()`   |
 
+
+## How to choose
+
+. . .
+
+| Source of target records | `Field`                      |
+|--------------------------|-----------------------------|
+| Cohort table             | `addCohortIntersectField()`  |
+| Concept set              | `addConceptIntersectField()` |
+| OMOP table               | `addTableIntersectField()`   |
+
+
 ## addCohortIntersectFlag
 
 . . .
@@ -741,7 +785,7 @@ cdm$my_cohort |>
   addCohortIntersectFlag(
     targetCohortTable = "medications", 
     window = list(c(1, 180), c(181, 365))
-  )
+  ) |> glimpse()
 ```
 
 . . .
@@ -751,7 +795,7 @@ cdm$my_cohort |>
   addCohortIntersectFlag(
     targetCohortTable = "medications", 
     window = list(c(1, 180), c(181, 365))
-  )
+  ) |> glimpse()
 ```
 
 ## addTableIntersectCount
@@ -767,7 +811,8 @@ cdm$my_cohort |>
   addTableIntersectCount(
     tableName = "drug_exposure",
     window = c(0, 365), 
-    nameStyle = "number_prescriptions"
+    nameStyle = "number_prescriptions", 
+    name = "my_cohort2" #Name of the new table, if NULL a temporary table is returned.
   )
 ```
 
@@ -778,7 +823,8 @@ cdm$my_cohort |>
   addTableIntersectCount(
     tableName = "drug_exposure",
     window = c(0, 365), 
-    nameStyle = "number_prescriptions"
+    nameStyle = "number_prescriptions", 
+    name = "my_cohort2"
   )
 ```
 
@@ -794,7 +840,7 @@ When did the person first enter the medication cohort after cohort entry?
 cdm$my_cohort |>
   addCohortIntersectDate(
     targetCohortTable = "medications",
-    targetCohortId = NULL,
+    targetCohortId = "acetaminophen",
     window = c(0, Inf),
     order = "first", # date to use if there are multiple records for an individual during the window of interest
     nameStyle = "first_{cohort_name}"
@@ -807,7 +853,7 @@ cdm$my_cohort |>
 cdm$my_cohort |>
   addCohortIntersectDate(
     targetCohortTable = "medications",
-    targetCohortId = NULL,
+    targetCohortId = "acetaminophen",
     window = c(0, Inf),
     order = "first", # date to use if there are multiple records for an individual during the window of interest
     nameStyle = "first_{cohort_name}"
@@ -842,12 +888,45 @@ cdm$my_cohort |>
   glimpse()
 ```
 
+## addConceptIntersectField
+
+What is the last value of body weight recorded before index day?
+
+```{r, echo = T, eval = F}
+cdm$my_cohort |>
+  addConceptIntersectField(
+    conceptSet = list(body_weight = 3012888),
+    field = "value_as_number",
+    window = c(-Inf, 0),
+    order = "last",
+    nameStyle = "body_weight_value"
+  ) |>
+  glimpse()
+```
+
+. . .
+
+```{r, echo = F, eval = T}
+cdm$my_cohort |>
+  addConceptIntersectField(
+    conceptSet = list(body_weight = 3012888),
+    field = "value_as_number",
+    window = c(-Inf, 0),
+    order = "last",
+    nameStyle = "body_weight_value"
+  ) |>
+  glimpse()
+```
+
 ## Your Turn
 
 . . .
 
 -   Did the person have an acetaminophen cohort entry in the year before index?
 -   How many condition occurrence records did they have in the year before index?
+
+
+## Your Turn
 
 . . .
 
@@ -867,6 +946,29 @@ cdm$my_cohort |>
     nameStyle = "prior_conditions"
   )
 ```
+. . .
+
+```{r, eval = TRUE, echo = FALSE}
+cdm$my_cohort |>
+  addCohortIntersectFlag(
+    targetCohortTable = "medications",
+    targetCohortId = "acetaminophen",
+    window = c(-365, -1),
+    nameStyle = "prior_{cohort_name}"
+  ) |>
+  addTableIntersectCount(
+    tableName = "condition_occurrence",
+    window = c(-365, -1),
+    nameStyle = "prior_conditions"
+  )
+```
+
+## More intersection functions in PatientProfiles
+
+-   [addDeathDate](https://darwin-eu.github.io/PatientProfiles/reference/addDeathDate.html)
+-   [addDeathFlag](https://darwin-eu.github.io/PatientProfiles/reference/addDeathFlag.html)
+-   [addDeathDays](https://darwin-eu.github.io/PatientProfiles/reference/addDeathDays.html)
+
 
 
 ## Thank you!
