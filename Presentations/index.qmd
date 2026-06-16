@@ -6,7 +6,6 @@
 - [**Welcome**](welcome.qmd)
 - [**Introduction**](Introduction/index.qmd)
 - [**OmopSketch**](OmopSketch/index.qmd)
-- [**CodelistGenerator**](CodelistGenerator/index.qmd)
 
 ## Tuesday
 
