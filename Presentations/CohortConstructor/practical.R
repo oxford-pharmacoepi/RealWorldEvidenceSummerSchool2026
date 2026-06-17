@@ -82,10 +82,11 @@ summariseCohortAttrition(cohort = cdm$study_cohort) |>
 
 
 # Exercise 4 ----
-# Create an additional cohort containing overlapping records where patients have
-# both Rheumatoid Arthritis AND Pneumonia.
-# The final cohort table should keep all original cohorts plus the intersection cohort.
-# Finally, rename the cohorts so instead of "rheumatoid_arthritis" the abbreviation "ra" is used.
+# Create a third cohort containing patients with Pneumonia who have Rheumatoid
+# Arthritis at the same time. The final cohort table should keep all original
+# cohorts plus the new intersection cohort. Finally, rename cohorts so they are
+# called "pneumonia", "rheumatoid_arthritis", and
+# "pneumonia_and_rheumatoid_arthritis".
 cdm$study_cohort <- cdm$study_cohort |>
   intersectCohorts(
     cohortId = c("ra", "pneumonia"),
