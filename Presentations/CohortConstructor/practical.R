@@ -18,10 +18,11 @@ cdm <- cdmFromCon(
 )
 
 # Exercise 1 ----
-# Create a cohort table with two cohorts: chronic kidney disease and acute kidney injury. Use the following codelist.
+# Create a cohort table with two primary main cohorts: rheumatoid arthritis and pneumonia.
+# Use the provided OMOP Concept IDs.
 codes <- list(
-  "chronic_kidney_disease" = c(46271022L),
-  "acute_kidney_injury" = c(197320L)
+  "ra" = c(80809L),
+  "pneumonia"            = c(255848L)
 ) |> newCodelist()
 
 cdm$base_conditions_cohort <- conceptCohort(cdm = cdm, conceptSet = codes, name = "base_conditions_cohort")
@@ -30,12 +31,13 @@ summariseCohortAttrition(cohort = cdm$base_conditions_cohort) |>
   tableCohortAttrition() |>
   gt::gtsave(filename = here::here("Presentations", "CohortConstructor", "exercise_1.png"))
 
+
 # Exercise 2 ----
 # Create a new cohort named "study_cohort" by applying the following criteria to the base conditions cohort:
-# -   For both cohorts, require that records start between January 1, 1990, and December 31, 2011.
-# -   For both cohorts, include only patients with no previous history (before diagnosis) of diabetes. Use the diabetes codes below.
-
-diabetesCodes <- list("diabetes" = c(201254L, 201826L)) |> newCodelist()
+# -   For all cohorts, require that records start between January 1, 1990, and December 31, 2011.
+# -   For the Rheumatoid Arthritis cohort, exclude patients with a history of osteoarthritis
+#     prior to or on the day of diagnosis.
+osteoarthritisCodes <- list("osteoarthritis" = c(80180L)) |> newCodelist()
 
 cdm$study_cohort <- cdm$base_conditions_cohort |>
   requireInDateRange(
@@ -43,7 +45,8 @@ cdm$study_cohort <- cdm$base_conditions_cohort |>
     name = "study_cohort"
   ) |>
   requireConceptIntersect(
-    conceptSet = diabetesCodes,
+    conceptSet = osteoarthritisCodes,
+    cohortId = "ra",
     window = list(c(-Inf, 0)),
     intersections = 0,
     name = "study_cohort"
@@ -55,16 +58,21 @@ summariseCohortAttrition(cohort = cdm$study_cohort) |>
 
 
 # Exercise 3 ----
-# Since Chronic Kidney Disease (CKD) is a chronic condition, define its cohort exit so patients remain in the cohort from first diagnostic date to the end of patient's observation.
+# Since Rheumatoid Arthritis is a chronic condition, define its cohort exit
+# so patients remain in the cohort from first diagnostic date to the end of the patient's observation.
+# For Pneumonia, assume the infection lasts for two months from the diagnosis day,
+# thereby update the cohort end date to be exactly 60 days after the cohort start.
+
 cdm$study_cohort <- cdm$study_cohort |>
   exitAtObservationEnd(
-    cohortId = "chronic_kidney_disease",
+    cohortId = "ra",
     persistAcrossObservationPeriods = TRUE,
     name = "study_cohort"
   ) |>
-  padCohortStart(
-    days = 180,
-    cohortId = "acute_kidney_injury",
+  padCohortDate(
+    days = 60,
+    cohortDate = "cohort_end_date",
+    cohortId = "pneumonia",
     name = "study_cohort"
   )
 
@@ -74,15 +82,18 @@ summariseCohortAttrition(cohort = cdm$study_cohort) |>
 
 
 # Exercise 4 ----
-# Create a third cohort containing patients with Chronic Kidney Disease who also experience an Acute Kidney Injury; define its criteria so that the final "study_cohort" table includes three distinct cohorts: "acute_kidney_injury", "chronic_kidney_disease", and "acute_kidney_injury_chronic_kidney_disease".
-# Finally, rename cohorts so they are called "aki", "ckd", and "aki_ckd", respectively.
+# Create an additional cohort containing overlapping records where patients have
+# both Rheumatoid Arthritis AND Pneumonia.
+# The final cohort table should keep all original cohorts plus the intersection cohort.
+# Finally, rename the cohorts so instead of "rheumatoid_arthritis" the abbreviation "ra" is used.
 cdm$study_cohort <- cdm$study_cohort |>
   intersectCohorts(
+    cohortId = c("ra", "pneumonia"),
     keepOriginalCohorts = TRUE,
-    name = "study_cohort",
+    name = "study_cohort"
   ) |>
   renameCohort(
-    newCohortName = c("aki", "ckd", "aki_ckd")
+    newCohortName = c("pneumonia", "rheumatoid_arthritis", "pneumonia_and_rheumatoid_arthritis")
   )
 
 summariseCohortAttrition(cohort = cdm$study_cohort) |>
