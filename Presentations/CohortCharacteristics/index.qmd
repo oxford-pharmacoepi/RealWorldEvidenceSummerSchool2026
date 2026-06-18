@@ -109,57 +109,19 @@ cdm <- cdmFromCon(
 Let's create some cohorts that we will use during the presentation:
 
 ```{r}
-cdm$sinusitis <- conceptCohort(
-  cdm = cdm,
-  name = "sinusitis",
-  conceptSet = list(
-    bacterial_sinusitis = 4294548L, 
-    viral_sinusitis = 40481087L, 
-    chronic_sinusitis = 257012L, 
-    any_sinusitis = c(4294548L, 40481087L, 257012L)
-  ),
-  exit = "event_start_date"
-)
+x <- c(list(anemia = 439777,
+            rheumatoid_arthritis = 80809,
+            osteoarthritis = 80180, 
+            pneumonia = 255848),
+       getDrugIngredientCodes(cdm_synpuf, c("heparin", "clopidogrel"),
+                              nameStyle = "{concept_name}")) |> 
+  newCodelist()
 
-cdm$new_sinusitis <- cdm$sinusitis |>
-  requireSex(sex = "Female", name = "new_sinusitis") |>
-  requireAge(ageRange = c(0, 18))
-
-cdm$conditions <- conceptCohort(
-  cdm = cdm, 
-  conceptSet = list(
-    myocardial_infarction = c(4329847),
-    fracture = c(4048695, 4142905, 4278672, 4237458, 4230399, 40480160, 4066995, 4059173, 4134304),
-    allergy = c(4084167, 40486433, 4280726, 4048171),
-    infection =  c(4116491, 433125, 4056621, 40481087, 4112343),
-    pneumonia = c(255848),
-    asthma = c(4051466, 317009)
-  ),
-  exit = "event_start_date",
-  name = "conditions"
-)
-
-cdm$medications <- conceptCohort(
-  cdm = cdm, 
-  conceptSet = list(
-    antineoplastic_and_immunomodulating_agents = c(1118088, 1118084, 40224132, 19010482, 40224805, 19007333, 1500211, 1305058, 1503184, 19134077, 1549786),
-    musculoskeletal_system = c(1118088, 1557272, 40162359, 1124300, 1115008, 40173590, 1118084, 42707627, 19019273, 19019979, 19078461, 19003953, 1112807, 1115171, 1177480),
-    antiinfectives_for_systemic_use = c(19129655, 1728416, 920293, 19074841, 920300, 920334, 19074843, 19075001, 19073183, 19073188, 1713671, 1729720, 19006318, 1778162, 46275444, 1717327, 1738521, 1741122, 1759842, 1713332, 1746114, 1768849, 46233710, 19133873, 46233988, 19133905),
-    nervous_system = c(708298, 701322, 723013, 1129625, 1110410, 753626, 1124957, 1102527, 1125315, 782043, 791967, 1119510, 19078219, 757627, 40220386, 740275, 40223774, 1154029, 1127078, 1127433, 40222846, 19057271, 40223768, 45892894, 705944, 715997, 19078924, 19076374, 19077572, 40229134, 19059056, 19016749, 40236446, 19074679, 742185, 40231925, 1112807, 35605858, 40162522, 782047, 19039298, 19059528, 836654, 836659, 19115351, 19023398, 19002770, 19123231, 19133768, 40165015),
-    dermatologicals = c(1129625, 1149380, 1124300, 836654, 1595799, 975125, 19008572),
-    respiratory_system = c(1129625, 1149196, 1149380, 1150770, 1150836, 1153428, 1107830, 1110410, 738818, 1124957, 40169216, 1125443, 1119510, 1137529, 1154615, 1154343, 40223821, 19019979, 19112599, 40223834, 43012036, 40229134, 19029476, 19078461, 40232448, 1177480, 1192710, 1343916, 1150771, 1150837, 1107882, 975125, 1174888, 40169281, 40228214, 40228230, 19125062)
-  ),
-  name = "medications"
-)
+cdm[["my_cohort"]] <- conceptCohort(cdm, 
+                                    conceptSet = x,
+                                    name = "my_cohort")
 ```
 
-## Let's get started
-
-```{r}
-settings(cdm$sinusitis)$cohort_name
-settings(cdm$conditions)$cohort_name
-settings(cdm$medications)$cohort_name
-```
 
 ## Workflow
 
@@ -192,7 +154,7 @@ We have three types of functions:
 Use `summariseCohortCount()` to get counts for your cohort. Pipe your cohort table into the function as shown below.
 
 ```{r, echo = T, eval = T}
-results <- cdm$sinusitis |>
+results <- cdm$anemia |>
   summariseCohortCount()
 ```
 
@@ -209,7 +171,7 @@ glimpse(results)
 ::: {.callout-note}
 Yesterday we saw the function `cohortCount()` to see the counts of a `<cohort_table>`.
 ```{r}
-cohortCount(cdm$sinusitis)
+cohortCount(cdm$anemia)
 ```
 The function `summariseCohortCount()` produces a similar result but in a standardised output (`<summarised_result>`).
 :::
@@ -256,7 +218,7 @@ p +
 To summarise cohort attrition, pipe your cohort table into the function as shown below.
 
 ```{r, echo = T, eval = T}
-results <- cdm$sinusitis |>
+results <- cdm$anemia |>
   summariseCohortAttrition()
 ```
 
@@ -273,7 +235,7 @@ glimpse(results)
 ::: {.callout-note}
 Yesterday we saw the function `attrition()` to see the attrition of a `<cohort_table>`.
 ```{r}
-attrition(cdm$sinusitis)
+attrition(cdm$anemia)
 ```
 The function `summariseCohortAttrition()` produces a similar result but in a standardised output (`<summarised_result>`).
 :::
@@ -309,7 +271,7 @@ plotCohortAttrition(result = results, type = "png")
 The main functionality of the package is to extract cohort characteristics with `summariseCharacteristics()`.
 
 ```{r, echo = T, eval = T}
- results <- cdm$sinusitis |>
+ results <- cdm$anemia |>
   summariseCharacteristics()
 ```
 
@@ -355,7 +317,7 @@ tableCharacteristics(result = results, header = "cohort_name")
 
 :::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = T, eval = F}
-result <- summariseCharacteristics(cdm$sinusitis, ageGroup = list(c(0,10), c(11,18), c(19,150)))
+result <- summariseCharacteristics(cdm$anemia, ageGroup = list(c(0,10), c(11,18), c(19,150)))
 tableCharacteristics(result = result, header = "cohort_name")
 ```
 :::
@@ -364,7 +326,7 @@ tableCharacteristics(result = result, header = "cohort_name")
 
 :::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = F, eval = T}
-result <- summariseCharacteristics(cdm$sinusitis, ageGroup = list(c(0,10), c(11,18), c(19,150)))
+result <- summariseCharacteristics(cdm$anemia, ageGroup = list(c(0,10), c(11,18), c(19,150)))
 tableCharacteristics(result = result, header = "cohort_name")
 ```
 :::
@@ -373,7 +335,7 @@ tableCharacteristics(result = result, header = "cohort_name")
 
 :::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = T, eval = F}
-result <- cdm$sinusitis |> 
+result <- cdm$anemia |> 
   addAge(ageGroup = list(c(0,10),c(11,18), c(19,150))) |>
   summariseCharacteristics(cohortId = 1, strata = list("age_group"))
 tableCharacteristics(result = result, header = "age_group")  
@@ -384,7 +346,7 @@ tableCharacteristics(result = result, header = "age_group")
 
 :::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = F, eval = T}
-result <- cdm$sinusitis |> 
+result <- cdm$anemia |> 
   addAge(ageGroup = list(c(0,10),c(11,18), c(19,150))) |>
   summariseCharacteristics(cohortId = 1, strata = list("age_group"))
 tableCharacteristics(result = result, header = "age_group")  
@@ -399,7 +361,7 @@ You can get count/flag/date/days summaries with other tables.
 
 :::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = T, eval = F}
-result <- cdm$sinusitis |>
+result <- cdm$anemia |>
   summariseCharacteristics(
     tableIntersectCount = list(
       "Number of visits prior year" = list(
@@ -408,12 +370,12 @@ result <- cdm$sinusitis |>
       )
     ),
     cohortIntersectFlag = list(
-      "Conditions any time prior" = list(
-        targetCohortTable = "conditions", 
+      "Previous rheumatoid arthritis diagnosis" = list(
+        targetCohortTable = "rheumatoid_arthritis", 
         window = c(-Inf, 0)
       ),
-      "Medications prior year" = list(
-        targetCohortTable = "medications", 
+      "Clopidogrel prescription prior year" = list(
+        targetCohortTable = "clopidogrel", 
         window = c(-365, 0)
       )
     ),
@@ -439,7 +401,7 @@ You can get count/flag/date/days summaries with other tables.
 
 :::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = F, eval = T}
-cdm$sinusitis |>
+cdm$anemia |>
   summariseCharacteristics(
     tableIntersectCount = list(
       "Number of visits prior year" = list(
@@ -448,12 +410,12 @@ cdm$sinusitis |>
       )
     ),
     cohortIntersectFlag = list(
-      "Conditions any time prior" = list(
-        targetCohortTable = "conditions", 
+      "Previous rheumatoid arthritis diagnosis" = list(
+        targetCohortTable = "rheumatoid_arthritis", 
         window = c(-Inf, 0)
       ),
-      "Medications prior year" = list(
-        targetCohortTable = "medications", 
+      "Clopidogrel prescription prior year" = list(
+        targetCohortTable = "clopidogrel", 
         window = c(-365, 0)
       )
     ),
@@ -493,12 +455,10 @@ The arguments of the intersection functions match the *PatientProfiles* function
 
 ## Your turn
 
-Can you characterise the `new_sinusitis` table in the cdm object and see how its patient characteristics differ from those of the sinusitis cohort?
-
+Can you characterise the `osteoarthritis` cohort?
 - Start with only demographics
-- Add the medications that they took the last 180 days.
-- Add the conditions that were recorded in the last 2 years.
-- Customise with time to / time from another event.
+- Add if they had any heparin prescription during the last 180 days.
+- Add if they had any pneumonia diagnosis last 2 years.
 
 <details>
 
@@ -507,14 +467,14 @@ Can you characterise the `new_sinusitis` table in the cdm object and see how its
 :::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, eval = TRUE}
 result <- summariseCharacteristics(
-  cohort = cdm$new_sinusitis,
+  cohort = cdm$osteoarthritis,
   cohortIntersectFlag = list(
-      "Conditions prior 2 years" = list(
-        targetCohortTable = "conditions", 
+      "Heparin prescriptions during the prior 2 years" = list(
+        targetCohortTable = "heparin", 
         window = c(-730, 0)
       ),
-      "Medications prior 180 days" = list(
-        targetCohortTable = "medications", 
+      "Pneumonia diagnosis during the prior 180 days" = list(
+        targetCohortTable = "pneumonia", 
         window = c(-180, 0)
       )
     )
@@ -533,7 +493,7 @@ tableCharacteristics(result = result, header = "cohort_name")
 You can plot a variable from the `summariseCharacteristics()` output using `plotCharacteristics()`.
 
 ```{r, echo = T, eval = T}
-result <- cdm$sinusitis |>
+result <- cdm$anemia |>
   summariseCharacteristics() |>
   filter(variable_name == "Age")
 
@@ -543,7 +503,7 @@ plotCharacteristics(result = result, plotStyle = "boxplot", colour = "cohort_nam
 ## Plots
 
 ```{r, echo = T, eval = T}
-result <- cdm$sinusitis |>
+result <- cdm$anemia |>
   summariseCharacteristics() |>
   filter(variable_name == "Age" & estimate_name == "median")
 
@@ -552,16 +512,17 @@ plotCharacteristics(result = result,
                     facet = "cohort_name",
                     colour = "cdm_name")
 ```
+
 ## Your turn
 
-Can you create a bar plot the percentage of sex in the `sinusitis` table?
+Can you create a bar plot the percentage of sex in the `osteoarthritis` table?
 
 <details>
 
 <summary>💡 Click to see solution</summary>
 
 ```{r, eval = TRUE}
-result <- cdm$sinusitis |>
+result <- cdm$osteoarthritis |>
   summariseCharacteristics() |>
   filter(variable_name == "Sex" & estimate_name == "percentage")
 
@@ -580,7 +541,7 @@ plotCharacteristics(result = result,
 Sometimes we might want to summarise all clinical events for cohorts across different time windows. We can do this with `summariseLargeScaleCharacteristics()`.
 
 ```{r, echo = T, eval = T}
-result <- cdm$sinusitis |>
+result <- cdm$anemia |>
   summariseLargeScaleCharacteristics(
     window = list(c(-Inf, -1), c(1, Inf)),
     eventInWindow = "condition_occurrence",
@@ -621,7 +582,7 @@ The `tidy()` function works for any `<summarised_result>` object that we create.
 When creating multiple cohorts, we might be interested in the overlap of individuals between those cohorts. `summariseCohortOverlap()` does this for you.
 
 ```{r, echo = T, eval = T}
-result <- cdm$sinusitis |>
+result <- cdm$anemia |>
   summariseCohortOverlap()
 
 glimpse(result)
@@ -654,7 +615,7 @@ plotCohortOverlap(result = result, uniqueCombinations = TRUE)
 When creating multiple cohorts, we might be interested in the timing of entry between cohorts. `summariseCohortTiming()` does this for you.
 
 ```{r, echo = T, eval = T}
-result <- cdm$sinusitis |>
+result <- cdm$anemia |>
   summariseCohortTiming(restrictToFirstEntry = TRUE)
 
 glimpse(result)
@@ -704,14 +665,14 @@ plotCohortTiming(
 
 ## Your turn
 
-Can you get the large-scale characteristics from the `drug_exposure` table for the `new_sinusitis` cohort table using an anytime-prior time window? Visualise the result showing the top 5 most frequent codes.
+Can you get the large-scale characteristics from the `drug_exposure` table for the `osteoarthritis` cohort table using an anytime-prior time window? Visualise the result showing the top 5 most frequent codes.
 
 <details>
 
 <summary>💡 Click to see solution</summary>
 
 ```{r, eval = TRUE}
-result <- cdm$new_sinusitis |>
+result <- cdm$osteoarthritis |>
   summariseLargeScaleCharacteristics(
     window = list(c(-Inf, -1)),
     eventInWindow = "drug_exposure",
