@@ -300,8 +300,6 @@ shinyDiagnostics(result = result,
                  removeEmptyTabs = FALSE)
 ```
 
-
-
 ## Extra: Adding context to your results
 
 -   Visit [Descriptions shiny app](https://dpa-pde-oxford.shinyapps.io/PhenotypeDescriptionsShiny/)
