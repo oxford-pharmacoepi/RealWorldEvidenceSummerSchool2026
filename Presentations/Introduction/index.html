@@ -9,7 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
-<meta name="dcterms.date" content="2026-06-17">
+<meta name="dcterms.date" content="2026-06-21">
 <title>Real World Evidence Summer School – OMOP and CDMConnector</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -206,7 +206,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">2026-06-17</p>
+  <p class="date">2026-06-21</p>
 </section><section id="introduction-the-omop-common-data-model" class="slide level2"><h2>Introduction: The OMOP Common Data Model</h2>
 <ul>
 <li class="fragment"><p>Every time that someone goes to the doctor and something happens the doctors write it into their records.</p></li>
@@ -284,15 +284,16 @@
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ohdsi.github.io/omock/reference/availableMockDatasets.html">availableMockDatasets</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "GiBleed"                             "empty_cdm_5.3"                       "empty_cdm_5.4"                      
- [4] "synpuf-1k_5.3"                       "synpuf-1k_5.4"                       "synthea-allergies-10k"              
- [7] "synthea-breast_cancer-10k"           "synthea-contraceptives-10k"          "synthea-covid19-10k"                
-[10] "synthea-covid19-200k"                "synthea-dermatitis-10k"              "synthea-heart-10k"                  
-[13] "synthea-hiv-10k"                     "synthea-lung_cancer-10k"             "synthea-medications-10k"            
-[16] "synthea-metabolic_syndrome-10k"      "synthea-opioid_addiction-10k"        "synthea-rheumatoid_arthritis-10k"   
-[19] "synthea-snf-10k"                     "synthea-surgery-10k"                 "synthea-total_joint_replacement-10k"
-[22] "synthea-veteran_prostate_cancer-10k" "synthea-veterans-10k"                "synthea-weight_loss-10k"            
-[25] "delphi-100k_5.4"                    </code></pre>
+<pre><code> [1] "delphi-100k"                         "delphi-100k_5.4"                     "empty_cdm"                          
+ [4] "empty_cdm_5.3"                       "empty_cdm_5.4"                       "GiBleed"                            
+ [7] "synpuf-1k"                           "synpuf-1k_5.3"                       "synpuf-1k_5.4"                      
+[10] "synthea-allergies-10k"               "synthea-breast_cancer-10k"           "synthea-contraceptives-10k"         
+[13] "synthea-covid19-10k"                 "synthea-covid19-200k"                "synthea-dermatitis-10k"             
+[16] "synthea-heart-10k"                   "synthea-hiv-10k"                     "synthea-lung_cancer-10k"            
+[19] "synthea-medications-10k"             "synthea-metabolic_syndrome-10k"      "synthea-opioid_addiction-10k"       
+[22] "synthea-rheumatoid_arthritis-10k"    "synthea-snf-10k"                     "synthea-surgery-10k"                
+[25] "synthea-total_joint_replacement-10k" "synthea-veteran_prostate_cancer-10k" "synthea-veterans-10k"               
+[28] "synthea-weight_loss-10k"            </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/omock/reference/mockCdmFromDataset.html">mockCdmFromDataset</a></span><span class="op">(</span>datasetName <span class="op">=</span> <span class="st">"GiBleed"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
@@ -486,8 +487,8 @@ visit_occurrence, vocabulary</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">person</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># Source:   table&lt;person&gt; [?? x 18]
-# Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
+<pre><code># A query:  ?? x 18
+# Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
    person_id gender_concept_id year_of_birth month_of_birth day_of_birth birth_datetime      race_concept_id
        &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt; &lt;dttm&gt;                        &lt;int&gt;
  1         6              8532          1963             12           31 1963-12-31 00:00:00            8516
@@ -514,8 +515,8 @@ visit_occurrence, vocabulary</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">person</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># Source:   SQL [?? x 1]
-# Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
+<pre><code># A query:  ?? x 1
+# Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
       n
   &lt;dbl&gt;
 1  2694</code></pre>
@@ -596,7 +597,7 @@ visit_occurrence, vocabulary</code></pre>
 [21] "metadata"              "note"                  "note_nlp"              "observation"          
 [25] "observation_period"    "payer_plan_period"     "person"                "procedure_occurrence" 
 [29] "provider"              "relationship"          "source_to_concept_map" "specimen"             
-[33] "visit_detail"          "visit_occurrence"      "vocabulary"            "og_001_1781677159"    </code></pre>
+[33] "visit_detail"          "visit_occurrence"      "vocabulary"            "og_001_1782044022"    </code></pre>
 </div>
 </div>
 </div>
@@ -619,7 +620,7 @@ visit_occurrence, vocabulary</code></pre>
 [25] "observation"           "observation_period"    "payer_plan_period"     "person"               
 [29] "procedure_occurrence"  "provider"              "relationship"          "source_to_concept_map"
 [33] "specimen"              "visit_detail"          "visit_occurrence"      "vocabulary"           
-[37] "og_001_1781677159"    </code></pre>
+[37] "og_001_1782044022"    </code></pre>
 </div>
 </div>
 </div>
@@ -650,8 +651,8 @@ visit_occurrence, vocabulary</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_saved_table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># Source:   table&lt;my_saved_table&gt; [?? x 2]
-# Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
+<pre><code># A query:  ?? x 2
+# Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
    person_id condition_start_date
        &lt;int&gt; &lt;date&gt;              
  1       263 2015-10-02          
@@ -714,7 +715,7 @@ visit_occurrence, vocabulary</code></pre>
 [21] "metadata"              "note"                  "note_nlp"              "observation"          
 [25] "observation_period"    "payer_plan_period"     "person"                "procedure_occurrence" 
 [29] "provider"              "relationship"          "source_to_concept_map" "specimen"             
-[33] "visit_detail"          "visit_occurrence"      "vocabulary"            "og_001_1781677159"    </code></pre>
+[33] "visit_detail"          "visit_occurrence"      "vocabulary"            "og_001_1782044022"    </code></pre>
 </div>
 </div>
 </div>
@@ -805,8 +806,8 @@ visit_occurrence, vocabulary</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb82"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_test_table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># Source:   table&lt;my_test_table&gt; [?? x 2]
-# Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
+<pre><code># A query:  ?? x 2
+# Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
    speed  dist
    &lt;dbl&gt; &lt;dbl&gt;
  1     4     2
@@ -891,8 +892,8 @@ visit_occurrence, vocabulary</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb100"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_test_table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># Source:   table&lt;my_prefix_my_test_table&gt; [?? x 2]
-# Database: DuckDB 1.5.2 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
+<pre><code># A query:  ?? x 2
+# Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
    speed  dist
    &lt;dbl&gt; &lt;dbl&gt;
  1     4     2

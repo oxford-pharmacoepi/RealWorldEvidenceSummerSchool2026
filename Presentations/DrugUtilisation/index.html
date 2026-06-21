@@ -9,7 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
-<meta name="dcterms.date" content="2026-06-17">
+<meta name="dcterms.date" content="2026-06-21">
 <title>Real World Evidence Summer School – DrugUtilisation</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -206,7 +206,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">2026-06-17</p>
+  <p class="date">2026-06-21</p>
 </section><section id="introduction" class="slide level2"><h2>Introduction</h2>
 <p>Drug utilisation studies (DUS) were defined by the World Health Organization as studying the marketing, distribution, prescription, and use of medicinal products in a society, with special emphasis on the resulting medical and socioeconomic consequences (WHO, 2003).</p>
 <div class="fragment">
@@ -293,7 +293,7 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">$</span><span class="va">dus_cohort</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "cohort_table"          "cdm_table"             "GeneratedCohortSet"    "tbl_duckdb_connection"
+<pre><code>[1] "cohort_table"          "GeneratedCohortSet"    "cdm_table"             "tbl_duckdb_connection"
 [5] "tbl_dbi"               "tbl_sql"               "tbl_lazy"              "tbl"                  </code></pre>
 </div>
 </div>
@@ -496,23 +496,23 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
 <span>  <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/suppress.html">suppress</a></span><span class="op">(</span>minCellCount <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://darwin-eu.github.io/DrugUtilisation/reference/tableDrugUtilisation.html">tableDrugUtilisation</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="ywtrejuzhk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ywtrejuzhk table {
+<div id="mhncxywijc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mhncxywijc table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ywtrejuzhk thead, #ywtrejuzhk tbody, #ywtrejuzhk tfoot, #ywtrejuzhk tr, #ywtrejuzhk td, #ywtrejuzhk th {
+#mhncxywijc thead, #mhncxywijc tbody, #mhncxywijc tfoot, #mhncxywijc tr, #mhncxywijc td, #mhncxywijc th {
   border-style: none;
 }
 
-#ywtrejuzhk p {
+#mhncxywijc p {
   margin: 0;
   padding: 0;
 }
 
-#ywtrejuzhk .gt_table {
+#mhncxywijc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -538,12 +538,12 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   border-left-color: #D9D9D9;
 }
 
-#ywtrejuzhk .gt_caption {
+#mhncxywijc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ywtrejuzhk .gt_title {
+#mhncxywijc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -555,7 +555,7 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   border-bottom-width: 0;
 }
 
-#ywtrejuzhk .gt_subtitle {
+#mhncxywijc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -567,7 +567,7 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   border-top-width: 0;
 }
 
-#ywtrejuzhk .gt_heading {
+#mhncxywijc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -579,13 +579,13 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   border-right-color: #D3D3D3;
 }
 
-#ywtrejuzhk .gt_bottom_border {
+#mhncxywijc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ywtrejuzhk .gt_col_headings {
+#mhncxywijc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -600,7 +600,7 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   border-right-color: #D3D3D3;
 }
 
-#ywtrejuzhk .gt_col_heading {
+#mhncxywijc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -620,7 +620,7 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   overflow-x: hidden;
 }
 
-#ywtrejuzhk .gt_column_spanner_outer {
+#mhncxywijc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -632,15 +632,15 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   padding-right: 4px;
 }
 
-#ywtrejuzhk .gt_column_spanner_outer:first-child {
+#mhncxywijc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ywtrejuzhk .gt_column_spanner_outer:last-child {
+#mhncxywijc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ywtrejuzhk .gt_column_spanner {
+#mhncxywijc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -652,11 +652,11 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   width: 100%;
 }
 
-#ywtrejuzhk .gt_spanner_row {
+#mhncxywijc .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ywtrejuzhk .gt_group_heading {
+#mhncxywijc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -682,7 +682,7 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   text-align: left;
 }
 
-#ywtrejuzhk .gt_empty_group_heading {
+#mhncxywijc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -697,15 +697,15 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   vertical-align: middle;
 }
 
-#ywtrejuzhk .gt_from_md > :first-child {
+#mhncxywijc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ywtrejuzhk .gt_from_md > :last-child {
+#mhncxywijc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ywtrejuzhk .gt_row {
+#mhncxywijc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -724,7 +724,7 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   overflow-x: hidden;
 }
 
-#ywtrejuzhk .gt_stub {
+#mhncxywijc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -737,7 +737,7 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   padding-right: 5px;
 }
 
-#ywtrejuzhk .gt_stub_row_group {
+#mhncxywijc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -751,15 +751,15 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   vertical-align: top;
 }
 
-#ywtrejuzhk .gt_row_group_first td {
+#mhncxywijc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ywtrejuzhk .gt_row_group_first th {
+#mhncxywijc .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ywtrejuzhk .gt_summary_row {
+#mhncxywijc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -769,16 +769,16 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   padding-right: 5px;
 }
 
-#ywtrejuzhk .gt_first_summary_row {
+#mhncxywijc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ywtrejuzhk .gt_first_summary_row.thick {
+#mhncxywijc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ywtrejuzhk .gt_last_summary_row {
+#mhncxywijc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -788,7 +788,7 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   border-bottom-color: #D3D3D3;
 }
 
-#ywtrejuzhk .gt_grand_summary_row {
+#mhncxywijc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -798,7 +798,7 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   padding-right: 5px;
 }
 
-#ywtrejuzhk .gt_first_grand_summary_row {
+#mhncxywijc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -808,7 +808,7 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   border-top-color: #D3D3D3;
 }
 
-#ywtrejuzhk .gt_last_grand_summary_row_top {
+#mhncxywijc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -818,11 +818,11 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   border-bottom-color: #D3D3D3;
 }
 
-#ywtrejuzhk .gt_striped {
+#mhncxywijc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ywtrejuzhk .gt_table_body {
+#mhncxywijc .gt_table_body {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #D9D9D9;
@@ -831,7 +831,7 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   border-bottom-color: #D3D3D3;
 }
 
-#ywtrejuzhk .gt_footnotes {
+#mhncxywijc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -845,7 +845,7 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   border-right-color: #D3D3D3;
 }
 
-#ywtrejuzhk .gt_footnote {
+#mhncxywijc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -854,7 +854,7 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   padding-right: 5px;
 }
 
-#ywtrejuzhk .gt_sourcenotes {
+#mhncxywijc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -868,7 +868,7 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   border-right-color: #D3D3D3;
 }
 
-#ywtrejuzhk .gt_sourcenote {
+#mhncxywijc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -876,72 +876,72 @@ relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, v
   padding-right: 5px;
 }
 
-#ywtrejuzhk .gt_left {
+#mhncxywijc .gt_left {
   text-align: left;
 }
 
-#ywtrejuzhk .gt_center {
+#mhncxywijc .gt_center {
   text-align: center;
 }
 
-#ywtrejuzhk .gt_right {
+#mhncxywijc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ywtrejuzhk .gt_font_normal {
+#mhncxywijc .gt_font_normal {
   font-weight: normal;
 }
 
-#ywtrejuzhk .gt_font_bold {
+#mhncxywijc .gt_font_bold {
   font-weight: bold;
 }
 
-#ywtrejuzhk .gt_font_italic {
+#mhncxywijc .gt_font_italic {
   font-style: italic;
 }
 
-#ywtrejuzhk .gt_super {
+#mhncxywijc .gt_super {
   font-size: 65%;
 }
 
-#ywtrejuzhk .gt_footnote_marks {
+#mhncxywijc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ywtrejuzhk .gt_asterisk {
+#mhncxywijc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ywtrejuzhk .gt_indent_1 {
+#mhncxywijc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ywtrejuzhk .gt_indent_2 {
+#mhncxywijc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ywtrejuzhk .gt_indent_3 {
+#mhncxywijc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ywtrejuzhk .gt_indent_4 {
+#mhncxywijc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ywtrejuzhk .gt_indent_5 {
+#mhncxywijc .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ywtrejuzhk .katex-display {
+#mhncxywijc .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ywtrejuzhk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mhncxywijc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1081,7 +1081,7 @@ $ variable_name    &lt;chr&gt; "Indication on index date", "Indication on index 
 $ variable_level   &lt;chr&gt; "arteriosclerosis", "arteriosclerosis", "myocardial_infarction", "myocardial_infarction", "pa…
 $ estimate_name    &lt;chr&gt; "count", "percentage", "count", "percentage", "count", "percentage", "count", "percentage", "…
 $ estimate_type    &lt;chr&gt; "integer", "percentage", "integer", "percentage", "integer", "percentage", "integer", "percen…
-$ estimate_value   &lt;chr&gt; "0", "0", "408", "66.9950738916256", "60", "9.85221674876847", "2", "0.328407224958949", "0",…
+$ estimate_value   &lt;chr&gt; "0", "0", "408", "66.99507", "60", "9.85222", "2", "0.32841", "0", "0", "0", "0", "0", "0", "…
 $ additional_name  &lt;chr&gt; "window_name", "window_name", "window_name", "window_name", "window_name", "window_name", "wi…
 $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 …</code></pre>
 </div>
@@ -1092,23 +1092,23 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
 <span>  <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/suppress.html">suppress</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://darwin-eu.github.io/DrugUtilisation/reference/tableIndication.html">tableIndication</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="ilvhavznxd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ilvhavznxd table {
+<div id="ualwkgifob" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ualwkgifob table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ilvhavznxd thead, #ilvhavznxd tbody, #ilvhavznxd tfoot, #ilvhavznxd tr, #ilvhavznxd td, #ilvhavznxd th {
+#ualwkgifob thead, #ualwkgifob tbody, #ualwkgifob tfoot, #ualwkgifob tr, #ualwkgifob td, #ualwkgifob th {
   border-style: none;
 }
 
-#ilvhavznxd p {
+#ualwkgifob p {
   margin: 0;
   padding: 0;
 }
 
-#ilvhavznxd .gt_table {
+#ualwkgifob .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1134,12 +1134,12 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   border-left-color: #D9D9D9;
 }
 
-#ilvhavznxd .gt_caption {
+#ualwkgifob .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ilvhavznxd .gt_title {
+#ualwkgifob .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1151,7 +1151,7 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   border-bottom-width: 0;
 }
 
-#ilvhavznxd .gt_subtitle {
+#ualwkgifob .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1163,7 +1163,7 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   border-top-width: 0;
 }
 
-#ilvhavznxd .gt_heading {
+#ualwkgifob .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1175,13 +1175,13 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   border-right-color: #D3D3D3;
 }
 
-#ilvhavznxd .gt_bottom_border {
+#ualwkgifob .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ilvhavznxd .gt_col_headings {
+#ualwkgifob .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1196,7 +1196,7 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   border-right-color: #D3D3D3;
 }
 
-#ilvhavznxd .gt_col_heading {
+#ualwkgifob .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1216,7 +1216,7 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   overflow-x: hidden;
 }
 
-#ilvhavznxd .gt_column_spanner_outer {
+#ualwkgifob .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1228,15 +1228,15 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   padding-right: 4px;
 }
 
-#ilvhavznxd .gt_column_spanner_outer:first-child {
+#ualwkgifob .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ilvhavznxd .gt_column_spanner_outer:last-child {
+#ualwkgifob .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ilvhavznxd .gt_column_spanner {
+#ualwkgifob .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1248,11 +1248,11 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   width: 100%;
 }
 
-#ilvhavznxd .gt_spanner_row {
+#ualwkgifob .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ilvhavznxd .gt_group_heading {
+#ualwkgifob .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1278,7 +1278,7 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   text-align: left;
 }
 
-#ilvhavznxd .gt_empty_group_heading {
+#ualwkgifob .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1293,15 +1293,15 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   vertical-align: middle;
 }
 
-#ilvhavznxd .gt_from_md > :first-child {
+#ualwkgifob .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ilvhavznxd .gt_from_md > :last-child {
+#ualwkgifob .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ilvhavznxd .gt_row {
+#ualwkgifob .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1320,7 +1320,7 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   overflow-x: hidden;
 }
 
-#ilvhavznxd .gt_stub {
+#ualwkgifob .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1333,7 +1333,7 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   padding-right: 5px;
 }
 
-#ilvhavznxd .gt_stub_row_group {
+#ualwkgifob .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1347,15 +1347,15 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   vertical-align: top;
 }
 
-#ilvhavznxd .gt_row_group_first td {
+#ualwkgifob .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ilvhavznxd .gt_row_group_first th {
+#ualwkgifob .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ilvhavznxd .gt_summary_row {
+#ualwkgifob .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1365,16 +1365,16 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   padding-right: 5px;
 }
 
-#ilvhavznxd .gt_first_summary_row {
+#ualwkgifob .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ilvhavznxd .gt_first_summary_row.thick {
+#ualwkgifob .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ilvhavznxd .gt_last_summary_row {
+#ualwkgifob .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1384,7 +1384,7 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   border-bottom-color: #D3D3D3;
 }
 
-#ilvhavznxd .gt_grand_summary_row {
+#ualwkgifob .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1394,7 +1394,7 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   padding-right: 5px;
 }
 
-#ilvhavznxd .gt_first_grand_summary_row {
+#ualwkgifob .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1404,7 +1404,7 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   border-top-color: #D3D3D3;
 }
 
-#ilvhavznxd .gt_last_grand_summary_row_top {
+#ualwkgifob .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1414,11 +1414,11 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   border-bottom-color: #D3D3D3;
 }
 
-#ilvhavznxd .gt_striped {
+#ualwkgifob .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ilvhavznxd .gt_table_body {
+#ualwkgifob .gt_table_body {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #D9D9D9;
@@ -1427,7 +1427,7 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   border-bottom-color: #D3D3D3;
 }
 
-#ilvhavznxd .gt_footnotes {
+#ualwkgifob .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1441,7 +1441,7 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   border-right-color: #D3D3D3;
 }
 
-#ilvhavznxd .gt_footnote {
+#ualwkgifob .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1450,7 +1450,7 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   padding-right: 5px;
 }
 
-#ilvhavznxd .gt_sourcenotes {
+#ualwkgifob .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1464,7 +1464,7 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   border-right-color: #D3D3D3;
 }
 
-#ilvhavznxd .gt_sourcenote {
+#ualwkgifob .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1472,84 +1472,85 @@ $ additional_level &lt;chr&gt; "0 to 0", "0 to 0", "0 to 0", "0 to 0", "0 to 0",
   padding-right: 5px;
 }
 
-#ilvhavznxd .gt_left {
+#ualwkgifob .gt_left {
   text-align: left;
 }
 
-#ilvhavznxd .gt_center {
+#ualwkgifob .gt_center {
   text-align: center;
 }
 
-#ilvhavznxd .gt_right {
+#ualwkgifob .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ilvhavznxd .gt_font_normal {
+#ualwkgifob .gt_font_normal {
   font-weight: normal;
 }
 
-#ilvhavznxd .gt_font_bold {
+#ualwkgifob .gt_font_bold {
   font-weight: bold;
 }
 
-#ilvhavznxd .gt_font_italic {
+#ualwkgifob .gt_font_italic {
   font-style: italic;
 }
 
-#ilvhavznxd .gt_super {
+#ualwkgifob .gt_super {
   font-size: 65%;
 }
 
-#ilvhavznxd .gt_footnote_marks {
+#ualwkgifob .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ilvhavznxd .gt_asterisk {
+#ualwkgifob .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ilvhavznxd .gt_indent_1 {
+#ualwkgifob .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ilvhavznxd .gt_indent_2 {
+#ualwkgifob .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ilvhavznxd .gt_indent_3 {
+#ualwkgifob .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ilvhavznxd .gt_indent_4 {
+#ualwkgifob .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ilvhavznxd .gt_indent_5 {
+#ualwkgifob .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ilvhavznxd .katex-display {
+#ualwkgifob .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ilvhavznxd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ualwkgifob div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 <table class="gt_table caption-top" data-quarto-bootstrap="false">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="gt_col_headings gt_spanner_row header">
-<th colspan="2" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" style="text-align: center; background-color: #D9D9D9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;" scope="colgroup"></th>
+<th colspan="3" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" style="text-align: center; background-color: #D9D9D9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;" scope="colgroup"></th>
 <th id="spanner-[header_name]Data source
 [header_level]synthea-covid19-10k
 [header_name]Cohort name
@@ -1558,7 +1559,7 @@ Data source
 </div></th>
 </tr>
 <tr class="gt_col_headings gt_spanner_row even">
-<th colspan="2" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" style="text-align: center; background-color: #E1E1E1; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;" scope="colgroup"></th>
+<th colspan="3" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" style="text-align: center; background-color: #E1E1E1; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;" scope="colgroup"></th>
 <th id="spanner-[header_level]synthea-covid19-10k
 [header_name]Cohort name
 [header_level]acetaminophen" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" style="text-align: center; background-color: #E1E1E1; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;" scope="col"><div class="gt_column_spanner">
@@ -1566,6 +1567,7 @@ synthea-covid19-10k
 </div></th>
 </tr>
 <tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="Not-in-observation" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: center; background-color: #E1E1E1; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;" scope="col">Not in observation</th>
 <th rowspan="2" id="Indication" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: center; background-color: #E1E1E1; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;" scope="col">Indication</th>
 <th rowspan="2" id="Estimate-name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: center; background-color: #E1E1E1; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;" scope="col">Estimate name</th>
 <th id="spanner-[header_name]Cohort name
@@ -1579,9 +1581,10 @@ Cohort name
 </thead>
 <tbody class="gt_table_body">
 <tr class="gt_group_heading_row odd">
-<th colspan="3" id="Indication on index date" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">Indication on index date</th>
+<th colspan="4" id="Indication on index date" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">Indication on index date</th>
 </tr>
 <tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="Indication on index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">include</td>
 <td class="gt_row gt_left" headers="Indication on index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">arteriosclerosis</td>
 <td class="gt_row gt_left" headers="Indication on index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication on index date  [header_name]Data source
@@ -1590,6 +1593,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">0 (0.00 %)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Indication on index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Indication on index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">myocardial_infarction</td>
 <td class="gt_row gt_left" headers="Indication on index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication on index date  [header_name]Data source
@@ -1598,6 +1602,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">408 (67.00 %)</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Indication on index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Indication on index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">pain</td>
 <td class="gt_row gt_left" headers="Indication on index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication on index date  [header_name]Data source
@@ -1606,6 +1611,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">60 (9.85 %)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Indication on index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Indication on index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">arteriosclerosis and myocardial_infarction</td>
 <td class="gt_row gt_left" headers="Indication on index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication on index date  [header_name]Data source
@@ -1614,6 +1620,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">&lt;5</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Indication on index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Indication on index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">arteriosclerosis and pain</td>
 <td class="gt_row gt_left" headers="Indication on index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication on index date  [header_name]Data source
@@ -1622,6 +1629,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">0 (0.00 %)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Indication on index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Indication on index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">myocardial_infarction and pain</td>
 <td class="gt_row gt_left" headers="Indication on index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication on index date  [header_name]Data source
@@ -1630,6 +1638,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">0 (0.00 %)</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Indication on index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Indication on index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">arteriosclerosis and myocardial_infarction and pain</td>
 <td class="gt_row gt_left" headers="Indication on index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication on index date  [header_name]Data source
@@ -1638,6 +1647,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">0 (0.00 %)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Indication on index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Indication on index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">unknown</td>
 <td class="gt_row gt_left" headers="Indication on index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication on index date  [header_name]Data source
@@ -1646,6 +1656,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">104 (17.08 %)</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Indication on index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Indication on index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">none</td>
 <td class="gt_row gt_left" headers="Indication on index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication on index date  [header_name]Data source
@@ -1654,6 +1665,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">35 (5.75 %)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Indication on index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Indication on index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">not in observation</td>
 <td class="gt_row gt_left" headers="Indication on index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication on index date  [header_name]Data source
@@ -1662,9 +1674,10 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">0 (0.00 %)</td>
 </tr>
 <tr class="gt_group_heading_row even">
-<th colspan="3" id="Indication from 30 days before to 7 days after the index date" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">Indication from 30 days before to 7 days after the index date</th>
+<th colspan="4" id="Indication from 30 days before to 7 days after the index date" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">Indication from 30 days before to 7 days after the index date</th>
 </tr>
 <tr class="gt_row_group_first odd">
+<td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">include</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">arteriosclerosis</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  [header_name]Data source
@@ -1673,6 +1686,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">0 (0.00 %)</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">myocardial_infarction</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  [header_name]Data source
@@ -1681,6 +1695,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">413 (67.82 %)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">pain</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  [header_name]Data source
@@ -1689,6 +1704,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">63 (10.34 %)</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">arteriosclerosis and myocardial_infarction</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  [header_name]Data source
@@ -1697,6 +1713,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">&lt;5</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">arteriosclerosis and pain</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  [header_name]Data source
@@ -1705,6 +1722,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">0 (0.00 %)</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">myocardial_infarction and pain</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  [header_name]Data source
@@ -1713,6 +1731,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">0 (0.00 %)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">arteriosclerosis and myocardial_infarction and pain</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  [header_name]Data source
@@ -1721,6 +1740,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">0 (0.00 %)</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">unknown</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  [header_name]Data source
@@ -1729,6 +1749,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">101 (16.58 %)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">none</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  [header_name]Data source
@@ -1737,6 +1758,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">30 (4.93 %)</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Indication" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">not in observation</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_left" headers="Indication from 30 days before to 7 days after the index date  [header_name]Data source
@@ -1773,7 +1795,7 @@ Cohort name
 <div class="fragment">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/DrugUtilisation/reference/plotIndication.html">plotIndication</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">plotly</span><span class="fu">::</span><span class="fu">ggplotly</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>  <span class="fu">plotly</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html">ggplotly</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section><section id="treatment-persistence" class="slide level2"><h2>Treatment persistence</h2>
@@ -1791,23 +1813,23 @@ Cohort name
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/DrugUtilisation/reference/tableProportionOfPatientsCovered.html">tableProportionOfPatientsCovered</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="dzjdjcvxzd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#dzjdjcvxzd table {
+<div id="kmlcdorwmf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kmlcdorwmf table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#dzjdjcvxzd thead, #dzjdjcvxzd tbody, #dzjdjcvxzd tfoot, #dzjdjcvxzd tr, #dzjdjcvxzd td, #dzjdjcvxzd th {
+#kmlcdorwmf thead, #kmlcdorwmf tbody, #kmlcdorwmf tfoot, #kmlcdorwmf tr, #kmlcdorwmf td, #kmlcdorwmf th {
   border-style: none;
 }
 
-#dzjdjcvxzd p {
+#kmlcdorwmf p {
   margin: 0;
   padding: 0;
 }
 
-#dzjdjcvxzd .gt_table {
+#kmlcdorwmf .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1833,12 +1855,12 @@ Cohort name
   border-left-color: #D9D9D9;
 }
 
-#dzjdjcvxzd .gt_caption {
+#kmlcdorwmf .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#dzjdjcvxzd .gt_title {
+#kmlcdorwmf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1850,7 +1872,7 @@ Cohort name
   border-bottom-width: 0;
 }
 
-#dzjdjcvxzd .gt_subtitle {
+#kmlcdorwmf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1862,7 +1884,7 @@ Cohort name
   border-top-width: 0;
 }
 
-#dzjdjcvxzd .gt_heading {
+#kmlcdorwmf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1874,13 +1896,13 @@ Cohort name
   border-right-color: #D3D3D3;
 }
 
-#dzjdjcvxzd .gt_bottom_border {
+#kmlcdorwmf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dzjdjcvxzd .gt_col_headings {
+#kmlcdorwmf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1895,7 +1917,7 @@ Cohort name
   border-right-color: #D3D3D3;
 }
 
-#dzjdjcvxzd .gt_col_heading {
+#kmlcdorwmf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1915,7 +1937,7 @@ Cohort name
   overflow-x: hidden;
 }
 
-#dzjdjcvxzd .gt_column_spanner_outer {
+#kmlcdorwmf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1927,15 +1949,15 @@ Cohort name
   padding-right: 4px;
 }
 
-#dzjdjcvxzd .gt_column_spanner_outer:first-child {
+#kmlcdorwmf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dzjdjcvxzd .gt_column_spanner_outer:last-child {
+#kmlcdorwmf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dzjdjcvxzd .gt_column_spanner {
+#kmlcdorwmf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1947,11 +1969,11 @@ Cohort name
   width: 100%;
 }
 
-#dzjdjcvxzd .gt_spanner_row {
+#kmlcdorwmf .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#dzjdjcvxzd .gt_group_heading {
+#kmlcdorwmf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1977,7 +1999,7 @@ Cohort name
   text-align: left;
 }
 
-#dzjdjcvxzd .gt_empty_group_heading {
+#kmlcdorwmf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1992,15 +2014,15 @@ Cohort name
   vertical-align: middle;
 }
 
-#dzjdjcvxzd .gt_from_md > :first-child {
+#kmlcdorwmf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dzjdjcvxzd .gt_from_md > :last-child {
+#kmlcdorwmf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dzjdjcvxzd .gt_row {
+#kmlcdorwmf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2019,7 +2041,7 @@ Cohort name
   overflow-x: hidden;
 }
 
-#dzjdjcvxzd .gt_stub {
+#kmlcdorwmf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2032,7 +2054,7 @@ Cohort name
   padding-right: 5px;
 }
 
-#dzjdjcvxzd .gt_stub_row_group {
+#kmlcdorwmf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2046,15 +2068,15 @@ Cohort name
   vertical-align: top;
 }
 
-#dzjdjcvxzd .gt_row_group_first td {
+#kmlcdorwmf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#dzjdjcvxzd .gt_row_group_first th {
+#kmlcdorwmf .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#dzjdjcvxzd .gt_summary_row {
+#kmlcdorwmf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2064,16 +2086,16 @@ Cohort name
   padding-right: 5px;
 }
 
-#dzjdjcvxzd .gt_first_summary_row {
+#kmlcdorwmf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#dzjdjcvxzd .gt_first_summary_row.thick {
+#kmlcdorwmf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#dzjdjcvxzd .gt_last_summary_row {
+#kmlcdorwmf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2083,7 +2105,7 @@ Cohort name
   border-bottom-color: #D3D3D3;
 }
 
-#dzjdjcvxzd .gt_grand_summary_row {
+#kmlcdorwmf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2093,7 +2115,7 @@ Cohort name
   padding-right: 5px;
 }
 
-#dzjdjcvxzd .gt_first_grand_summary_row {
+#kmlcdorwmf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2103,7 +2125,7 @@ Cohort name
   border-top-color: #D3D3D3;
 }
 
-#dzjdjcvxzd .gt_last_grand_summary_row_top {
+#kmlcdorwmf .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2113,11 +2135,11 @@ Cohort name
   border-bottom-color: #D3D3D3;
 }
 
-#dzjdjcvxzd .gt_striped {
+#kmlcdorwmf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dzjdjcvxzd .gt_table_body {
+#kmlcdorwmf .gt_table_body {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #D9D9D9;
@@ -2126,7 +2148,7 @@ Cohort name
   border-bottom-color: #D3D3D3;
 }
 
-#dzjdjcvxzd .gt_footnotes {
+#kmlcdorwmf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2140,7 +2162,7 @@ Cohort name
   border-right-color: #D3D3D3;
 }
 
-#dzjdjcvxzd .gt_footnote {
+#kmlcdorwmf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2149,7 +2171,7 @@ Cohort name
   padding-right: 5px;
 }
 
-#dzjdjcvxzd .gt_sourcenotes {
+#kmlcdorwmf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2163,7 +2185,7 @@ Cohort name
   border-right-color: #D3D3D3;
 }
 
-#dzjdjcvxzd .gt_sourcenote {
+#kmlcdorwmf .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2171,72 +2193,72 @@ Cohort name
   padding-right: 5px;
 }
 
-#dzjdjcvxzd .gt_left {
+#kmlcdorwmf .gt_left {
   text-align: left;
 }
 
-#dzjdjcvxzd .gt_center {
+#kmlcdorwmf .gt_center {
   text-align: center;
 }
 
-#dzjdjcvxzd .gt_right {
+#kmlcdorwmf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dzjdjcvxzd .gt_font_normal {
+#kmlcdorwmf .gt_font_normal {
   font-weight: normal;
 }
 
-#dzjdjcvxzd .gt_font_bold {
+#kmlcdorwmf .gt_font_bold {
   font-weight: bold;
 }
 
-#dzjdjcvxzd .gt_font_italic {
+#kmlcdorwmf .gt_font_italic {
   font-style: italic;
 }
 
-#dzjdjcvxzd .gt_super {
+#kmlcdorwmf .gt_super {
   font-size: 65%;
 }
 
-#dzjdjcvxzd .gt_footnote_marks {
+#kmlcdorwmf .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#dzjdjcvxzd .gt_asterisk {
+#kmlcdorwmf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#dzjdjcvxzd .gt_indent_1 {
+#kmlcdorwmf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#dzjdjcvxzd .gt_indent_2 {
+#kmlcdorwmf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#dzjdjcvxzd .gt_indent_3 {
+#kmlcdorwmf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#dzjdjcvxzd .gt_indent_4 {
+#kmlcdorwmf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#dzjdjcvxzd .gt_indent_5 {
+#kmlcdorwmf .gt_indent_5 {
   text-indent: 25px;
 }
 
-#dzjdjcvxzd .katex-display {
+#kmlcdorwmf .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#dzjdjcvxzd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#kmlcdorwmf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2907,23 +2929,23 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/DrugUtilisation/reference/tableDrugRestart.html">tableDrugRestart</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="tzejhzescg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tzejhzescg table {
+<div id="fwnceylfql" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fwnceylfql table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tzejhzescg thead, #tzejhzescg tbody, #tzejhzescg tfoot, #tzejhzescg tr, #tzejhzescg td, #tzejhzescg th {
+#fwnceylfql thead, #fwnceylfql tbody, #fwnceylfql tfoot, #fwnceylfql tr, #fwnceylfql td, #fwnceylfql th {
   border-style: none;
 }
 
-#tzejhzescg p {
+#fwnceylfql p {
   margin: 0;
   padding: 0;
 }
 
-#tzejhzescg .gt_table {
+#fwnceylfql .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2949,12 +2971,12 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   border-left-color: #D9D9D9;
 }
 
-#tzejhzescg .gt_caption {
+#fwnceylfql .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tzejhzescg .gt_title {
+#fwnceylfql .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2966,7 +2988,7 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   border-bottom-width: 0;
 }
 
-#tzejhzescg .gt_subtitle {
+#fwnceylfql .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2978,7 +3000,7 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   border-top-width: 0;
 }
 
-#tzejhzescg .gt_heading {
+#fwnceylfql .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2990,13 +3012,13 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   border-right-color: #D3D3D3;
 }
 
-#tzejhzescg .gt_bottom_border {
+#fwnceylfql .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tzejhzescg .gt_col_headings {
+#fwnceylfql .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3011,7 +3033,7 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   border-right-color: #D3D3D3;
 }
 
-#tzejhzescg .gt_col_heading {
+#fwnceylfql .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3031,7 +3053,7 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   overflow-x: hidden;
 }
 
-#tzejhzescg .gt_column_spanner_outer {
+#fwnceylfql .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3043,15 +3065,15 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   padding-right: 4px;
 }
 
-#tzejhzescg .gt_column_spanner_outer:first-child {
+#fwnceylfql .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tzejhzescg .gt_column_spanner_outer:last-child {
+#fwnceylfql .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tzejhzescg .gt_column_spanner {
+#fwnceylfql .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3063,11 +3085,11 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   width: 100%;
 }
 
-#tzejhzescg .gt_spanner_row {
+#fwnceylfql .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tzejhzescg .gt_group_heading {
+#fwnceylfql .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3093,7 +3115,7 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   text-align: left;
 }
 
-#tzejhzescg .gt_empty_group_heading {
+#fwnceylfql .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3108,15 +3130,15 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   vertical-align: middle;
 }
 
-#tzejhzescg .gt_from_md > :first-child {
+#fwnceylfql .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tzejhzescg .gt_from_md > :last-child {
+#fwnceylfql .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tzejhzescg .gt_row {
+#fwnceylfql .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3135,7 +3157,7 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   overflow-x: hidden;
 }
 
-#tzejhzescg .gt_stub {
+#fwnceylfql .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3148,7 +3170,7 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   padding-right: 5px;
 }
 
-#tzejhzescg .gt_stub_row_group {
+#fwnceylfql .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3162,15 +3184,15 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   vertical-align: top;
 }
 
-#tzejhzescg .gt_row_group_first td {
+#fwnceylfql .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tzejhzescg .gt_row_group_first th {
+#fwnceylfql .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tzejhzescg .gt_summary_row {
+#fwnceylfql .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3180,16 +3202,16 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   padding-right: 5px;
 }
 
-#tzejhzescg .gt_first_summary_row {
+#fwnceylfql .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tzejhzescg .gt_first_summary_row.thick {
+#fwnceylfql .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tzejhzescg .gt_last_summary_row {
+#fwnceylfql .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3199,7 +3221,7 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   border-bottom-color: #D3D3D3;
 }
 
-#tzejhzescg .gt_grand_summary_row {
+#fwnceylfql .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3209,7 +3231,7 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   padding-right: 5px;
 }
 
-#tzejhzescg .gt_first_grand_summary_row {
+#fwnceylfql .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3219,7 +3241,7 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   border-top-color: #D3D3D3;
 }
 
-#tzejhzescg .gt_last_grand_summary_row_top {
+#fwnceylfql .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3229,11 +3251,11 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   border-bottom-color: #D3D3D3;
 }
 
-#tzejhzescg .gt_striped {
+#fwnceylfql .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tzejhzescg .gt_table_body {
+#fwnceylfql .gt_table_body {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #D9D9D9;
@@ -3242,7 +3264,7 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   border-bottom-color: #D3D3D3;
 }
 
-#tzejhzescg .gt_footnotes {
+#fwnceylfql .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3256,7 +3278,7 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   border-right-color: #D3D3D3;
 }
 
-#tzejhzescg .gt_footnote {
+#fwnceylfql .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3265,7 +3287,7 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   padding-right: 5px;
 }
 
-#tzejhzescg .gt_sourcenotes {
+#fwnceylfql .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3279,7 +3301,7 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   border-right-color: #D3D3D3;
 }
 
-#tzejhzescg .gt_sourcenote {
+#fwnceylfql .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3287,72 +3309,72 @@ $ additional_level &lt;chr&gt; "90 days", "90 days", "90 days", "90 days", "90 d
   padding-right: 5px;
 }
 
-#tzejhzescg .gt_left {
+#fwnceylfql .gt_left {
   text-align: left;
 }
 
-#tzejhzescg .gt_center {
+#fwnceylfql .gt_center {
   text-align: center;
 }
 
-#tzejhzescg .gt_right {
+#fwnceylfql .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tzejhzescg .gt_font_normal {
+#fwnceylfql .gt_font_normal {
   font-weight: normal;
 }
 
-#tzejhzescg .gt_font_bold {
+#fwnceylfql .gt_font_bold {
   font-weight: bold;
 }
 
-#tzejhzescg .gt_font_italic {
+#fwnceylfql .gt_font_italic {
   font-style: italic;
 }
 
-#tzejhzescg .gt_super {
+#fwnceylfql .gt_super {
   font-size: 65%;
 }
 
-#tzejhzescg .gt_footnote_marks {
+#fwnceylfql .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tzejhzescg .gt_asterisk {
+#fwnceylfql .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tzejhzescg .gt_indent_1 {
+#fwnceylfql .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tzejhzescg .gt_indent_2 {
+#fwnceylfql .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tzejhzescg .gt_indent_3 {
+#fwnceylfql .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tzejhzescg .gt_indent_4 {
+#fwnceylfql .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tzejhzescg .gt_indent_5 {
+#fwnceylfql .gt_indent_5 {
   text-indent: 25px;
 }
 
-#tzejhzescg .katex-display {
+#fwnceylfql .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#tzejhzescg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#fwnceylfql div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3584,7 +3606,7 @@ $ variable_name    &lt;chr&gt; "Medication from 1 day after to 90 days after the
 $ variable_level   &lt;chr&gt; "11289_warfarin", "11289_warfarin", "32968_clopidogrel", "32968_clopidogrel", "36567_simvasta…
 $ estimate_name    &lt;chr&gt; "count", "percentage", "count", "percentage", "count", "percentage", "count", "percentage", "…
 $ estimate_type    &lt;chr&gt; "integer", "percentage", "integer", "percentage", "integer", "percentage", "integer", "percen…
-$ estimate_value   &lt;chr&gt; "0", "0", "19", "3.11986863711002", "1", "0.164203612479475", "18", "2.95566502463054", "586"…
+$ estimate_value   &lt;chr&gt; "0", "0", "19", "3.11986", "1", "0.1642", "18", "2.95566", "586", "96.22332", "4", "0.65681",…
 $ additional_name  &lt;chr&gt; "window_name", "window_name", "window_name", "window_name", "window_name", "window_name", "wi…
 $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to…</code></pre>
 </div>
@@ -3593,23 +3615,23 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/DrugUtilisation/reference/tableTreatment.html">tableTreatment</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="wbfiyjziii" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wbfiyjziii table {
+<div id="nplbexkuck" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nplbexkuck table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wbfiyjziii thead, #wbfiyjziii tbody, #wbfiyjziii tfoot, #wbfiyjziii tr, #wbfiyjziii td, #wbfiyjziii th {
+#nplbexkuck thead, #nplbexkuck tbody, #nplbexkuck tfoot, #nplbexkuck tr, #nplbexkuck td, #nplbexkuck th {
   border-style: none;
 }
 
-#wbfiyjziii p {
+#nplbexkuck p {
   margin: 0;
   padding: 0;
 }
 
-#wbfiyjziii .gt_table {
+#nplbexkuck .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3635,12 +3657,12 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   border-left-color: #D9D9D9;
 }
 
-#wbfiyjziii .gt_caption {
+#nplbexkuck .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#wbfiyjziii .gt_title {
+#nplbexkuck .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3652,7 +3674,7 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   border-bottom-width: 0;
 }
 
-#wbfiyjziii .gt_subtitle {
+#nplbexkuck .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3664,7 +3686,7 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   border-top-width: 0;
 }
 
-#wbfiyjziii .gt_heading {
+#nplbexkuck .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3676,13 +3698,13 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   border-right-color: #D3D3D3;
 }
 
-#wbfiyjziii .gt_bottom_border {
+#nplbexkuck .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wbfiyjziii .gt_col_headings {
+#nplbexkuck .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3697,7 +3719,7 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   border-right-color: #D3D3D3;
 }
 
-#wbfiyjziii .gt_col_heading {
+#nplbexkuck .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3717,7 +3739,7 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   overflow-x: hidden;
 }
 
-#wbfiyjziii .gt_column_spanner_outer {
+#nplbexkuck .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3729,15 +3751,15 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   padding-right: 4px;
 }
 
-#wbfiyjziii .gt_column_spanner_outer:first-child {
+#nplbexkuck .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wbfiyjziii .gt_column_spanner_outer:last-child {
+#nplbexkuck .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wbfiyjziii .gt_column_spanner {
+#nplbexkuck .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3749,11 +3771,11 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   width: 100%;
 }
 
-#wbfiyjziii .gt_spanner_row {
+#nplbexkuck .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#wbfiyjziii .gt_group_heading {
+#nplbexkuck .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3779,7 +3801,7 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   text-align: left;
 }
 
-#wbfiyjziii .gt_empty_group_heading {
+#nplbexkuck .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3794,15 +3816,15 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   vertical-align: middle;
 }
 
-#wbfiyjziii .gt_from_md > :first-child {
+#nplbexkuck .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wbfiyjziii .gt_from_md > :last-child {
+#nplbexkuck .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wbfiyjziii .gt_row {
+#nplbexkuck .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3821,7 +3843,7 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   overflow-x: hidden;
 }
 
-#wbfiyjziii .gt_stub {
+#nplbexkuck .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3834,7 +3856,7 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   padding-right: 5px;
 }
 
-#wbfiyjziii .gt_stub_row_group {
+#nplbexkuck .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3848,15 +3870,15 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   vertical-align: top;
 }
 
-#wbfiyjziii .gt_row_group_first td {
+#nplbexkuck .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wbfiyjziii .gt_row_group_first th {
+#nplbexkuck .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#wbfiyjziii .gt_summary_row {
+#nplbexkuck .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3866,16 +3888,16 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   padding-right: 5px;
 }
 
-#wbfiyjziii .gt_first_summary_row {
+#nplbexkuck .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wbfiyjziii .gt_first_summary_row.thick {
+#nplbexkuck .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wbfiyjziii .gt_last_summary_row {
+#nplbexkuck .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3885,7 +3907,7 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   border-bottom-color: #D3D3D3;
 }
 
-#wbfiyjziii .gt_grand_summary_row {
+#nplbexkuck .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3895,7 +3917,7 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   padding-right: 5px;
 }
 
-#wbfiyjziii .gt_first_grand_summary_row {
+#nplbexkuck .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3905,7 +3927,7 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   border-top-color: #D3D3D3;
 }
 
-#wbfiyjziii .gt_last_grand_summary_row_top {
+#nplbexkuck .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3915,11 +3937,11 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   border-bottom-color: #D3D3D3;
 }
 
-#wbfiyjziii .gt_striped {
+#nplbexkuck .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wbfiyjziii .gt_table_body {
+#nplbexkuck .gt_table_body {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #D9D9D9;
@@ -3928,7 +3950,7 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   border-bottom-color: #D3D3D3;
 }
 
-#wbfiyjziii .gt_footnotes {
+#nplbexkuck .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3942,7 +3964,7 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   border-right-color: #D3D3D3;
 }
 
-#wbfiyjziii .gt_footnote {
+#nplbexkuck .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3951,7 +3973,7 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   padding-right: 5px;
 }
 
-#wbfiyjziii .gt_sourcenotes {
+#nplbexkuck .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3965,7 +3987,7 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   border-right-color: #D3D3D3;
 }
 
-#wbfiyjziii .gt_sourcenote {
+#nplbexkuck .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3973,84 +3995,85 @@ $ additional_level &lt;chr&gt; "1 to 90", "1 to 90", "1 to 90", "1 to 90", "1 to
   padding-right: 5px;
 }
 
-#wbfiyjziii .gt_left {
+#nplbexkuck .gt_left {
   text-align: left;
 }
 
-#wbfiyjziii .gt_center {
+#nplbexkuck .gt_center {
   text-align: center;
 }
 
-#wbfiyjziii .gt_right {
+#nplbexkuck .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wbfiyjziii .gt_font_normal {
+#nplbexkuck .gt_font_normal {
   font-weight: normal;
 }
 
-#wbfiyjziii .gt_font_bold {
+#nplbexkuck .gt_font_bold {
   font-weight: bold;
 }
 
-#wbfiyjziii .gt_font_italic {
+#nplbexkuck .gt_font_italic {
   font-style: italic;
 }
 
-#wbfiyjziii .gt_super {
+#nplbexkuck .gt_super {
   font-size: 65%;
 }
 
-#wbfiyjziii .gt_footnote_marks {
+#nplbexkuck .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#wbfiyjziii .gt_asterisk {
+#nplbexkuck .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wbfiyjziii .gt_indent_1 {
+#nplbexkuck .gt_indent_1 {
   text-indent: 5px;
 }
 
-#wbfiyjziii .gt_indent_2 {
+#nplbexkuck .gt_indent_2 {
   text-indent: 10px;
 }
 
-#wbfiyjziii .gt_indent_3 {
+#nplbexkuck .gt_indent_3 {
   text-indent: 15px;
 }
 
-#wbfiyjziii .gt_indent_4 {
+#nplbexkuck .gt_indent_4 {
   text-indent: 20px;
 }
 
-#wbfiyjziii .gt_indent_5 {
+#nplbexkuck .gt_indent_5 {
   text-indent: 25px;
 }
 
-#wbfiyjziii .katex-display {
+#nplbexkuck .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#wbfiyjziii div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#nplbexkuck div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 <table class="gt_table caption-top" data-quarto-bootstrap="false">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="gt_col_headings gt_spanner_row header">
-<th colspan="2" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" style="text-align: center; background-color: #D9D9D9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;" scope="colgroup"></th>
+<th colspan="3" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" style="text-align: center; background-color: #D9D9D9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;" scope="colgroup"></th>
 <th id="spanner-[header_name]Data source
 [header_level]synthea-covid19-10k
 [header_name]Cohort name
@@ -4059,7 +4082,7 @@ Data source
 </div></th>
 </tr>
 <tr class="gt_col_headings gt_spanner_row even">
-<th colspan="2" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" style="text-align: center; background-color: #E1E1E1; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;" scope="colgroup"></th>
+<th colspan="3" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" style="text-align: center; background-color: #E1E1E1; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;" scope="colgroup"></th>
 <th id="spanner-[header_level]synthea-covid19-10k
 [header_name]Cohort name
 [header_level]acetaminophen" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" style="text-align: center; background-color: #E1E1E1; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;" scope="col"><div class="gt_column_spanner">
@@ -4067,6 +4090,7 @@ synthea-covid19-10k
 </div></th>
 </tr>
 <tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="Not-in-observation" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: center; background-color: #E1E1E1; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;" scope="col">Not in observation</th>
 <th rowspan="2" id="Treatment" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: center; background-color: #E1E1E1; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;" scope="col">Treatment</th>
 <th rowspan="2" id="Estimate-name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: center; background-color: #E1E1E1; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;" scope="col">Estimate name</th>
 <th id="spanner-[header_name]Cohort name
@@ -4080,9 +4104,10 @@ Cohort name
 </thead>
 <tbody class="gt_table_body">
 <tr class="gt_group_heading_row odd">
-<th colspan="3" id="Medication from 1 day after to 90 days after the index date" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">Medication from 1 day after to 90 days after the index date</th>
+<th colspan="4" id="Medication from 1 day after to 90 days after the index date" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">Medication from 1 day after to 90 days after the index date</th>
 </tr>
 <tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="Medication from 1 day after to 90 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">include</td>
 <td class="gt_row gt_left" headers="Medication from 1 day after to 90 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">11289_warfarin</td>
 <td class="gt_row gt_left" headers="Medication from 1 day after to 90 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 1 day after to 90 days after the index date  [header_name]Data source
@@ -4091,6 +4116,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">0 (0.00 %)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Medication from 1 day after to 90 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 1 day after to 90 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">32968_clopidogrel</td>
 <td class="gt_row gt_left" headers="Medication from 1 day after to 90 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 1 day after to 90 days after the index date  [header_name]Data source
@@ -4099,6 +4125,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">19 (3.12 %)</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Medication from 1 day after to 90 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 1 day after to 90 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">36567_simvastatin</td>
 <td class="gt_row gt_left" headers="Medication from 1 day after to 90 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 1 day after to 90 days after the index date  [header_name]Data source
@@ -4107,6 +4134,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">1 (0.16 %)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Medication from 1 day after to 90 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 1 day after to 90 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">4917_nitroglycerin</td>
 <td class="gt_row gt_left" headers="Medication from 1 day after to 90 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 1 day after to 90 days after the index date  [header_name]Data source
@@ -4115,6 +4143,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">18 (2.96 %)</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Medication from 1 day after to 90 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 1 day after to 90 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">untreated</td>
 <td class="gt_row gt_left" headers="Medication from 1 day after to 90 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 1 day after to 90 days after the index date  [header_name]Data source
@@ -4123,6 +4152,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">586 (96.22 %)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Medication from 1 day after to 90 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 1 day after to 90 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">not in observation</td>
 <td class="gt_row gt_left" headers="Medication from 1 day after to 90 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 1 day after to 90 days after the index date  [header_name]Data source
@@ -4131,9 +4161,10 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">4 (0.66 %)</td>
 </tr>
 <tr class="gt_group_heading_row even">
-<th colspan="3" id="Medication from 91 days after to 180 days after the index date" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">Medication from 91 days after to 180 days after the index date</th>
+<th colspan="4" id="Medication from 91 days after to 180 days after the index date" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">Medication from 91 days after to 180 days after the index date</th>
 </tr>
 <tr class="gt_row_group_first odd">
+<td class="gt_row gt_left" headers="Medication from 91 days after to 180 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">include</td>
 <td class="gt_row gt_left" headers="Medication from 91 days after to 180 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">11289_warfarin</td>
 <td class="gt_row gt_left" headers="Medication from 91 days after to 180 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 91 days after to 180 days after the index date  [header_name]Data source
@@ -4142,6 +4173,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">1 (0.16 %)</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Medication from 91 days after to 180 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 91 days after to 180 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">32968_clopidogrel</td>
 <td class="gt_row gt_left" headers="Medication from 91 days after to 180 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 91 days after to 180 days after the index date  [header_name]Data source
@@ -4150,6 +4182,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">13 (2.13 %)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Medication from 91 days after to 180 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 91 days after to 180 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">36567_simvastatin</td>
 <td class="gt_row gt_left" headers="Medication from 91 days after to 180 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 91 days after to 180 days after the index date  [header_name]Data source
@@ -4158,6 +4191,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">0 (0.00 %)</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Medication from 91 days after to 180 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 91 days after to 180 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">4917_nitroglycerin</td>
 <td class="gt_row gt_left" headers="Medication from 91 days after to 180 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 91 days after to 180 days after the index date  [header_name]Data source
@@ -4166,6 +4200,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">11 (1.81 %)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Medication from 91 days after to 180 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 91 days after to 180 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">untreated</td>
 <td class="gt_row gt_left" headers="Medication from 91 days after to 180 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 91 days after to 180 days after the index date  [header_name]Data source
@@ -4174,6 +4209,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">142 (23.32 %)</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Medication from 91 days after to 180 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 91 days after to 180 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">not in observation</td>
 <td class="gt_row gt_left" headers="Medication from 91 days after to 180 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 91 days after to 180 days after the index date  [header_name]Data source
@@ -4182,9 +4218,10 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">452 (74.22 %)</td>
 </tr>
 <tr class="gt_group_heading_row odd">
-<th colspan="3" id="Medication from 181 days after to 270 days after the index date" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">Medication from 181 days after to 270 days after the index date</th>
+<th colspan="4" id="Medication from 181 days after to 270 days after the index date" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">Medication from 181 days after to 270 days after the index date</th>
 </tr>
 <tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="Medication from 181 days after to 270 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">include</td>
 <td class="gt_row gt_left" headers="Medication from 181 days after to 270 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">11289_warfarin</td>
 <td class="gt_row gt_left" headers="Medication from 181 days after to 270 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 181 days after to 270 days after the index date  [header_name]Data source
@@ -4193,6 +4230,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">0 (0.00 %)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Medication from 181 days after to 270 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 181 days after to 270 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">32968_clopidogrel</td>
 <td class="gt_row gt_left" headers="Medication from 181 days after to 270 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 181 days after to 270 days after the index date  [header_name]Data source
@@ -4201,6 +4239,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">20 (3.28 %)</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Medication from 181 days after to 270 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 181 days after to 270 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">36567_simvastatin</td>
 <td class="gt_row gt_left" headers="Medication from 181 days after to 270 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 181 days after to 270 days after the index date  [header_name]Data source
@@ -4209,6 +4248,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">1 (0.16 %)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Medication from 181 days after to 270 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 181 days after to 270 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">4917_nitroglycerin</td>
 <td class="gt_row gt_left" headers="Medication from 181 days after to 270 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 181 days after to 270 days after the index date  [header_name]Data source
@@ -4217,6 +4257,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">20 (3.28 %)</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Medication from 181 days after to 270 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 181 days after to 270 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">untreated</td>
 <td class="gt_row gt_left" headers="Medication from 181 days after to 270 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 181 days after to 270 days after the index date  [header_name]Data source
@@ -4225,6 +4266,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">133 (21.84 %)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Medication from 181 days after to 270 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 181 days after to 270 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">not in observation</td>
 <td class="gt_row gt_left" headers="Medication from 181 days after to 270 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 181 days after to 270 days after the index date  [header_name]Data source
@@ -4233,9 +4275,10 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">454 (74.55 %)</td>
 </tr>
 <tr class="gt_group_heading_row even">
-<th colspan="3" id="Medication from 271 days after to 360 days after the index date" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">Medication from 271 days after to 360 days after the index date</th>
+<th colspan="4" id="Medication from 271 days after to 360 days after the index date" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">Medication from 271 days after to 360 days after the index date</th>
 </tr>
 <tr class="gt_row_group_first odd">
+<td class="gt_row gt_left" headers="Medication from 271 days after to 360 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">include</td>
 <td class="gt_row gt_left" headers="Medication from 271 days after to 360 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">11289_warfarin</td>
 <td class="gt_row gt_left" headers="Medication from 271 days after to 360 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 271 days after to 360 days after the index date  [header_name]Data source
@@ -4244,6 +4287,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">0 (0.00 %)</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Medication from 271 days after to 360 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 271 days after to 360 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">32968_clopidogrel</td>
 <td class="gt_row gt_left" headers="Medication from 271 days after to 360 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 271 days after to 360 days after the index date  [header_name]Data source
@@ -4252,6 +4296,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">18 (2.96 %)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Medication from 271 days after to 360 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 271 days after to 360 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">36567_simvastatin</td>
 <td class="gt_row gt_left" headers="Medication from 271 days after to 360 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 271 days after to 360 days after the index date  [header_name]Data source
@@ -4260,6 +4305,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">0 (0.00 %)</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Medication from 271 days after to 360 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 271 days after to 360 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">4917_nitroglycerin</td>
 <td class="gt_row gt_left" headers="Medication from 271 days after to 360 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 271 days after to 360 days after the index date  [header_name]Data source
@@ -4268,6 +4314,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">17 (2.79 %)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="Medication from 271 days after to 360 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 271 days after to 360 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">untreated</td>
 <td class="gt_row gt_left" headers="Medication from 271 days after to 360 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 271 days after to 360 days after the index date  [header_name]Data source
@@ -4276,6 +4323,7 @@ Cohort name
 [header_level]acetaminophen" style="text-align: right; font-family: Arial; font-size: 10; background-color: rgba(255,255,255,0); border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8;">131 (21.51 %)</td>
 </tr>
 <tr class="even">
+<td class="gt_row gt_left" headers="Medication from 271 days after to 360 days after the index date  Not in observation" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: hidden; border-top-color: #000000; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);"></td>
 <td class="gt_row gt_left" headers="Medication from 271 days after to 360 days after the index date  Treatment" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">not in observation</td>
 <td class="gt_row gt_left" headers="Medication from 271 days after to 360 days after the index date  Estimate name" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">N (%)</td>
 <td class="gt_row gt_right" headers="Medication from 271 days after to 360 days after the index date  [header_name]Data source

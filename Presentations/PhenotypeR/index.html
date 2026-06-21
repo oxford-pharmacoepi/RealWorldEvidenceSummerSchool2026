@@ -9,7 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
-<meta name="dcterms.date" content="2026-06-17">
+<meta name="dcterms.date" content="2026-06-21">
 <title>Real World Evidence Summer School – PhenotypeR</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -206,7 +206,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">2026-06-17</p>
+  <p class="date">2026-06-21</p>
 </section><section id="introduction" class="slide level2"><h2>Introduction</h2>
 <ul>
 <li class="fragment">PhenotypeR package can help us to assess the research-readiness of a set of cohorts we have defined.</li>
@@ -221,7 +221,7 @@
 
 </div>
 <ul>
-<li class="fragment">PhenotypeR 0.4 is available in <a href="https://cran.r-project.org/web/packages/PhenotypeR/index.html" class="link">CRAN</a>.</li>
+<li class="fragment">PhenotypeR 0.5 is available in <a href="https://cran.r-project.org/web/packages/PhenotypeR/index.html" class="link">CRAN</a>.</li>
 </ul>
 <div style="margin-bottom: 10px;">
 
@@ -336,7 +336,7 @@
 <span>  snapshot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  personTableSummary <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  observationPeriodsSummary <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  clinicalRecordsSummary <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  clinicalRecordsSummary <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Modify databaseDiagnostics in phenotypeDiagnostics:</span></span>
@@ -368,13 +368,13 @@
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cl_diagnostics</span> <span class="op">&lt;-</span> <span class="fu">codelistDiagnostics</span><span class="op">(</span></span>
 <span>  <span class="va">cohort</span>,</span>
 <span>  cohortId <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  achillesCodeUse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  achillesCodeUse <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  orphanCodeUse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  cohortCodeUse <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  drugDiagnostics <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  measurementDiagnostics <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  measurementDiagnosticsSample <span class="op">=</span> <span class="fl">20000</span>,</span>
-<span>  drugDiagnosticsSample <span class="op">=</span> <span class="fl">20000</span></span>
+<span>  drugDiagnostics <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  drugDiagnosticsSample <span class="op">=</span> <span class="fl">20000</span>,</span>
+<span>  measurementDiagnostics <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  measurementDiagnosticsSample <span class="op">=</span> <span class="fl">20000</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Modify codelistDiagnostics in phenotypeDiagnostics:</span></span>
@@ -409,8 +409,8 @@
 <span>  cohortCount <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  cohortCharacteristics <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  largeScaleCharacteristics <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  compareCohorts <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  cohortSurvival <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># Notice that by default, cohortSurvival it's not run!!</span></span>
+<span>  compareCohorts <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  cohortSurvival <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  cohortSample <span class="op">=</span> <span class="fl">20000</span>,</span>
 <span>  matchedSample <span class="op">=</span> <span class="fl">1000</span></span>
 <span><span class="op">)</span></span>
@@ -518,15 +518,54 @@
 <span>                 removeEmptyTabs <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-</section><section id="extra-adding-context-to-your-results" class="slide level2"><h2>Extra: Adding context to your results</h2>
+</section><section id="extra-changing-additional-parameters" class="slide level2"><h2>Extra: Changing additional parameters</h2>
+<div class="fragment">
+<ul>
+<li class="fragment">Modify extra parameters (<em>window, eventInWindow, episodesInWindow</em> for the LSC) using global variables:</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="st">"PhenotypeR_summariseLargeScaleCharacteristics_window"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="st">"PhenotypeR_summariseLargeScaleCharacteristics_eventInWindow"</span>   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"condition_occurrence"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="st">"PhenotypeR_summariseLargeScaleCharacteristics_episodeInWindow"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"drug_exposure"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section><section id="extra-adding-context-to-your-results-via-data-source-description" class="slide level2"><h2>Extra: Adding context to your results via data source description</h2>
+<ul>
+<li class="fragment">Visit <a href="https://dpa-pde-oxford.shinyapps.io/PhenotypeDataSourceDescriptionsShiny/">Data source shiny app</a>
+</li>
+</ul>
+<div class="fragment">
+<p><img data-src="Figures/website_data_source.png"></p>
+</div>
+</section><section id="extra-adding-context-to-your-results-via-data-source-description-1" class="slide level2"><h2>Extra: Adding context to your results via data source description</h2>
+<ul>
+<li class="fragment">Visit <a href="https://dpa-pde-oxford.shinyapps.io/PhenotypeDataSourceDescriptionsShiny/">Data source shiny app</a>
+</li>
+</ul>
+<div class="fragment">
+<p><img data-src="Figures/data_source_description.png"></p>
+</div>
+</section><section id="extra-adding-context-to-your-results-via-clinical-descriptions" class="slide level2"><h2>Extra: Adding context to your results via clinical descriptions</h2>
 <ul>
 <li class="fragment">Visit <a href="https://dpa-pde-oxford.shinyapps.io/PhenotypeDescriptionsShiny/">Descriptions shiny app</a>
 </li>
 </ul>
-
-<img data-src="Figures/ClinicalDescriptionUsingAI.png" class="r-stretch"></section><section id="import-your-descriptions-in-the-shiny-app" class="slide level2"><h2>Import your descriptions in the shiny app:</h2>
+<div class="fragment">
+<p><img data-src="Figures/website_clinical.png"></p>
+</div>
+</section><section id="extra-adding-context-to-your-results-via-clinical-descriptions-1" class="slide level2"><h2>Extra: Adding context to your results via clinical descriptions</h2>
+<ul>
+<li class="fragment">Visit <a href="https://dpa-pde-oxford.shinyapps.io/PhenotypeDescriptionsShiny/">Clinical descriptions shiny app</a>
+</li>
+</ul>
+<div class="fragment">
+<p><img data-src="Figures/ClinicalDescription.png"></p>
+</div>
+</section><section id="import-your-descriptions-in-the-shiny-app" class="slide level2"><h2>Import your descriptions in the shiny app:</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">shinyDiagnostics</span><span class="op">(</span>result <span class="op">=</span> <span class="va">result</span>, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">shinyDiagnostics</span><span class="op">(</span>result <span class="op">=</span> <span class="va">result</span>, </span>
 <span>                 directory <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="op">)</span>, </span>
 <span>                 minCellCount <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>                 clinicalDescriptionsDir <span class="op">=</span> <span class="cn">NULL</span>,</span>
