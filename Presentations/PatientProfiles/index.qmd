@@ -91,12 +91,12 @@ library(DBI)
 
 . . .
 
--   Create a CDM object from the **delphi-100k** synthetic dataset
+-   Create a CDM object from the **GiBleed** synthetic dataset
 
 . . .
 
 ```{r, eval = TRUE}
-con <- dbConnect(drv = duckdb(dbdir = here("Databases", "delphi.duckdb")))
+con <- dbConnect(drv = duckdb(dbdir = here("Databases", "GiBleed.duckdb")))
 ```
 
 . . .
@@ -125,7 +125,7 @@ cdm <- cdmFromCon(
 Using **CohortConstructor** we will create:
 
 -   `my_cohort`: people with arthritis-related records.
--   `medications`: people with acetaminophen records.
+-   `medications`: people with heparin records.
 
 . . .
 
@@ -138,7 +138,7 @@ cdm$my_cohort <- conceptCohort(
 
 cdm$medications <- conceptCohort(
   cdm = cdm,
-  conceptSet = list(acetaminophen = 1125315),
+  conceptSet = list(heparin = 1367571),
   name = "medications"
 )
 ```
@@ -840,7 +840,7 @@ When did the person first enter the medication cohort after cohort entry?
 cdm$my_cohort |>
   addCohortIntersectDate(
     targetCohortTable = "medications",
-    targetCohortId = "acetaminophen",
+    targetCohortId = "heparin",
     window = c(0, Inf),
     order = "first", # date to use if there are multiple records for an individual during the window of interest
     nameStyle = "first_{cohort_name}"
@@ -853,7 +853,7 @@ cdm$my_cohort |>
 cdm$my_cohort |>
   addCohortIntersectDate(
     targetCohortTable = "medications",
-    targetCohortId = "acetaminophen",
+    targetCohortId = "heparin",
     window = c(0, Inf),
     order = "first", # date to use if there are multiple records for an individual during the window of interest
     nameStyle = "first_{cohort_name}"
@@ -922,7 +922,7 @@ cdm$my_cohort |>
 
 . . .
 
--   Did the person have an acetaminophen cohort entry in the year before index?
+-   Did the person have an heparin cohort entry in the year before index?
 -   How many condition occurrence records did they have in the year before index?
 
 
@@ -934,7 +934,7 @@ cdm$my_cohort |>
 cdm$my_cohort |>
   addCohortIntersectFlag(
     targetCohortTable = "medications",
-    targetCohortId = "acetaminophen",
+    targetCohortId = "heparin",
     window = list("prior_year" = c(-365, -1)),
     nameStyle = "prior_{cohort_name}"
   )
@@ -952,7 +952,7 @@ cdm$my_cohort |>
 cdm$my_cohort |>
   addCohortIntersectFlag(
     targetCohortTable = "medications",
-    targetCohortId = "acetaminophen",
+    targetCohortId = "heparin",
     window = c(-365, -1),
     nameStyle = "prior_{cohort_name}"
   ) |>

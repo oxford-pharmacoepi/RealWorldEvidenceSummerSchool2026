@@ -61,12 +61,12 @@ library(omock)
 
 . . .
 
--   Create a CDM object from the **delphi-100k** synthetic dataset
+-   Create a CDM object from the **GiBleed** synthetic dataset
 
 . . .
 
 ```{r}
-con <- dbConnect(drv = duckdb(dbdir = here("Databases", "delphi.duckdb")))
+con <- dbConnect(drv = duckdb(dbdir = here("Databases", "GiBleed.duckdb")))
 ```
 
 ```{r, echo=FALSE}
