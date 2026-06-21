@@ -74,6 +74,7 @@ library(dplyr)
 library(ggplot2)
 library(here)
 library(CohortCharacteristics)
+library(CodelistGenerator)
 ```
 
 ## Let's get started
@@ -113,11 +114,11 @@ x <- c(list(anemia = 439777,
             rheumatoid_arthritis = 80809,
             osteoarthritis = 80180, 
             pneumonia = 255848),
-       getDrugIngredientCodes(cdm_synpuf, c("heparin", "clopidogrel"),
+       getDrugIngredientCodes(cdm, c("heparin", "clopidogrel"),
                               nameStyle = "{concept_name}")) |> 
   newCodelist()
 
-cdm[["my_cohort"]] <- conceptCohort(cdm, 
+cdm[["my_cohort"]] <- conceptCohort(cdm = cdm, 
                                     conceptSet = x,
                                     name = "my_cohort")
 ```
@@ -154,7 +155,7 @@ We have three types of functions:
 Use `summariseCohortCount()` to get counts for your cohort. Pipe your cohort table into the function as shown below.
 
 ```{r, echo = T, eval = T}
-results <- cdm$anemia |>
+results <- cdm$my_cohort |>
   summariseCohortCount()
 ```
 
@@ -171,7 +172,7 @@ glimpse(results)
 ::: {.callout-note}
 Yesterday we saw the function `cohortCount()` to see the counts of a `<cohort_table>`.
 ```{r}
-cohortCount(cdm$anemia)
+cohortCount(cdm$my_cohort)
 ```
 The function `summariseCohortCount()` produces a similar result but in a standardised output (`<summarised_result>`).
 :::
@@ -218,7 +219,7 @@ p +
 To summarise cohort attrition, pipe your cohort table into the function as shown below.
 
 ```{r, echo = T, eval = T}
-results <- cdm$anemia |>
+results <- cdm$my_cohort |>
   summariseCohortAttrition()
 ```
 
@@ -235,7 +236,7 @@ glimpse(results)
 ::: {.callout-note}
 Yesterday we saw the function `attrition()` to see the attrition of a `<cohort_table>`.
 ```{r}
-attrition(cdm$anemia)
+attrition(cdm$my_cohort)
 ```
 The function `summariseCohortAttrition()` produces a similar result but in a standardised output (`<summarised_result>`).
 :::
@@ -271,7 +272,7 @@ plotCohortAttrition(result = results, type = "png")
 The main functionality of the package is to extract cohort characteristics with `summariseCharacteristics()`.
 
 ```{r, echo = T, eval = T}
- results <- cdm$anemia |>
+ results <- cdm$my_cohort |>
   summariseCharacteristics()
 ```
 
@@ -317,7 +318,7 @@ tableCharacteristics(result = results, header = "cohort_name")
 
 :::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = T, eval = F}
-result <- summariseCharacteristics(cdm$anemia, ageGroup = list(c(0,10), c(11,18), c(19,150)))
+result <- summariseCharacteristics(cdm$my_cohort, ageGroup = list(c(0,10), c(11,18), c(19,150)))
 tableCharacteristics(result = result, header = "cohort_name")
 ```
 :::
@@ -326,7 +327,7 @@ tableCharacteristics(result = result, header = "cohort_name")
 
 :::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = F, eval = T}
-result <- summariseCharacteristics(cdm$anemia, ageGroup = list(c(0,10), c(11,18), c(19,150)))
+result <- summariseCharacteristics(cdm$my_cohort, ageGroup = list(c(0,10), c(11,18), c(19,150)))
 tableCharacteristics(result = result, header = "cohort_name")
 ```
 :::
@@ -335,7 +336,7 @@ tableCharacteristics(result = result, header = "cohort_name")
 
 :::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = T, eval = F}
-result <- cdm$anemia |> 
+result <- cdm$my_cohort |> 
   addAge(ageGroup = list(c(0,10),c(11,18), c(19,150))) |>
   summariseCharacteristics(cohortId = 1, strata = list("age_group"))
 tableCharacteristics(result = result, header = "age_group")  
@@ -346,7 +347,7 @@ tableCharacteristics(result = result, header = "age_group")
 
 :::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = F, eval = T}
-result <- cdm$anemia |> 
+result <- cdm$my_cohort |> 
   addAge(ageGroup = list(c(0,10),c(11,18), c(19,150))) |>
   summariseCharacteristics(cohortId = 1, strata = list("age_group"))
 tableCharacteristics(result = result, header = "age_group")  
@@ -361,8 +362,9 @@ You can get count/flag/date/days summaries with other tables.
 
 :::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = T, eval = F}
-result <- cdm$anemia |>
+result <- cdm$my_cohort |>
   summariseCharacteristics(
+    cohortId = "anemia",
     tableIntersectCount = list(
       "Number of visits prior year" = list(
         tableName = "visit_occurrence", 
@@ -371,11 +373,13 @@ result <- cdm$anemia |>
     ),
     cohortIntersectFlag = list(
       "Previous rheumatoid arthritis diagnosis" = list(
-        targetCohortTable = "rheumatoid_arthritis", 
+        targetCohortTable = "my_cohort",
+        targetCohortId = "rheumatoid_arthritis", 
         window = c(-Inf, 0)
       ),
       "Clopidogrel prescription prior year" = list(
-        targetCohortTable = "clopidogrel", 
+        targetCohortTable = "my_cohort",
+        targetCohortId = "clopidogrel",
         window = c(-365, 0)
       )
     ),
@@ -401,7 +405,7 @@ You can get count/flag/date/days summaries with other tables.
 
 :::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = F, eval = T}
-cdm$anemia |>
+cdm$my_cohort |>
   summariseCharacteristics(
     tableIntersectCount = list(
       "Number of visits prior year" = list(
@@ -411,11 +415,13 @@ cdm$anemia |>
     ),
     cohortIntersectFlag = list(
       "Previous rheumatoid arthritis diagnosis" = list(
-        targetCohortTable = "rheumatoid_arthritis", 
+        targetCohortTable = "my_cohort",
+        targetCohortId = "rheumatoid_arthritis", 
         window = c(-Inf, 0)
       ),
       "Clopidogrel prescription prior year" = list(
-        targetCohortTable = "clopidogrel", 
+        targetCohortTable = "my_cohort",
+        targetCohortId = "clopidogrel",
         window = c(-365, 0)
       )
     ),
@@ -467,14 +473,17 @@ Can you characterise the `osteoarthritis` cohort?
 :::{style="max-height: 750px; overflow-y: auto;"}
 ```{r, eval = TRUE}
 result <- summariseCharacteristics(
-  cohort = cdm$osteoarthritis,
+  cohort = cdm$my_cohort,
+  cohortId = "osteoarthritis",
   cohortIntersectFlag = list(
       "Heparin prescriptions during the prior 2 years" = list(
-        targetCohortTable = "heparin", 
+        targetCohortTable = "my_cohort",
+        targetCohortId = "heparin", 
         window = c(-730, 0)
       ),
       "Pneumonia diagnosis during the prior 180 days" = list(
-        targetCohortTable = "pneumonia", 
+        targetCohortTable = "my_cohort",
+        targetCohortId = "pneumonia", 
         window = c(-180, 0)
       )
     )
@@ -493,7 +502,7 @@ tableCharacteristics(result = result, header = "cohort_name")
 You can plot a variable from the `summariseCharacteristics()` output using `plotCharacteristics()`.
 
 ```{r, echo = T, eval = T}
-result <- cdm$anemia |>
+result <- cdm$my_cohort |>
   summariseCharacteristics() |>
   filter(variable_name == "Age")
 
@@ -503,7 +512,7 @@ plotCharacteristics(result = result, plotStyle = "boxplot", colour = "cohort_nam
 ## Plots
 
 ```{r, echo = T, eval = T}
-result <- cdm$anemia |>
+result <- cdm$my_cohort |>
   summariseCharacteristics() |>
   filter(variable_name == "Age" & estimate_name == "median")
 
@@ -522,8 +531,8 @@ Can you create a bar plot the percentage of sex in the `osteoarthritis` table?
 <summary>💡 Click to see solution</summary>
 
 ```{r, eval = TRUE}
-result <- cdm$osteoarthritis |>
-  summariseCharacteristics() |>
+result <- cdm$my_cohort |>
+  summariseCharacteristics(cohortId = "osteoarthritis") |>
   filter(variable_name == "Sex" & estimate_name == "percentage")
 
 plotCharacteristics(result = result,
@@ -541,7 +550,7 @@ plotCharacteristics(result = result,
 Sometimes we might want to summarise all clinical events for cohorts across different time windows. We can do this with `summariseLargeScaleCharacteristics()`.
 
 ```{r, echo = T, eval = T}
-result <- cdm$anemia |>
+result <- cdm$my_cohort |>
   summariseLargeScaleCharacteristics(
     window = list(c(-Inf, -1), c(1, Inf)),
     eventInWindow = "condition_occurrence",
@@ -582,7 +591,7 @@ The `tidy()` function works for any `<summarised_result>` object that we create.
 When creating multiple cohorts, we might be interested in the overlap of individuals between those cohorts. `summariseCohortOverlap()` does this for you.
 
 ```{r, echo = T, eval = T}
-result <- cdm$anemia |>
+result <- cdm$my_cohort |>
   summariseCohortOverlap()
 
 glimpse(result)
@@ -615,7 +624,7 @@ plotCohortOverlap(result = result, uniqueCombinations = TRUE)
 When creating multiple cohorts, we might be interested in the timing of entry between cohorts. `summariseCohortTiming()` does this for you.
 
 ```{r, echo = T, eval = T}
-result <- cdm$anemia |>
+result <- cdm$my_cohort |>
   summariseCohortTiming(restrictToFirstEntry = TRUE)
 
 glimpse(result)
@@ -672,8 +681,9 @@ Can you get the large-scale characteristics from the `drug_exposure` table for t
 <summary>💡 Click to see solution</summary>
 
 ```{r, eval = TRUE}
-result <- cdm$osteoarthritis |>
+result <- cdm$my_cohort |>
   summariseLargeScaleCharacteristics(
+    cohortId = "osteoarthritis",
     window = list(c(-Inf, -1)),
     eventInWindow = "drug_exposure",
     minimumFrequency = 0.05
