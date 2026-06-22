@@ -1,6 +1,7 @@
 ---
 title: "OMOP and CDMConnector"
 subtitle: "The OMOP Common Data Model"
+date: "2026-06-22"
 format:
   revealjs: 
     theme: [simple, ../../styleSS25.scss]
@@ -133,7 +134,7 @@ cdmFromCon()
 
 ## Create a mock reference
 
-You can create a mock database using *omock* from one of the **25** available synthetic databases:
+You can create a mock database using *omock* from one of the **`r length(availableMockDatasets())`** available synthetic databases:
 
 . . .
 
@@ -240,29 +241,17 @@ In general, OMOP databases have two schemas:
 
 -   `write schema`: it is a place where we can store tables (like cohorts). We need writing permissions to this schema.
 
-## Create a local database
+## Connect to duckdb database
 
-**duckdb** is a package that allows us to create local databases.
+**duckdb** is a package that allows us to work with local databases.
 
-```{r}
-# name of the dataset
-datasetName <- "GiBleed"
+You should see that in the *Database* folder there are three datasets:
 
-# name of the database file
-dbdir <- here(paste0(datasetName, ".duckdb"))
+- **GiBleed**
 
-# create empty database
-con <- dbConnect(drv = duckdb(dbdir = dbdir))
+- **Delphi**
 
-# create local reference
-cdm <- mockCdmFromDataset(datasetName = datasetName)
-
-# copy local reference to connection
-insertCdmTo(cdm = cdm, to = dbSource(con = con, writeSchema = "main"))
-
-# disconnect
-dbDisconnect(conn = con)
-```
+- **Synpuf**
 
 ## Let's create our first cdm reference
 
@@ -270,9 +259,9 @@ dbDisconnect(conn = con)
 
 ```{r, message=TRUE}
 # connect to the database
-dbdir <- here("GiBleed.duckdb")
+dbdir <- here("Databases", "GiBleed.duckdb")
 con <- dbConnect(drv = duckdb(dbdir = dbdir))
-cdm <- cdmFromCon(con = con, cdmSchema = "main", writeSchema = "main")
+cdm <- cdmFromCon(con = con, cdmSchema = "main", writeSchema = "results")
 cdm
 ```
 
@@ -327,7 +316,7 @@ In some cases we want to give a database a name that we want, this can be done a
 
 ```{r}
 cdm <- cdmFromCon(
-  con = con, cdmSchema = "main", writeSchema = "main", cdmName = "GiBleed"
+  con = con, cdmSchema = "main", writeSchema = "results", cdmName = "GiBleed"
 )
 ```
 
@@ -440,7 +429,7 @@ cdm <- dropSourceTable(cdm = cdm, name = "my_test_table")
 cdm <- cdmFromCon(
   con = con, 
   cdmSchema = "main", 
-  writeSchema = "main", 
+  writeSchema = "results", 
   writePrefix = "my_prefix_"
 )
 cdm
