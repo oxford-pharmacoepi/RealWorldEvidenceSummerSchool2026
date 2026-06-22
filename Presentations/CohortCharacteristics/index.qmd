@@ -123,7 +123,6 @@ cdm[["my_cohort"]] <- conceptCohort(cdm = cdm,
                                     name = "my_cohort")
 ```
 
-
 ## Workflow
 
 We have three types of functions:
@@ -169,11 +168,13 @@ glimpse(results)
 
 ## summariseCohortCount
 
-::: {.callout-note}
+::: callout-note
 Yesterday we saw the function `cohortCount()` to see the counts of a `<cohort_table>`.
+
 ```{r}
 cohortCount(cdm$my_cohort)
 ```
+
 The function `summariseCohortCount()` produces a similar result but in a standardised output (`<summarised_result>`).
 :::
 
@@ -208,7 +209,7 @@ p <- results |>
   filter(variable_name == "Number records") |>
   plotCohortCount(colour = "cohort_name")
 p +
-  labs(y = "N Records", fill = "Disease", colour = "Disease", title = "My plot") +
+  labs(y = "N Records", fill = "Mock cohorts", colour = "Mock cohorts", title = "My Summer School Plot") +
   theme(legend.position = "top")
 ```
 
@@ -233,11 +234,13 @@ glimpse(results)
 
 ## summariseCohortAttrition
 
-::: {.callout-note}
+::: callout-note
 Yesterday we saw the function `attrition()` to see the attrition of a `<cohort_table>`.
+
 ```{r}
 attrition(cdm$my_cohort)
 ```
+
 The function `summariseCohortAttrition()` produces a similar result but in a standardised output (`<summarised_result>`).
 :::
 
@@ -247,7 +250,7 @@ The function `summariseCohortAttrition()` produces a similar result but in a sta
 
 To get a tidy table from the `<summarised_result>` object.
 
-:::{style="max-height: 750px; overflow-y: auto;"}
+::: {style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = T, eval = T}
 tableCohortAttrition(result = results)
 ```
@@ -259,7 +262,7 @@ tableCohortAttrition(result = results)
 
 You can create a cohort attrition flowchart like this:
 
-:::{style="max-height: 750px; overflow-y: auto;"}
+::: {style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = T, eval = T}
 plotCohortAttrition(result = results, type = "png")
 ```
@@ -290,7 +293,7 @@ glimpse(results)
 
 To get a tidy table from the `<summarised_result>` object.
 
-:::{style="max-height: 750px; overflow-y: auto;"}
+::: {style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = T, eval = T}
 tableCharacteristics(result = results, header = "cohort_name")
 ```
@@ -316,7 +319,7 @@ tableCharacteristics(result = results, header = "cohort_name")
 
 ## ageGroup example
 
-:::{style="max-height: 750px; overflow-y: auto;"}
+::: {style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = T, eval = F}
 result <- summariseCharacteristics(cdm$my_cohort, ageGroup = list(c(0,10), c(11,18), c(19,150)))
 tableCharacteristics(result = result, header = "cohort_name")
@@ -325,7 +328,7 @@ tableCharacteristics(result = result, header = "cohort_name")
 
 ## ageGroup example
 
-:::{style="max-height: 750px; overflow-y: auto;"}
+::: {style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = F, eval = T}
 result <- summariseCharacteristics(cdm$my_cohort, ageGroup = list(c(0,10), c(11,18), c(19,150)))
 tableCharacteristics(result = result, header = "cohort_name")
@@ -334,7 +337,7 @@ tableCharacteristics(result = result, header = "cohort_name")
 
 ## Strata example
 
-:::{style="max-height: 750px; overflow-y: auto;"}
+::: {style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = T, eval = F}
 result <- cdm$my_cohort |> 
   addAge(ageGroup = list(c(0,10),c(11,18), c(19,150))) |>
@@ -345,7 +348,7 @@ tableCharacteristics(result = result, header = "age_group")
 
 ## Strata example
 
-:::{style="max-height: 750px; overflow-y: auto;"}
+::: {style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = F, eval = T}
 result <- cdm$my_cohort |> 
   addAge(ageGroup = list(c(0,10),c(11,18), c(19,150))) |>
@@ -360,7 +363,7 @@ tableCharacteristics(result = result, header = "age_group")
 
 You can get count/flag/date/days summaries with other tables.
 
-:::{style="max-height: 750px; overflow-y: auto;"}
+::: {style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = T, eval = F}
 result <- cdm$my_cohort |>
   summariseCharacteristics(
@@ -403,7 +406,7 @@ tableCharacteristics(result = result, header = "cohort_name")
 
 You can get count/flag/date/days summaries with other tables.
 
-:::{style="max-height: 750px; overflow-y: auto;"}
+::: {style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = F, eval = T}
 cdm$my_cohort |>
   summariseCharacteristics(
@@ -442,49 +445,53 @@ cdm$my_cohort |>
 
 ## Intersections
 
-:::{.callout-note .nonincremental}
+::: {.callout-note .nonincremental}
 The arguments of the intersection functions match the *PatientProfiles* functions that we have just seen:
 
-- `tableIntersectFlag` -> `PatientProfiles::addTableIntersectFlag()`
-- `tableIntersectCount` -> `PatientProfiles::addTableIntersectCount()`
-- `tableIntersectDays` -> `PatientProfiles::addTableIntersectDays()`
-- `tableIntersectDate` -> `PatientProfiles::addTableIntersectDate()`
-- `conceptIntersectFlag` -> `PatientProfiles::addConceptIntersectFlag()`
-- `conceptIntersectCount` -> `PatientProfiles::addConceptIntersectCount()`
-- `conceptIntersectDays` -> `PatientProfiles::addConceptIntersectDays()`
-- `conceptIntersectDate` -> `PatientProfiles::addConceptIntersectDate()`
-- `cohortIntersectFlag` -> `PatientProfiles::addCohortIntersectFlag()`
-- `cohortIntersectCount` -> `PatientProfiles::addCohortIntersectCount()`
-- `cohortIntersectDays` -> `PatientProfiles::addCohortIntersectDays()`
-- `cohortIntersectDate` -> `PatientProfiles::addCohortIntersectDate()`
+-   `tableIntersectFlag` -\> `PatientProfiles::addTableIntersectFlag()`
+-   `tableIntersectCount` -\> `PatientProfiles::addTableIntersectCount()`
+-   `tableIntersectDays` -\> `PatientProfiles::addTableIntersectDays()`
+-   `tableIntersectDate` -\> `PatientProfiles::addTableIntersectDate()`
+-   `conceptIntersectFlag` -\> `PatientProfiles::addConceptIntersectFlag()`
+-   `conceptIntersectCount` -\> `PatientProfiles::addConceptIntersectCount()`
+-   `conceptIntersectDays` -\> `PatientProfiles::addConceptIntersectDays()`
+-   `conceptIntersectDate` -\> `PatientProfiles::addConceptIntersectDate()`
+-   `cohortIntersectFlag` -\> `PatientProfiles::addCohortIntersectFlag()`
+-   `cohortIntersectCount` -\> `PatientProfiles::addCohortIntersectCount()`
+-   `cohortIntersectDays` -\> `PatientProfiles::addCohortIntersectDays()`
+-   `cohortIntersectDate` -\> `PatientProfiles::addCohortIntersectDate()`
 :::
 
 ## Your turn
 
 Can you characterise the `osteoarthritis` cohort?
-- Start with only demographics
-- Add if they had any heparin prescription during the last 180 days.
-- Add if they had any pneumonia diagnosis last 2 years.
+
+-   Start with only demographics
+-   Add if they had any heparin prescription during the last 180 days (including index date).
+-   Add if they had any pneumonia diagnosis last 2 years (excluding index date).
+
+. . .
+
 
 <details>
 
 <summary>💡 Click to see solution</summary>
 
-:::{style="max-height: 750px; overflow-y: auto;"}
+::: {style="max-height: 750px; overflow-y: auto;"}
 ```{r, eval = TRUE}
 result <- summariseCharacteristics(
   cohort = cdm$my_cohort,
   cohortId = "osteoarthritis",
   cohortIntersectFlag = list(
-      "Heparin prescriptions during the prior 2 years" = list(
+      "Heparin prescriptions during the prior 180 days" = list(
         targetCohortTable = "my_cohort",
         targetCohortId = "heparin", 
-        window = c(-730, 0)
+        window = c(-180, 0)
       ),
-      "Pneumonia diagnosis during the prior 180 days" = list(
+      "Pneumonia diagnosis during the prior 2 years" = list(
         targetCohortTable = "my_cohort",
         targetCohortId = "pneumonia", 
-        window = c(-180, 0)
+        window = c(-730, -1)
       )
     )
 )
@@ -580,7 +587,7 @@ tidy(result)
 
 ## tidy
 
-::: {.callout-note}
+::: callout-note
 The `tidy()` function works for any `<summarised_result>` object that we create.
 :::
 
@@ -674,7 +681,10 @@ plotCohortTiming(
 
 ## Your turn
 
-Can you get the large-scale characteristics from the `drug_exposure` table for the `osteoarthritis` cohort table using an anytime-prior time window? Visualise the result showing the top 5 most frequent codes.
+Can you get the large-scale characteristics from the `drug_exposure` table for the `osteoarthritis` cohort table using an anytime-prior time window (excluding index date)? Visualise the result showing the top 5 most frequent codes.
+
+. . .
+
 
 <details>
 
