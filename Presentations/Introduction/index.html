@@ -9,7 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
-<meta name="dcterms.date" content="2026-06-21">
+<meta name="dcterms.date" content="2026-06-22">
 <title>Real World Evidence Summer School – OMOP and CDMConnector</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -206,7 +206,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">2026-06-21</p>
+  <p class="date">2026-06-22</p>
 </section><section id="introduction-the-omop-common-data-model" class="slide level2"><h2>Introduction: The OMOP Common Data Model</h2>
 <ul>
 <li class="fragment"><p>Every time that someone goes to the doctor and something happens the doctors write it into their records.</p></li>
@@ -279,7 +279,7 @@
 </div>
 </div>
 </section><section id="create-a-mock-reference" class="slide level2"><h2>Create a mock reference</h2>
-<p>You can create a mock database using <em>omock</em> from one of the <strong>25</strong> available synthetic databases:</p>
+<p>You can create a mock database using <em>omock</em> from one of the <strong>28</strong> available synthetic databases:</p>
 <div class="fragment">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ohdsi.github.io/omock/reference/availableMockDatasets.html">availableMockDatasets</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -429,35 +429,26 @@ visit_occurrence, vocabulary
 <li class="fragment"><p><code>write schema</code>: it is a place where we can store tables (like cohorts). We need writing permissions to this schema.</p></li>
 </ul>
 </div>
-</section><section id="create-a-local-database" class="slide level2"><h2>Create a local database</h2>
-<p><strong>duckdb</strong> is a package that allows us to create local databases.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># name of the dataset</span></span>
-<span><span class="va">datasetName</span> <span class="op">&lt;-</span> <span class="st">"GiBleed"</span></span>
-<span></span>
-<span><span class="co"># name of the database file</span></span>
-<span><span class="va">dbdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">datasetName</span>, <span class="st">".duckdb"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># create empty database</span></span>
-<span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span>drv <span class="op">=</span> <span class="fu"><a href="https://r.duckdb.org/reference/duckdb.html">duckdb</a></span><span class="op">(</span>dbdir <span class="op">=</span> <span class="va">dbdir</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># create local reference</span></span>
-<span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/omock/reference/mockCdmFromDataset.html">mockCdmFromDataset</a></span><span class="op">(</span>datasetName <span class="op">=</span> <span class="va">datasetName</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># copy local reference to connection</span></span>
-<span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/insertCdmTo.html">insertCdmTo</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, to <span class="op">=</span> <span class="fu"><a href="https://darwin-eu.github.io/CDMConnector/reference/dbSource.html">dbSource</a></span><span class="op">(</span>con <span class="op">=</span> <span class="va">con</span>, writeSchema <span class="op">=</span> <span class="st">"main"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># disconnect</span></span>
-<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html">dbDisconnect</a></span><span class="op">(</span>conn <span class="op">=</span> <span class="va">con</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section><section id="lets-create-our-first-cdm-reference" class="slide level2"><h2>Let’s create our first cdm reference</h2>
+</section><section id="connect-to-duckdb-database" class="slide level2"><h2>Connect to duckdb database</h2>
+<p><strong>duckdb</strong> is a package that allows us to work with local databases.</p>
+<p>You should see that in the <em>Database</em> folder there are three datasets:</p>
+<ul>
+<li class="fragment"><p><strong>GiBleed</strong></p></li>
+<li class="fragment"><p><strong>Delphi</strong></p></li>
+<li class="fragment"><p><strong>Synpuf</strong></p></li>
+</ul></section><section id="lets-create-our-first-cdm-reference" class="slide level2"><h2>Let’s create our first cdm reference</h2>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># connect to the database</span></span>
-<span><span class="va">dbdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"GiBleed.duckdb"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># connect to the database</span></span>
+<span><span class="va">dbdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"Databases"</span>, <span class="st">"GiBleed.duckdb"</span><span class="op">)</span></span>
 <span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span>drv <span class="op">=</span> <span class="fu"><a href="https://r.duckdb.org/reference/duckdb.html">duckdb</a></span><span class="op">(</span>dbdir <span class="op">=</span> <span class="va">dbdir</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/CDMConnector/reference/cdmFromCon.html">cdmFromCon</a></span><span class="op">(</span>con <span class="op">=</span> <span class="va">con</span>, cdmSchema <span class="op">=</span> <span class="st">"main"</span>, writeSchema <span class="op">=</span> <span class="st">"main"</span><span class="op">)</span></span>
-<span><span class="va">cdm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/CDMConnector/reference/cdmFromCon.html">cdmFromCon</a></span><span class="op">(</span>con <span class="op">=</span> <span class="va">con</span>, cdmSchema <span class="op">=</span> <span class="st">"main"</span>, writeSchema <span class="op">=</span> <span class="st">"results"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Note: method with signature 'DBIConnection#Id' chosen for function 'dbExistsTable',
+ target signature 'duckdb_connection#Id'.
+ "duckdb_connection#ANY" would also be valid</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
 </div>
@@ -485,10 +476,10 @@ visit_occurrence, vocabulary</code></pre>
 </section><section id="access-to-tables-of-the-cdm-reference" class="slide level2"><h2>Access to tables of the cdm reference</h2>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">person</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">person</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A query:  ?? x 18
-# Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
+# Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/Databases/GiBleed.duckdb]
    person_id gender_concept_id year_of_birth month_of_birth day_of_birth birth_datetime      race_concept_id
        &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt; &lt;dttm&gt;                        &lt;int&gt;
  1         6              8532          1963             12           31 1963-12-31 00:00:00            8516
@@ -512,11 +503,11 @@ visit_occurrence, vocabulary</code></pre>
 <div class="fragment">
 <p>Once we read a table we can operate with it and for example count the number of rows of person table.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">person</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">person</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A query:  ?? x 1
-# Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
+# Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/Databases/GiBleed.duckdb]
       n
   &lt;dbl&gt;
 1  2694</code></pre>
@@ -527,7 +518,7 @@ visit_occurrence, vocabulary</code></pre>
 <p>If you are familiarised with <a href="https://www.tidyverse.org/">tidyverse</a> you can use any of the usual <code>dplyr</code> commands in you database tables.</p>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">drug_exposure</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">drug_exposure</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">drug_concept_id</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>number_persons <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span><span class="op">(</span><span class="va">person_id</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -554,7 +545,7 @@ visit_occurrence, vocabulary</code></pre>
 <p>When we have a cdm object we can check which is the name of that database using:</p>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/cdmName.html">cdmName</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/cdmName.html">cdmName</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Synthea"</code></pre>
 </div>
@@ -565,14 +556,14 @@ visit_occurrence, vocabulary</code></pre>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/CDMConnector/reference/cdmFromCon.html">cdmFromCon</a></span><span class="op">(</span></span>
-<span>  con <span class="op">=</span> <span class="va">con</span>, cdmSchema <span class="op">=</span> <span class="st">"main"</span>, writeSchema <span class="op">=</span> <span class="st">"main"</span>, cdmName <span class="op">=</span> <span class="st">"GiBleed"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/CDMConnector/reference/cdmFromCon.html">cdmFromCon</a></span><span class="op">(</span></span>
+<span>  con <span class="op">=</span> <span class="va">con</span>, cdmSchema <span class="op">=</span> <span class="st">"main"</span>, writeSchema <span class="op">=</span> <span class="st">"results"</span>, cdmName <span class="op">=</span> <span class="st">"GiBleed"</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/cdmName.html">cdmName</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/cdmName.html">cdmName</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "GiBleed"</code></pre>
 </div>
@@ -583,21 +574,13 @@ visit_occurrence, vocabulary</code></pre>
 <div class="fragment">
 <p>temporary table (default):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_saved_table</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">condition_occurrence</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_saved_table</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">condition_occurrence</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">condition_concept_id</span> <span class="op">==</span> <span class="fl">4112343</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">person_id</span>, <span class="va">condition_start_date</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">compute</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "care_site"             "cdm_source"            "concept"               "concept_ancestor"     
- [5] "concept_class"         "concept_relationship"  "concept_synonym"       "condition_era"        
- [9] "condition_occurrence"  "cost"                  "death"                 "device_exposure"      
-[13] "domain"                "dose_era"              "drug_era"              "drug_exposure"        
-[17] "drug_strength"         "fact_relationship"     "location"              "measurement"          
-[21] "metadata"              "note"                  "note_nlp"              "observation"          
-[25] "observation_period"    "payer_plan_period"     "person"                "procedure_occurrence" 
-[29] "provider"              "relationship"          "source_to_concept_map" "specimen"             
-[33] "visit_detail"          "visit_occurrence"      "vocabulary"            "og_001_1782057375"    </code></pre>
+<pre><code>character(0)</code></pre>
 </div>
 </div>
 </div>
@@ -605,28 +588,19 @@ visit_occurrence, vocabulary</code></pre>
 <div class="fragment">
 <p>permanent table:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_saved_table</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">condition_occurrence</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_saved_table</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">condition_occurrence</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">condition_concept_id</span> <span class="op">==</span> <span class="fl">4112343</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">person_id</span>, <span class="va">condition_start_date</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">compute</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"my_saved_table"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "care_site"             "cdm_source"            "concept"               "concept_ancestor"     
- [5] "concept_class"         "concept_relationship"  "concept_synonym"       "condition_era"        
- [9] "condition_occurrence"  "cost"                  "death"                 "device_exposure"      
-[13] "domain"                "dose_era"              "drug_era"              "drug_exposure"        
-[17] "drug_strength"         "fact_relationship"     "location"              "measurement"          
-[21] "metadata"              "my_saved_table"        "note"                  "note_nlp"             
-[25] "observation"           "observation_period"    "payer_plan_period"     "person"               
-[29] "procedure_occurrence"  "provider"              "relationship"          "source_to_concept_map"
-[33] "specimen"              "visit_detail"          "visit_occurrence"      "vocabulary"           
-[37] "og_001_1782057375"    </code></pre>
+<pre><code>[1] "my_saved_table"</code></pre>
 </div>
 </div>
 </div>
 </section><section id="create-a-new-table-2" class="slide level2"><h2>Create a new table</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
 </div>
@@ -649,10 +623,10 @@ visit_occurrence, vocabulary</code></pre>
 <div class="cell-output cell-output-stderr">
 <pre><code>• other tables: my_saved_table</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_saved_table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_saved_table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A query:  ?? x 2
-# Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
+# Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/Databases/GiBleed.duckdb]
    person_id condition_start_date
        &lt;int&gt; &lt;date&gt;              
  1       263 2015-10-02          
@@ -676,7 +650,7 @@ visit_occurrence, vocabulary</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/dropSourceTable.html">dropSourceTable</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, name <span class="op">=</span> <span class="st">"my_saved_table"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/dropSourceTable.html">dropSourceTable</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, name <span class="op">=</span> <span class="st">"my_saved_table"</span><span class="op">)</span></span>
 <span><span class="va">cdm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
@@ -705,24 +679,16 @@ visit_occurrence, vocabulary</code></pre>
 </section><section id="drop-an-existing-table-1" class="slide level2"><h2>Drop an existing table</h2>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "care_site"             "cdm_source"            "concept"               "concept_ancestor"     
- [5] "concept_class"         "concept_relationship"  "concept_synonym"       "condition_era"        
- [9] "condition_occurrence"  "cost"                  "death"                 "device_exposure"      
-[13] "domain"                "dose_era"              "drug_era"              "drug_exposure"        
-[17] "drug_strength"         "fact_relationship"     "location"              "measurement"          
-[21] "metadata"              "note"                  "note_nlp"              "observation"          
-[25] "observation_period"    "payer_plan_period"     "person"                "procedure_occurrence" 
-[29] "provider"              "relationship"          "source_to_concept_map" "specimen"             
-[33] "visit_detail"          "visit_occurrence"      "vocabulary"            "og_001_1782057375"    </code></pre>
+<pre><code>character(0)</code></pre>
 </div>
 </div>
 </div>
 </section><section id="drop-an-existing-table-2" class="slide level2"><h2>Drop an existing table</h2>
 <p>Let’s drop also the other table that we created:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/dropSourceTable.html">dropSourceTable</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, name <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"og_"</span><span class="op">)</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/dropSourceTable.html">dropSourceTable</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, name <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"og_"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">cdm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
@@ -749,23 +715,15 @@ visit_occurrence, vocabulary</code></pre>
 </div>
 </section><section id="drop-an-existing-table-3" class="slide level2"><h2>Drop an existing table</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb72"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "care_site"             "cdm_source"            "concept"               "concept_ancestor"     
- [5] "concept_class"         "concept_relationship"  "concept_synonym"       "condition_era"        
- [9] "condition_occurrence"  "cost"                  "death"                 "device_exposure"      
-[13] "domain"                "dose_era"              "drug_era"              "drug_exposure"        
-[17] "drug_strength"         "fact_relationship"     "location"              "measurement"          
-[21] "metadata"              "note"                  "note_nlp"              "observation"          
-[25] "observation_period"    "payer_plan_period"     "person"                "procedure_occurrence" 
-[29] "provider"              "relationship"          "source_to_concept_map" "specimen"             
-[33] "visit_detail"          "visit_occurrence"      "vocabulary"           </code></pre>
+<pre><code>character(0)</code></pre>
 </div>
 </div>
 </section><section id="insert-a-table" class="slide level2"><h2>Insert a table</h2>
 <p>Let’s say we have a local tibble and we want to insert it in the cdm:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/insertTable.html">insertTable</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, name <span class="op">=</span> <span class="st">"my_test_table"</span>, table <span class="op">=</span> <span class="va">cars</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb74"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/insertTable.html">insertTable</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, name <span class="op">=</span> <span class="st">"my_test_table"</span>, table <span class="op">=</span> <span class="va">cars</span><span class="op">)</span></span>
 <span><span class="va">cdm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
@@ -792,22 +750,14 @@ visit_occurrence, vocabulary</code></pre>
 </div>
 </section><section id="insert-a-table-1" class="slide level2"><h2>Insert a table</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb80"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb81"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span><span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "care_site"             "cdm_source"            "concept"               "concept_ancestor"     
- [5] "concept_class"         "concept_relationship"  "concept_synonym"       "condition_era"        
- [9] "condition_occurrence"  "cost"                  "death"                 "device_exposure"      
-[13] "domain"                "dose_era"              "drug_era"              "drug_exposure"        
-[17] "drug_strength"         "fact_relationship"     "location"              "measurement"          
-[21] "metadata"              "my_test_table"         "note"                  "note_nlp"             
-[25] "observation"           "observation_period"    "payer_plan_period"     "person"               
-[29] "procedure_occurrence"  "provider"              "relationship"          "source_to_concept_map"
-[33] "specimen"              "visit_detail"          "visit_occurrence"      "vocabulary"           </code></pre>
+<pre><code>[1] "my_test_table"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb82"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_test_table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb83"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_test_table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A query:  ?? x 2
-# Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
+# Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/Databases/GiBleed.duckdb]
    speed  dist
    &lt;dbl&gt; &lt;dbl&gt;
  1     4     2
@@ -826,10 +776,10 @@ visit_occurrence, vocabulary</code></pre>
 </section><section id="use-a-prefix" class="slide level2"><h2>Use a prefix</h2>
 <p>It is <strong>VERY IMPORTANT</strong> that when we create the cdm object we use a prefix:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/CDMConnector/reference/cdmFromCon.html">cdmFromCon</a></span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb85"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/CDMConnector/reference/cdmFromCon.html">cdmFromCon</a></span><span class="op">(</span></span>
 <span>  con <span class="op">=</span> <span class="va">con</span>, </span>
 <span>  cdmSchema <span class="op">=</span> <span class="st">"main"</span>, </span>
-<span>  writeSchema <span class="op">=</span> <span class="st">"main"</span>, </span>
+<span>  writeSchema <span class="op">=</span> <span class="st">"results"</span>, </span>
 <span>  writePrefix <span class="op">=</span> <span class="st">"my_prefix_"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">cdm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -859,7 +809,7 @@ visit_occurrence, vocabulary</code></pre>
 </section><section id="use-a-prefix-1" class="slide level2"><h2>Use a prefix</h2>
 <p>Now when we create a new table the prefix will be automatically added:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb91"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/insertTable.html">insertTable</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, name <span class="op">=</span> <span class="st">"my_test_table"</span>, table <span class="op">=</span> <span class="va">cars</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb92"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/insertTable.html">insertTable</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, name <span class="op">=</span> <span class="st">"my_test_table"</span>, table <span class="op">=</span> <span class="va">cars</span><span class="op">)</span></span>
 <span><span class="va">cdm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
@@ -886,14 +836,14 @@ visit_occurrence, vocabulary</code></pre>
 </div>
 </section><section id="use-a-prefix-2" class="slide level2"><h2>Use a prefix</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb98"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb99"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "my_test_table"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb100"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_test_table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb101"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_test_table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A query:  ?? x 2
-# Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/GiBleed.duckdb]
+# Database: DuckDB 1.5.4 [unknown@Linux 6.17.0-1018-azure:R 4.6.0//home/runner/work/RealWorldEvidenceSummerSchool2026/RealWorldEvidenceSummerSchool2026/Databases/GiBleed.duckdb]
    speed  dist
    &lt;dbl&gt; &lt;dbl&gt;
  1     4     2
@@ -912,7 +862,7 @@ visit_occurrence, vocabulary</code></pre>
 </section><section id="use-a-prefix-3" class="slide level2"><h2>Use a prefix</h2>
 <p><strong>DO NOT</strong> use the prefix to drop tables, you only care about the prefix at the connection stage!</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb102"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/dropSourceTable.html">dropSourceTable</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, name <span class="op">=</span> <span class="st">"my_prefix_my_test_table"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb103"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/dropSourceTable.html">dropSourceTable</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, name <span class="op">=</span> <span class="st">"my_prefix_my_test_table"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "my_test_table"</code></pre>
@@ -920,7 +870,7 @@ visit_occurrence, vocabulary</code></pre>
 </div>
 </section><section id="use-a-prefix-4" class="slide level2"><h2>Use a prefix</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb104"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb105"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
 </div>
@@ -947,7 +897,7 @@ visit_occurrence, vocabulary</code></pre>
 </section><section id="use-a-prefix-5" class="slide level2"><h2>Use a prefix</h2>
 <p><strong>DO NOT</strong> use the prefix to drop tables, you only care about the prefix at the connection stage!</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb111"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/dropSourceTable.html">dropSourceTable</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, name <span class="op">=</span> <span class="st">"my_test_table"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb112"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/dropSourceTable.html">dropSourceTable</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span>, name <span class="op">=</span> <span class="st">"my_test_table"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/listSourceTables.html">listSourceTables</a></span><span class="op">(</span>cdm <span class="op">=</span> <span class="va">cdm</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>character(0)</code></pre>
@@ -955,7 +905,7 @@ visit_occurrence, vocabulary</code></pre>
 </div>
 </section><section id="use-a-prefix-6" class="slide level2"><h2>Use a prefix</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb113"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb114"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
 </div>
@@ -983,14 +933,14 @@ visit_occurrence, vocabulary</code></pre>
 <p>We use compute() to compute the result into a temporary (temporary = TRUE) or permanent (temporary = FALSE) table.</p>
 <p>If it is a temporary table we can assign assign it to where I want for example:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb120"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_custom_name</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">person</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb121"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_custom_name</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">person</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">compute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment">
 <p>If it is a permanent table we can only assign it to the same name:</p>
 <p>error:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb121"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_custom_name</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">person</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb122"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_custom_name</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">person</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">compute</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"not_my_custom_name"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in `[[&lt;-`:
@@ -1005,7 +955,7 @@ cdm[['my_custom_name']] &lt;- yourObject |&gt;
 <div class="fragment">
 <p>no error:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb123"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_custom_name</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">person</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb124"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_custom_name</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">person</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">compute</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"my_custom_name"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
@@ -1013,7 +963,7 @@ cdm[['my_custom_name']] &lt;- yourObject |&gt;
 <p>Omop names are reserved words, e.g.&nbsp;we can not assign a table that is not the person table to <code>cdm$person</code>.</p>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb124"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">person</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">drug_exposure</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb125"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">person</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">drug_exposure</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">compute</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"person"</span>, temporary <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in `newOmopTable()`:
@@ -1023,7 +973,7 @@ cdm[['my_custom_name']] &lt;- yourObject |&gt;
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb126"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">drug_exposure</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">drug_exposure</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb127"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">drug_exposure</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">drug_exposure</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span><span class="st">"my_id"</span> <span class="op">=</span> <span class="st">"person_id"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">compute</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"drug_exposure"</span>, temporary <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
@@ -1036,7 +986,7 @@ cdm[['my_custom_name']] &lt;- yourObject |&gt;
 <p>The output of our analyses has been standardised to the <code>&lt;summarised_result&gt;</code> object.</p>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb128"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/visOmopResults/reference/mockSummarisedResult.html">mockSummarisedResult</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb129"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/visOmopResults/reference/mockSummarisedResult.html">mockSummarisedResult</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">x</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 126 × 13
@@ -1059,7 +1009,7 @@ cdm[['my_custom_name']] &lt;- yourObject |&gt;
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb130"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb131"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "summarised_result" "omop_result"       "tbl_df"            "tbl"               "data.frame"       </code></pre>
 </div>
@@ -1069,7 +1019,7 @@ cdm[['my_custom_name']] &lt;- yourObject |&gt;
 <p>The summarised result object contains 13 columns:</p>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb132"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb133"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 126
 Columns: 13
@@ -1093,7 +1043,7 @@ $ additional_level &lt;chr&gt; "overall", "overall", "overall", "overall", "over
 <p>And have some associated settings</p>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb134"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/settings.html">settings</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb135"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/settings.html">settings</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 8
   result_id result_type            package_name   package_version group       strata           additional min_cell_count
@@ -1105,7 +1055,7 @@ $ additional_level &lt;chr&gt; "overall", "overall", "overall", "overall", "over
 </section><section id="tidy-the-result-object" class="slide level2"><h2>tidy the result object</h2>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb136"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb137"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
