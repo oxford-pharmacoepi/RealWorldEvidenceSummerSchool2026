@@ -1,7 +1,7 @@
 ---
 title: "Welcome to the Analytics track"
 subtitle: "Real World Evidence Summer School 2026"
-date: ""
+date: "2026-06-22"
 format:
   revealjs: 
     theme: [simple, ../styleSS25.scss]
@@ -75,6 +75,20 @@ By the end of the week:
 
 ![](images/BIEe.gif){fig-align="center" width="500"}
 
+## Set up
+
+**USB**
+
+- Contains the datasets you will need for this week
+
+- Copy the *Analytics track* folder to your laptop
+
+- Open the *Analytics track* project with RStudio
+
+- Copy the databases to the *Back up* folder
+
+- Run the `Setup.R` script in the *Your turn* folder
+
 ## Schedule - Monday
 
 | Time          | Session                                       |
@@ -136,11 +150,3 @@ You can find all the materials of the summer school in the following website: <h
 :::
 
 </iframe>
-
-## Set up
-
-**USB**
-
--   Contains the datasets you will need
-
--   .....

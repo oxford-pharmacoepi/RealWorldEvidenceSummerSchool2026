@@ -36,7 +36,7 @@ editor: visual
 ::: {style="margin-bottom: 10px;"}
 :::
 
--   PhenotypeR 0.4 is available in [CRAN](https://cran.r-project.org/web/packages/PhenotypeR/index.html){.link}.
+-   PhenotypeR 0.5 is available in [CRAN](https://cran.r-project.org/web/packages/PhenotypeR/index.html){.link}.
 
 ::: {style="margin-bottom: 10px;"}
 :::
@@ -138,7 +138,7 @@ db_diagnostics <- databaseDiagnostics(
   snapshot = TRUE,
   personTableSummary = TRUE,
   observationPeriodsSummary = TRUE,
-  clinicalRecordsSummary = TRUE
+  clinicalRecordsSummary = FALSE
 )
 
 # Modify databaseDiagnostics in phenotypeDiagnostics:
@@ -166,13 +166,13 @@ result <- phenotypeDiagnostics(
 cl_diagnostics <- codelistDiagnostics(
   cohort,
   cohortId = NULL,
-  achillesCodeUse = TRUE,
+  achillesCodeUse = FALSE,
   orphanCodeUse = TRUE,
   cohortCodeUse = TRUE,
-  drugDiagnostics = TRUE,
-  measurementDiagnostics = TRUE,
-  measurementDiagnosticsSample = 20000,
-  drugDiagnosticsSample = 20000
+  drugDiagnostics = FALSE,
+  drugDiagnosticsSample = 20000,
+  measurementDiagnostics = FALSE,
+  measurementDiagnosticsSample = 20000
 )
 
 # Modify codelistDiagnostics in phenotypeDiagnostics:
@@ -203,8 +203,8 @@ c_diagnostics <- cohortDiagnostics(
   cohortCount = TRUE,
   cohortCharacteristics = TRUE,
   largeScaleCharacteristics = TRUE,
-  compareCohorts = TRUE,
-  cohortSurvival = FALSE, # Notice that by default, cohortSurvival it's not run!!
+  compareCohorts = FALSE,
+  cohortSurvival = FALSE,
   cohortSample = 20000,
   matchedSample = 1000
 )
@@ -300,13 +300,57 @@ shinyDiagnostics(result = result,
                  removeEmptyTabs = FALSE)
 ```
 
+## Extra: Changing additional parameters
+
+. . .
+
+- Modify extra parameters (*window, eventInWindow, episodesInWindow* for the LSC) using global variables:
+
+. . .
 
 
-## Extra: Adding context to your results
+```{r, eval = FALSE}
+options("PhenotypeR_summariseLargeScaleCharacteristics_window" = list(c(0, 0)))
+options("PhenotypeR_summariseLargeScaleCharacteristics_eventInWindow"   = c("condition_occurrence"))
+options("PhenotypeR_summariseLargeScaleCharacteristics_episodeInWindow" = c("drug_exposure"))
+```
+
+## Extra: Adding context to your results via data source description
+
+-   Visit [Data source shiny app](https://dpa-pde-oxford.shinyapps.io/PhenotypeDataSourceDescriptionsShiny/)
+
+. . .
+
+![](Figures/website_data_source.png)
+
+## Extra: Adding context to your results via data source description
+
+-   Visit [Data source shiny app](https://dpa-pde-oxford.shinyapps.io/PhenotypeDataSourceDescriptionsShiny/)
+
+. . .
+
+
+![](Figures/data_source_description.png)
+
+## Extra: Adding context to your results via clinical descriptions
+
 
 -   Visit [Descriptions shiny app](https://dpa-pde-oxford.shinyapps.io/PhenotypeDescriptionsShiny/)
 
-![](Figures/ClinicalDescriptionUsingAI.png)
+. . .
+
+
+![](Figures/website_clinical.png)
+
+
+## Extra: Adding context to your results via clinical descriptions
+
+-   Visit [Clinical descriptions shiny app](https://dpa-pde-oxford.shinyapps.io/PhenotypeDescriptionsShiny/)
+
+. . .
+
+
+![](Figures/ClinicalDescription.png)
 
 ## Import your descriptions in the shiny app:
 
