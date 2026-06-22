@@ -119,7 +119,7 @@ shinyDiagnostics(result = result,
                  removeEmptyTabs = FALSE)
 ```
 
-See an example in [here](https://dpa-pde-oxford.shinyapps.io/PhenotypeRShiny_OHDSIEuropeWorkshop/)
+See an example in [here](https://dpa-pde-oxford.shinyapps.io/SummerSchool_PhenotypeRShiny//)
 
 ## Database Diagnostics
 
@@ -304,10 +304,9 @@ shinyDiagnostics(result = result,
 
 . . .
 
-- Modify extra parameters (*window, eventInWindow, episodesInWindow* for the LSC) using global variables:
+-   Modify extra parameters (*window, eventInWindow, episodesInWindow* for the LSC) using global variables:
 
 . . .
-
 
 ```{r, eval = FALSE}
 options("PhenotypeR_summariseLargeScaleCharacteristics_window" = list(c(0, 0)))
@@ -317,7 +316,7 @@ options("PhenotypeR_summariseLargeScaleCharacteristics_episodeInWindow" = c("dru
 
 ## Extra: Adding context to your results via data source description
 
--   Visit [Data source shiny app](https://dpa-pde-oxford.shinyapps.io/PhenotypeDataSourceDescriptionsShiny/)
+-   Visit [Data source description shiny app](https://dpa-pde-oxford.shinyapps.io/PhenotypeDataSourceDescriptionsShiny/)
 
 . . .
 
@@ -325,30 +324,25 @@ options("PhenotypeR_summariseLargeScaleCharacteristics_episodeInWindow" = c("dru
 
 ## Extra: Adding context to your results via data source description
 
--   Visit [Data source shiny app](https://dpa-pde-oxford.shinyapps.io/PhenotypeDataSourceDescriptionsShiny/)
+-   Visit [Data source description shiny app](https://dpa-pde-oxford.shinyapps.io/PhenotypeDataSourceDescriptionsShiny/)
 
 . . .
-
 
 ![](Figures/data_source_description.png)
 
 ## Extra: Adding context to your results via clinical descriptions
 
-
--   Visit [Descriptions shiny app](https://dpa-pde-oxford.shinyapps.io/PhenotypeDescriptionsShiny/)
+-   Visit [Clinical Descriptions shiny app](https://dpa-pde-oxford.shinyapps.io/PhenotypeDescriptionsShiny/)
 
 . . .
 
-
 ![](Figures/website_clinical.png)
-
 
 ## Extra: Adding context to your results via clinical descriptions
 
 -   Visit [Clinical descriptions shiny app](https://dpa-pde-oxford.shinyapps.io/PhenotypeDescriptionsShiny/)
 
 . . .
-
 
 ![](Figures/ClinicalDescription.png)
 
