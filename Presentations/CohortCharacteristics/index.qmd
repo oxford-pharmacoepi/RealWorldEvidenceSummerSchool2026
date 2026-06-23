@@ -52,20 +52,13 @@ remotes::install_github("darwin-eu/CohortCharacteristics")
 
 The package documentation and vignettes are available on the website: <https://darwin-eu.github.io/CohortCharacteristics/>
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, eval = TRUE}
 options("width"=115)
 library(DiagrammeR)
 library(DiagrammeRsvg)
 library(rsvg)
 library(grid)
 library(png)
-```
-
-## Let's get started
-
-Load the packages that we will use for this presentation:
-
-```{r, echo = TRUE}
 library(duckdb)
 library(CDMConnector)
 library(CohortConstructor)
@@ -75,25 +68,7 @@ library(ggplot2)
 library(here)
 library(CohortCharacteristics)
 library(CodelistGenerator)
-```
 
-## Let's get started
-
-Let's create a reference to the *delphi* dataset. Note that the results shown in this presentation are created using a different dataset (*GiBleed*).
-
-```{r, echo = TRUE, eval=FALSE}
-con <- dbConnect(drv = duckdb(dbdir = here("Databases", "delphi.duckdb")))
-
-cdm <- cdmFromCon(
-  con = con,
-  cdmSchema = "main",
-  writeSchema = "results",
-  writePrefix = "cch_",
-  cdmName = "delphi"
-)
-```
-
-```{r, echo = FALSE, eval = TRUE}
 con <- dbConnect(drv = duckdb(dbdir = here("Databases", "GiBleed.duckdb")))
 
 cdm <- cdmFromCon(
@@ -106,10 +81,15 @@ cdm <- cdmFromCon(
 ```
 
 ## Let's get started
-
 Let's create some cohorts that we will use during the presentation:
 
 ```{r}
+library(DiagrammeR)
+library(DiagrammeRsvg)
+library(rsvg)
+library(grid)
+library(png)
+
 x <- c(list(anemia = 439777,
             rheumatoid_arthritis = 80809,
             osteoarthritis = 80180, 
@@ -330,7 +310,8 @@ tableCharacteristics(result = result, header = "cohort_name")
 
 ::: {style="max-height: 750px; overflow-y: auto;"}
 ```{r, echo = F, eval = T}
-result <- summariseCharacteristics(cdm$my_cohort, ageGroup = list(c(0,10), c(11,18), c(19,150)))
+result <- summariseCharacteristics(cdm$my_cohort, 
+                                   ageGroup = list(c(0,10), c(11,18), c(19,150)))
 tableCharacteristics(result = result, header = "cohort_name")
 ```
 :::
@@ -341,7 +322,8 @@ tableCharacteristics(result = result, header = "cohort_name")
 ```{r, echo = T, eval = F}
 result <- cdm$my_cohort |> 
   addAge(ageGroup = list(c(0,10),c(11,18), c(19,150))) |>
-  summariseCharacteristics(cohortId = 1, strata = list("age_group"))
+  summariseCharacteristics(cohortId = 1, 
+                           strata = list("age_group"))
 tableCharacteristics(result = result, header = "age_group")  
 ```
 :::
@@ -379,21 +361,12 @@ result <- cdm$my_cohort |>
         targetCohortTable = "my_cohort",
         targetCohortId = "rheumatoid_arthritis", 
         window = c(-Inf, 0)
-      ),
-      "Clopidogrel prescription prior year" = list(
-        targetCohortTable = "my_cohort",
-        targetCohortId = "clopidogrel",
-        window = c(-365, 0)
       )
     ),
     conceptIntersectDays = list(
       "Time since last X-ray" = list(
         conceptSet = list(pelvis_x_ray = 4145310L, clavicle_x_ray = 4058899L, chest_x_ray = 4163872L),
         window = c(-Inf, 0)
-      ),
-      "Time to immunotherapy" = list(
-        conceptSet = list(immunotherapy = 4107731),
-        window = c(0, Inf)
       )
     )
   )
@@ -421,11 +394,6 @@ cdm$my_cohort |>
         targetCohortTable = "my_cohort",
         targetCohortId = "rheumatoid_arthritis", 
         window = c(-Inf, 0)
-      ),
-      "Clopidogrel prescription prior year" = list(
-        targetCohortTable = "my_cohort",
-        targetCohortId = "clopidogrel",
-        window = c(-365, 0)
       )
     ),
     conceptIntersectDays = list(
@@ -463,6 +431,22 @@ The arguments of the intersection functions match the *PatientProfiles* function
 :::
 
 ## Your turn
+```{r, eval=TRUE, echo=FALSE}
+con <- dbConnect(drv = duckdb(dbdir = here("Databases", "delphi.duckdb")))
+
+cdm <- cdmFromCon(
+  con = con,
+  cdmSchema = "main",
+  writeSchema = "results",
+  writePrefix = "cch_",
+  cdmName = "delphi"
+)
+
+cdm[["my_cohort"]] <- conceptCohort(cdm = cdm, 
+                                    conceptSet = x,
+                                    name = "my_cohort")
+
+```
 
 Can you characterise the `osteoarthritis` cohort?
 
@@ -478,7 +462,7 @@ Can you characterise the `osteoarthritis` cohort?
 <summary>💡 Click to see solution</summary>
 
 ::: {style="max-height: 750px; overflow-y: auto;"}
-```{r, eval = TRUE}
+```{r, eval = FALSE}
 result <- summariseCharacteristics(
   cohort = cdm$my_cohort,
   cohortId = "osteoarthritis",
@@ -502,11 +486,49 @@ tableCharacteristics(result = result, header = "cohort_name")
 
 </details>
 
-## Plots
+::: {style="max-height: 750px; overflow-y: auto;"}
+```{r, eval = TRUE, echo=FALSE}
+result <- summariseCharacteristics(
+  cohort = cdm$my_cohort,
+  cohortId = "osteoarthritis",
+  cohortIntersectFlag = list(
+      "Heparin prescriptions during the prior 180 days" = list(
+        targetCohortTable = "my_cohort",
+        targetCohortId = "heparin", 
+        window = c(-180, 0)
+      ),
+      "Pneumonia diagnosis during the prior 2 years" = list(
+        targetCohortTable = "my_cohort",
+        targetCohortId = "pneumonia", 
+        window = c(-730, -1)
+      )
+    )
+)
 
+tableCharacteristics(result = result, header = "cohort_name")
+```
+:::
+
+## plotCharacteristics()
 . . .
 
 You can plot a variable from the `summariseCharacteristics()` output using `plotCharacteristics()`.
+```{r, eval=TRUE, echo=FALSE}
+con <- dbConnect(drv = duckdb(dbdir = here("Databases", "GiBleed.duckdb")))
+
+cdm <- cdmFromCon(
+  con = con,
+  cdmSchema = "main",
+  writeSchema = "results",
+  writePrefix = "cch_",
+  cdmName = "GiBleed"
+)
+
+cdm[["my_cohort"]] <- conceptCohort(cdm = cdm, 
+                                    conceptSet = x,
+                                    name = "my_cohort")
+
+```
 
 ```{r, echo = T, eval = T}
 result <- cdm$my_cohort |>
@@ -516,7 +538,7 @@ result <- cdm$my_cohort |>
 plotCharacteristics(result = result, plotStyle = "boxplot", colour = "cohort_name")
 ```
 
-## Plots
+## plotCharacteristics()
 
 ```{r, echo = T, eval = T}
 result <- cdm$my_cohort |>
@@ -530,6 +552,22 @@ plotCharacteristics(result = result,
 ```
 
 ## Your turn
+```{r, eval=TRUE, echo=FALSE}
+con <- dbConnect(drv = duckdb(dbdir = here("Databases", "delphi.duckdb")))
+
+cdm <- cdmFromCon(
+  con = con,
+  cdmSchema = "main",
+  writeSchema = "results",
+  writePrefix = "cch_",
+  cdmName = "delphi"
+)
+
+cdm[["my_cohort"]] <- conceptCohort(cdm = cdm, 
+                                    conceptSet = x,
+                                    name = "my_cohort")
+
+```
 
 Can you create a bar plot the percentage of sex in the `osteoarthritis` table?
 
@@ -537,7 +575,7 @@ Can you create a bar plot the percentage of sex in the `osteoarthritis` table?
 
 <summary>💡 Click to see solution</summary>
 
-```{r, eval = TRUE}
+```{r, eval=TRUE, echo=TRUE}
 result <- cdm$my_cohort |>
   summariseCharacteristics(cohortId = "osteoarthritis") |>
   filter(variable_name == "Sex" & estimate_name == "percentage")
@@ -549,6 +587,36 @@ plotCharacteristics(result = result,
 ```
 
 </details>
+
+::: {style="max-height: 750px; overflow-y: auto;"}
+```{r, eval=TRUE, echo=FALSE}
+result <- cdm$my_cohort |>
+  summariseCharacteristics(cohortId = "osteoarthritis") |>
+  filter(variable_name == "Sex" & estimate_name == "percentage")
+
+plotCharacteristics(result = result,
+                    plotStyle = "barplot",
+                    facet = "cohort_name",
+                    colour = "variable_level")
+```
+:::
+
+```{r, eval=TRUE, echo=FALSE}
+con <- dbConnect(drv = duckdb(dbdir = here("Databases", "GiBleed.duckdb")))
+
+cdm <- cdmFromCon(
+  con = con,
+  cdmSchema = "main",
+  writeSchema = "results",
+  writePrefix = "cch_",
+  cdmName = "GiBleed"
+)
+
+cdm[["my_cohort"]] <- conceptCohort(cdm = cdm, 
+                                    conceptSet = x,
+                                    name = "my_cohort")
+
+```
 
 ## summariseLargeScaleCharacteristics
 
@@ -681,27 +749,54 @@ plotCohortTiming(
 
 ## Your turn
 
-Can you get the large-scale characteristics from the `drug_exposure` table for the `osteoarthritis` cohort table using an anytime-prior time window (excluding index date)? Visualise the result showing the top 5 most frequent codes.
+```{r, eval=TRUE, echo=FALSE}
+con <- dbConnect(drv = duckdb(dbdir = here("Databases", "delphi.duckdb")))
+
+cdm <- cdmFromCon(
+  con = con,
+  cdmSchema = "main",
+  writeSchema = "results",
+  writePrefix = "cch_",
+  cdmName = "delphi"
+)
+
+cdm[["my_cohort"]] <- conceptCohort(cdm = cdm, 
+                                    conceptSet = x,
+                                    name = "my_cohort")
+
+```
+
+Can you get the large-scale characteristics from the `drug_exposure` table for the `clopidogrel` cohort table using an anytime-prior time window (excluding index date)? Visualise the result showing the top 5 most frequent codes.
 
 . . .
-
 
 <details>
 
 <summary>💡 Click to see solution</summary>
 
-```{r, eval = TRUE}
+```{r, eval = FALSE, echo=TRUE}
 result <- cdm$my_cohort |>
   summariseLargeScaleCharacteristics(
-    cohortId = "osteoarthritis",
+    cohortId = "clopidogrel",
     window = list(c(-Inf, -1)),
-    eventInWindow = "drug_exposure",
+    episodeInWindow = "drug_exposure",
     minimumFrequency = 0.05
   )
 tableTopLargeScaleCharacteristics(result = result, topConcepts = 5)
 ```
 
 </details>
+
+```{r, eval = TRUE, echo=FALSE}
+result <- cdm$my_cohort |>
+  summariseLargeScaleCharacteristics(
+    cohortId = "clopidogrel",
+    window = list(c(-Inf, -1)),
+    episodeInWindow = "drug_exposure",
+    minimumFrequency = 0.05
+  )
+tableTopLargeScaleCharacteristics(result = result, topConcepts = 5)
+```
 
 ## CohortCharacteristics
 
