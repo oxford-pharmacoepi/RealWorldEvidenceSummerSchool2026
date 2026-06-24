@@ -367,6 +367,10 @@ result <- cdm$my_cohort |>
       "Time since last X-ray" = list(
         conceptSet = list(pelvis_x_ray = 4145310L, clavicle_x_ray = 4058899L, chest_x_ray = 4163872L),
         window = c(-Inf, 0)
+      ),
+       "Time to immunotherapy" = list(
+        conceptSet = list(immunotherapy = 4107731),
+        window = c(0, Inf)
       )
     )
   )
