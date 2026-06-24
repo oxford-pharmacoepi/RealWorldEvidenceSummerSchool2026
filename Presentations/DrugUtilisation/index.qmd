@@ -48,7 +48,7 @@ install.packages("DrugUtilisation")
 
 <br>
 
--   [v1.0.3](https://cran.r-project.org/package=DrugUtilisation) on cran.
+-   [v1.2.0](https://cran.r-project.org/package=DrugUtilisation) on cran.
 
 -   [package website](https://darwin-eu-dev.github.io/DrugUtilisation/)
 
@@ -59,20 +59,35 @@ install.packages("DrugUtilisation")
 For this example we are going to use a synthetic test database:
 
 ```{r}
-library(omock)
 library(duckdb)
 library(CDMConnector)
 library(dplyr)
 library(CodelistGenerator)
 library(DrugUtilisation)
 library(CohortConstructor)
+library(here)
 
-cdm <- mockCdmFromDataset(datasetName = "synthea-covid19-10k")
+con <- dbConnect(drv = duckdb(dbdir = here("Databases", "delphi.duckdb")))
+```
+
+```{r, echo=FALSE}
+dbExecute(con, "SET memory_limit = '2GB'")
+```
+
+```{r}
+cdm <- cdmFromCon(
+  con = con,
+  cdmSchema = "main",
+  writeSchema = "results",
+  writePrefix = "os_"
+)
+```
+
+## Add some random quantities
+
+```{r}
 cdm$drug_exposure <- cdm$drug_exposure |>
-  mutate(quantity = sample(c(0, 1, 5, 10, 30, 100), size = dplyr::n(), replace = TRUE))
-con <- dbConnect(drv = duckdb())
-src <- dbSource(con = con, writeSchema = "main")
-cdm <- insertCdmTo(cdm = cdm, to = src)
+  mutate(quantity = as.numeric(sql("[1, 5, 10, 30, 100][floor(random() * 5)::INTEGER + 1]")))
 ```
 
 ## Generate a drug cohort
@@ -82,14 +97,16 @@ For this example we are going to use all records of `acteaminophen`:
 . . .
 
 ```{r}
-codelist <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen", nameStyle = "{concept_name}")
+codelistPara <- getDrugIngredientCodes(cdm = cdm, name = "acetaminophen", nameStyle = "{concept_name}") |>
+  subsetOnDoseUnit(cdm = cdm, doseUnit = "milligram") |>
+  excludeConcepts(cdm = cdm, concepts = 1125315L, codelistName = "acetaminophen")
 ```
 
 ```{r, message=FALSE}
 cdm$dus_cohort <- conceptCohort(
   cdm = cdm,
   name = "dus_cohort",
-  conceptSet = codelist
+  conceptSet = codelistPara
 )
 ```
 
@@ -202,12 +219,14 @@ cdm$dus_cohort <- cdm$dus_cohort |>
   collapseCohorts(gap = 30)
 ```
 
-. . .
-
-Let's check the settings again:
+## Generate a drug cohort
 
 ```{r}
-settings(cdm$dus_cohort)
+cohortCount(cdm$dus_cohort)
+```
+
+```{r}
+attrition(cdm$dus_cohort)
 ```
 
 ## Inclusion criteria
@@ -253,7 +272,7 @@ Having all this into account the recommended order to apply criteria would be:
 
 ## Your turn
 
-Can you create a cohort with all the records of 'simvastatin' concatenating records separated by 90 days or less and the following inclusion criteria:
+Can you create a cohort with all the records of 'ibuprofen' concatenating records separated by 90 days or less and the following inclusion criteria:
 
 -   First record ever
 
@@ -262,17 +281,17 @@ Can you create a cohort with all the records of 'simvastatin' concatenating reco
 -   Cohort start date between '2010-01-01' and '2021-12-31'.
 
 ```{r, echo = FALSE}
-codelist <- getDrugIngredientCodes(cdm = cdm, name = "simvastatin")
-cdm$simvastatin_cohort <- conceptCohort(
+codelistIbu <- getDrugIngredientCodes(cdm = cdm, name = "ibuprofen")
+cdm$ibuprofen_cohort <- conceptCohort(
   cdm = cdm, 
-  conceptSet = codelist, 
-  name = "simvastatin_cohort"
+  conceptSet = codelistIbu, 
+  name = "ibuprofen_cohort"
 ) |>
   collapseCohorts(gap = 90) |>
   requireIsFirstEntry() |>
   requirePriorObservation(minPriorObservation = 365) |>
   requireInDateRange(dateRange = as.Date(c('2010-01-01', '2021-12-31')))
-cohortCount(cdm$simvastatin_cohort)
+cohortCount(cdm$ibuprofen_cohort)
 ```
 
 <details>
@@ -280,17 +299,17 @@ cohortCount(cdm$simvastatin_cohort)
 <summary>💡 Click to see solution</summary>
 
 ```{r}
-codelist <- getDrugIngredientCodes(cdm = cdm, name = "simvastatin")
-cdm$simvastatin_cohort <- conceptCohort(
+codelistIbu <- getDrugIngredientCodes(cdm = cdm, name = "ibuprofen")
+cdm$ibuprofen_cohort <- conceptCohort(
   cdm = cdm, 
-  conceptSet = codelist, 
-  name = "simvastatin_cohort"
+  conceptSet = codelistIbu, 
+  name = "ibuprofen_cohort"
 ) |>
   collapseCohorts(gap = 90) |>
   requireIsFirstEntry() |>
   requirePriorObservation(minPriorObservation = 365) |>
   requireInDateRange(dateRange = as.Date(c('2010-01-01', '2021-12-31')))
-cohortCount(cdm$simvastatin_cohort)
+cohortCount(cdm$ibuprofen_cohort)
 ```
 
 </details>
@@ -302,8 +321,8 @@ cohortCount(cdm$simvastatin_cohort)
 ```{r}
 result <- cdm$dus_cohort |>
   summariseDrugUtilisation(
-    ingredientConceptId = 1361711, 
-    conceptSet = codelist,
+    ingredientConceptId = 1125315L, 
+    conceptSet = codelistPara,
     indexDate = "cohort_start_date",
     censorDate = "cohort_end_date", 
     restrictIncident = TRUE, 
@@ -597,7 +616,7 @@ plotTreatment(result)
 
 ## DrugUtilisation
 
-::: {style="display: flex; align-items: center; justify-content: space-between;"}
+::::: {style="display: flex; align-items: center; justify-content: space-between;"}
 ::: {style="flex: 1;"}
 👉 [**Packages website**](https://darwin-eu.github.io/DrugUtilisation/)\
 👉 [**CRAN link**](https://cran.r-project.org/package=DrugUtilisation)\
@@ -609,4 +628,4 @@ plotTreatment(result)
 ::: {style="flex: 1; text-align: center;"}
 <img src="https://github.com/darwin-eu/DrugUtilisation/blob/main/man/figures/logo.png?raw=true" width="600"/>
 :::
-:::
+:::::
