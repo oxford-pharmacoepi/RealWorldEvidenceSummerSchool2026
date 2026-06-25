@@ -368,9 +368,9 @@ Let's instantiate the cohorts of interest:
 cdm$indications <- conceptCohort(
   cdm = cdm,
   conceptSet = list(
-    arteriosclerosis = 317576, 
-    myocardial_infarction = 4329847, 
-    pain = getCandidateCodes(cdm = cdm, keywords = "pain")$concept_id
+    osteoarthritis = 4014829L, 
+    fever = 4019097L, 
+    pain = c(35953849L, 35947730L, 40231906L)
   ),
   name = "indications"
 )
@@ -425,13 +425,40 @@ plotIndication(result) |>
   plotly::ggplotly()
 ```
 
+## Indciations (Mutually exclusive FALSE)
+
+```{r}
+result <- cdm$dus_cohort |>
+  summariseIndication(
+    indicationCohortName = "indications", 
+    indicationWindow = list(c(0, 0), c(-30, 7)), 
+    mutuallyExclusive = FALSE,
+    unknownIndicationTable = "condition_occurrence"
+  )
+plotIndication(result = result)
+```
+
 ## Treatment persistence
 
 To analyse treatment persistence and adherence there are two standard pipelines:
 
--   Survival analysis (implemented in the [CohortSurvival](https://cran.r-project.org/package=CohortSurvival) package)
+-   Survival analysis
 
 -   Proportion of patients covered
+
+## Survival discontinuation
+
+```{r}
+result <- cdm$dus_cohort |>
+  summariseDiscontinuationAsSurvival(followUpDays = 90)
+```
+
+## Survival discontinuation
+
+```{r}
+plotDiscontinuationAsSurvival(result = result)
+```
+
 
 ## Proportion of patients covered
 
@@ -440,12 +467,6 @@ Proportion of treated individuals between index date and `followUpDays`. Percent
 ```{r}
 result <- cdm$dus_cohort |>
   summariseProportionOfPatientsCovered(followUpDays = 90)
-```
-
-## Proportion of patients covered
-
-```{r}
-tableProportionOfPatientsCovered(result)
 ```
 
 ## Proportion of patients covered
@@ -462,12 +483,13 @@ plotProportionOfPatientsCovered(result)
 
 Can you create a cohort of a certain ingredient and analyse its persistence in the following year?
 
-*suggestions: 'clopidogrel', 'nitroglycerin', 'simvastatin', 'amlodipine', 'verapamil' are the 5 most common ingredients in this database*
+*suggestions: 'fluorouracil', 'prednisolone', 'telbivudine', 'ciprofloxacin', 'ibuprofen' are common ingredients in this database*
 
 ```{r, echo=FALSE}
 codelist <- getDrugIngredientCodes(
   cdm = cdm, 
-  name = c('clopidogrel', 'nitroglycerin', 'simvastatin', 'amlodipine', 'verapamil')
+  name = c('fluorouracil', 'prednisolone', 'telbivudine', 'ciprofloxacin', 'ibuprofen'),
+  nameStyle = "{concept_name}"
 )
 cdm$persistence <- conceptCohort(
   cdm = cdm, 
@@ -487,7 +509,8 @@ plotProportionOfPatientsCovered(result = result, colour = "cohort_name")
 ```{r}
 codelist <- getDrugIngredientCodes(
   cdm = cdm, 
-  name = c('clopidogrel', 'nitroglycerin', 'simvastatin', 'amlodipine', 'verapamil')
+  name = c('fluorouracil', 'prednisolone', 'telbivudine', 'ciprofloxacin', 'ibuprofen'),
+  nameStyle = "{concept_name}"
 )
 cdm$persistence <- conceptCohort(
   cdm = cdm, 
@@ -527,7 +550,8 @@ Let's define the cohorts of interest for switching:
 ```{r}
 codelist <- getDrugIngredientCodes(
   cdm = cdm, 
-  name = c("clopidogrel", "simvastatin", "warfarin")
+  name = c('fluorouracil', 'prednisolone', 'telbivudine', 'ciprofloxacin', 'ibuprofen'),
+  nameStyle = "{concept_name}"
 )
 cdm$switch <- conceptCohort(
   cdm = cdm, 
@@ -584,7 +608,8 @@ You have to instantiate the treatments that you are interested in a cohort:
 ```{r}
 codelist <- getDrugIngredientCodes(
   cdm = cdm, 
-  name = c("clopidogrel", "simvastatin", "warfarin", "nitroglycerin")
+  name = c('fluorouracil', 'prednisolone', 'telbivudine', 'ciprofloxacin', 'ibuprofen'),
+  nameStyle = "{concept_name}"
 )
 cdm$treatments <- conceptCohort(
   cdm = cdm, 
