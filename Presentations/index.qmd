@@ -1,6 +1,8 @@
 
 # Presentations
 
+[Download presentation PDFs](downloads.qmd){.btn .btn-primary}
+
 ## Monday
 
 - [**Welcome**](welcome.qmd)

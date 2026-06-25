@@ -25,6 +25,8 @@ website:
         href: program.qmd
       - text: Presentations
         href: Presentations/index.qmd
+      - text: PDF Downloads
+        href: Presentations/downloads.qmd
       - text: Practical
         href: practical.qmd
     right:

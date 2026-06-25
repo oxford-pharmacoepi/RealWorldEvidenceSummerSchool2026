@@ -52,6 +52,9 @@ jobs:
       - name: Render Quarto website
         run: quarto render
 
+      - name: Render presentation PDFs
+        run: Rscript scripts/render-presentation-pdfs.R
+
       - name: Publish
         if: github.event_name != 'pull_request'
         uses: quarto-dev/quarto-actions/publish@v2
